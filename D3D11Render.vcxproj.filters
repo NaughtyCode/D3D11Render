@@ -108,17 +108,17 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\pixelshader.hlsl">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\vertexshader.hlsl">
-      <Filter>shaders</Filter>
-    </None>
     <None Include="D3DShaderDemo.ico">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="small.ico">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resource\shaders\pixelshader.hlsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resource\shaders\vertexshader.hlsl">
+      <Filter>shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

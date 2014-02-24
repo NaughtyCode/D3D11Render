@@ -6,7 +6,7 @@ class TD3DDevice;
 class TShader;
 
 struct Vertex{
-	XMFLOAT3 pos;
+	FLOAT x,y,z;
 };
 
 class TBuffer
@@ -23,6 +23,7 @@ private:
 	TShader * Shader;
 	ID3D11InputLayout* VertexLayout;
 	ID3D11Buffer* VertexBuffer;
+	ID3D11Buffer* IndexBuffer;
 	UINT VertexBufferSize;
 };
 

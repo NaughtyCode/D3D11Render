@@ -49,6 +49,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4305;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -109,8 +110,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="D3DShaderDemo.ico" />
-    <None Include="shaders\pixelshader.hlsl" />
-    <None Include="shaders\vertexshader.hlsl" />
+    <None Include="Resource\shaders\pixelshader.hlsl" />
+    <None Include="Resource\shaders\vertexshader.hlsl" />
     <None Include="small.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

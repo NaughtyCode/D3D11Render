@@ -8,7 +8,8 @@ TBuffer::TBuffer(TD3DDevice* device, TShader * shader) :
 								Device(device),
 								Shader(shader),
 								VertexLayout(0),
-								VertexBuffer(0)
+								VertexBuffer(0),
+								IndexBuffer(0)
 {
 
 }
@@ -32,24 +33,20 @@ int TBuffer::CreateVertexBuffer()
 
 	Vertex Vertices[]=
 	{
-		XMFLOAT3(0.3f,0.3f,-.7f ),
-		XMFLOAT3(-0.2f,0.1f,-.7f ),
-		XMFLOAT3(0.3f,0.5f,-.5f ),
-		XMFLOAT3(-0.2f,0.6f,-.5f ),
-		XMFLOAT3(0.3f,0.3f,-.3f ),
-		XMFLOAT3(-0.3f,0.6f,-.3f ),
-		XMFLOAT3(0.3f,-0.2f,-.9f ),
-		XMFLOAT3( -0.3f,-0.1f,-.1f),
-		XMFLOAT3(-0.2f,0.5f,-.3f ),
-		XMFLOAT3( 0.2f,0.5f,-.7f),
-		XMFLOAT3(0.4f,0.3f,-0.7f ),
-		XMFLOAT3(0.2f,0.6f,-0.0f ),
-		XMFLOAT3( -0.5f, 0.0f, 0.0f ),
-		XMFLOAT3( 0.5f, 0.0f, 0.0f ),
-		XMFLOAT3( 0.0f, -0.8f, 0.0f ),
-		XMFLOAT3( 0.0f, 0.8f, 0.0f ),
-		XMFLOAT3( 0.3f, 0.2f, 0.0f ),
-		XMFLOAT3( -0.3f, -0.2f, 0.0f ),
+		0.0,-0.5,0.0,
+		0.0,0.5,0.0,
+		0.0,0.0,0.0,
+		0.5,0.0,0.0,
+		-0.5,0.0,0.0,
+		0.0,0.0,0.0,
+		0.1,0.1,0.0,
+		0.0,0.0,0.0,
+		0.5,0.0,0.0,
+		0.5,0.1,0.0,
+		0.5,0.0,0.0,
+		0.0,0.0,0.0,
+		-0.5,0.0,0.0,
+		-0.5,0.1,0.0,
 	};
 
 	D3D11_BUFFER_DESC BufferDesc;
@@ -74,7 +71,7 @@ int TBuffer::CreateVertexBuffer()
 	UINT stride = sizeof(Vertex);
 	UINT offset = 0;
 	Device->GetImmediateContext()->IASetVertexBuffers(0, 1, &VertexBuffer, &stride, &offset);
-	Device->GetImmediateContext()->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	Device->GetImmediateContext()->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_LINESTRIP);
 	return 1;
 }
 
