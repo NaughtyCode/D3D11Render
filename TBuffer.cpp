@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "TBuffer.h"
+#include "LayoutDefinitions.h"
+
+
 
 TBuffer::TBuffer(TD3DDevice* device, TShader * shader) :
 								Device(device),
@@ -16,15 +19,12 @@ TBuffer::~TBuffer()
 
 int TBuffer::CreateVertexBuffer()
 {
-	D3D11_INPUT_ELEMENT_DESC Layout[] = {
-		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0,D3D11_INPUT_PER_VERTEX_DATA, 0 },
-	};
-
-	UINT numElements = ARRAYSIZE(Layout);
-	if (FAILED(Device->GetDevice()->CreateInputLayout(Layout,
-		numElements,
-		Shader->GetVSBlob()->GetBufferPointer(),
-		Shader->GetVSBlob()->GetBufferSize(),
+	D3D11_INPUT_ELEMENT_DESC* desc = GetInputElementDesc(LAYOUTTYPE_POSITION);
+	UINT Num = (UINT)LAYOUTTYPE_POSITION+1U;
+	if (FAILED(Device->GetDevice()->CreateInputLayout(desc,
+		Num,
+		Shader->GetVSBufferPointer(),
+		Shader->GetVSBufferSize(),
 		&VertexLayout)))
 	{
 		return 0;

@@ -1,11 +1,29 @@
+#include "stdafx.h"
 #include "TInputLayOut.h"
 
-
-TInputLayOut::TInputLayOut(void)
+TInputLayout::TInputLayout(void):VertexLayout(0)
 {
+
 }
 
-
-TInputLayOut::~TInputLayOut(void)
+TInputLayout::~TInputLayout(void)
 {
+
 }
+
+int TInputLayout::CreateInputLayout()
+{
+
+
+
+
+
+
+	return 1;
+}
+
+void TInputLayout::Release()
+{
+
+}
+

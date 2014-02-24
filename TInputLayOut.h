@@ -1,11 +1,16 @@
 #pragma once
 
-
-
-class TInputLayOut
+class TInputLayout
 {
 public:
-	TInputLayOut(void);
-	~TInputLayOut(void);
+	TInputLayout(void);
+	~TInputLayout(void);
+	int CreateInputLayout();
+	void Release();
+
+private:
+	ID3D11InputLayout* VertexLayout;
 };
+
+
 

@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "TShader.h"
 
-TShader::TShader(TD3DDevice* device):Device(device)
+TShader::TShader(TD3DDevice* device):Device(device),
+									VertexShaderBuffere(0),
+									PixelShaderBuffere(0)
 {
 	
 }
@@ -32,18 +34,18 @@ int TShader::CompileShaderFromFile(const WCHAR* szFileName, LPCSTR szEntryPoint,
 
 int TShader::CreateShaders(const WCHAR* VSFilename, const WCHAR* PSFilename, const char* szVertexShaderEntryPoint, const char* szPixelShaderEntryPoint)
 {
-	if (!CompileShaderFromFile(VSFilename, szVertexShaderEntryPoint, "vs_5_0", &VSBlob)){
+	if (!CompileShaderFromFile(VSFilename, szVertexShaderEntryPoint, "vs_5_0", &VertexShaderBuffere)){
 		return 0;
 	}
 
-	if (!CompileShaderFromFile(PSFilename, szPixelShaderEntryPoint, "ps_5_0", &PSBlob)){
+	if (!CompileShaderFromFile(PSFilename, szPixelShaderEntryPoint, "ps_5_0", &PixelShaderBuffere)){
 		return 0;
 	}
 
 	HRESULT hr;
 	hr = Device->GetDevice()->CreateVertexShader(
-		VSBlob->GetBufferPointer(),
-		VSBlob->GetBufferSize(),
+		VertexShaderBuffere->GetBufferPointer(),
+		VertexShaderBuffere->GetBufferSize(),
 		NULL,
 		&VertexShader);
 	if (FAILED(hr)){
@@ -51,8 +53,8 @@ int TShader::CreateShaders(const WCHAR* VSFilename, const WCHAR* PSFilename, con
 	}
 
 	hr = Device->GetDevice()->CreatePixelShader(
-		PSBlob->GetBufferPointer(),
-		PSBlob->GetBufferSize(),
+		PixelShaderBuffere->GetBufferPointer(),
+		PixelShaderBuffere->GetBufferSize(),
 		NULL,
 		&PixelShader);
 	if (FAILED(hr)){
@@ -68,14 +70,16 @@ void TShader::PostShaders()
 	Device->GetImmediateContext()->PSSetShader(PixelShader, NULL, 0);
 }
 
-ID3DBlob* TShader::GetVSBlob()
+LPVOID TShader::GetVSBufferPointer()
 {
-	return VSBlob;
+	assert(VertexShaderBuffere);
+	return VertexShaderBuffere->GetBufferPointer();
 }
 
-ID3DBlob* TShader::GetPSBlob()
+SIZE_T TShader::GetVSBufferSize()
 {
-	return PSBlob;
+	assert(VertexShaderBuffere);
+	return VertexShaderBuffere->GetBufferSize();
 }
 
 void TShader::Release()

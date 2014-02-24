@@ -77,7 +77,9 @@
     <ClCompile Include="D3DDevice.cpp" />
     <ClCompile Include="D3DRenderWindow.cpp" />
     <ClCompile Include="Data.cpp" />
+    <ClCompile Include="LayoutDefinitions.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="TInputLayout.cpp" />
     <ClCompile Include="TRender.cpp" />
     <ClCompile Include="TBuffer.cpp" />
     <ClCompile Include="TRenderTarget.cpp" />
@@ -89,9 +91,11 @@
   <ItemGroup>
     <ClInclude Include="D3DDevice.h" />
     <ClInclude Include="D3DRenderWindow.h" />
+    <ClInclude Include="LayoutDefinitions.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TInputLayout.h" />
     <ClInclude Include="TRender.h" />
     <ClInclude Include="TBuffer.h" />
     <ClInclude Include="TRenderTarget.h" />
