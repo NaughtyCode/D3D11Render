@@ -27,9 +27,6 @@
     <ClCompile Include="TRender.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TRenderResource.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TRenderTarget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,6 +43,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,9 +68,6 @@
     <ClInclude Include="TRender.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TRenderResource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TRenderTarget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -81,6 +81,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="D3DRenderWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

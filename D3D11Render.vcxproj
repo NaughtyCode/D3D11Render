@@ -79,10 +79,11 @@
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="TRender.cpp" />
-    <ClCompile Include="TRenderResource.cpp" />
+    <ClCompile Include="TBuffer.cpp" />
     <ClCompile Include="TRenderTarget.cpp" />
     <ClCompile Include="TResource.cpp" />
     <ClCompile Include="TShader.cpp" />
+    <ClCompile Include="TTexture.cpp" />
     <ClCompile Include="TViewPort.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -92,10 +93,11 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TRender.h" />
-    <ClInclude Include="TRenderResource.h" />
+    <ClInclude Include="TBuffer.h" />
     <ClInclude Include="TRenderTarget.h" />
     <ClInclude Include="TResource.h" />
     <ClInclude Include="TShader.h" />
+    <ClInclude Include="TTexture.h" />
     <ClInclude Include="TViewPort.h" />
   </ItemGroup>
   <ItemGroup>

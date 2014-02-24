@@ -36,7 +36,6 @@ ID3D11RenderTargetView* TRenderTarget::GetRenderTargetView()
 	return RenderTargetView;
 }
 
-
 void TRenderTarget::Release()
 {
 

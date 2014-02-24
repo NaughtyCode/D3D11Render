@@ -14,11 +14,16 @@ int TResource::CreateResource()
 	int rt;
 	Shader = new TShader(Device);
 	assert(Shader);
-	rt = Shader->CreateShaders(L"..\\shaders\\vertexshader.hlsl", L"..\\shaders\\pixelshader.hlsl", "VSMain", "PSMain");
+
+	rt = Shader->CreateShaders(L"..\\Resource\\shaders\\vertexshader.hlsl", 
+		L"..\\Resource\\shaders\\pixelshader.hlsl",
+		"VSMain", 
+		"PSMain");
+
 	assert(rt);
-	RenderResource = new TRenderResource(Device,Shader);
+	RenderResource = new TBuffer(Device,Shader);
 	assert(RenderResource);
-	rt = RenderResource->CreateRenderResource();
+	rt = RenderResource->CreateVertexBuffer();
 	assert(rt);
 	return 1;
 }
