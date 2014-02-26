@@ -5,7 +5,7 @@
 
 TBuffer::TBuffer(TD3DDevice* device) :
 								Device(device),
-								VertexLayout(0),
+								InputLayout(0),
 								VertexBuffer(0),
 								IndexBuffer(0)
 {
@@ -17,16 +17,8 @@ TBuffer::~TBuffer()
 
 int TBuffer::CreateVertexBuffer(TShader * shader)
 {
-	D3D11_INPUT_ELEMENT_DESC* desc = GetInputElementDesc(LAYOUTTYPE_POSITION);
-	UINT Num = (UINT)LAYOUTTYPE_POSITION+1U;
-	if (FAILED(Device->GetDevice()->CreateInputLayout(desc,
-		Num,
-		shader->GetVSBufferPointer(),
-		shader->GetVSBufferSize(),
-		&VertexLayout)))
-	{
-		return 0;
-	}
+	InputLayout=new TInputLayout(Device);
+	assert(InputLayout->CreateInputLayout(shader,LAYOUTTYPE_POSITION));
 
 	D3D11_BUFFER_DESC BufferDesc;
 	ZeroMemory(&BufferDesc, sizeof(BufferDesc));
@@ -50,16 +42,8 @@ int TBuffer::CreateVertexBuffer(TShader * shader)
 
 int TBuffer::CreateVertexBuffer(TEffectShader * effect)
 {
-	D3D11_INPUT_ELEMENT_DESC* desc = GetInputElementDesc(LAYOUTTYPE_POSITION);
-	UINT Num = (UINT)LAYOUTTYPE_POSITION+1U;
-	if (FAILED(Device->GetDevice()->CreateInputLayout(desc,
-		Num,
-		effect->GetVSBufferPointer(),
-		effect->GetVSBufferSize(),
-		&VertexLayout)))
-	{
-		return 0;
-	}
+	InputLayout=new TInputLayout(Device);
+	assert(InputLayout->CreateInputLayout(effect,LAYOUTTYPE_POSITION));
 
 	D3D11_BUFFER_DESC BufferDesc;
 	ZeroMemory(&BufferDesc, sizeof(BufferDesc));
@@ -88,9 +72,9 @@ int TBuffer::CreateIndexBuffer()
 
 void TBuffer::PostRenderResource()
 {
-	Device->GetImmediateContext()->IASetInputLayout(VertexLayout);
 	UINT stride = sizeof(Vertex);
 	UINT offset = 0;
+	InputLayout->PostInputLayout();
 	Device->GetImmediateContext()->IASetVertexBuffers(0, 1, &VertexBuffer, &stride, &offset);
 	Device->GetImmediateContext()->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	Device->GetImmediateContext()->Draw(VertexBufferSize,0);
