@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "TBuffer.h"
 #include "LayoutDefinitions.h"
-
-
+#include "RenderData.h"
 
 TBuffer::TBuffer(TD3DDevice* device) :
 								Device(device),
@@ -29,19 +28,9 @@ int TBuffer::CreateVertexBuffer(TShader * shader)
 		return 0;
 	}
 
-	Vertex Vertices[]=
-	{
-		0.0,0.0,0.0,
-		0.0,0.5,0.0,
-		0.5,0.5,0.0,
-		0.5,0.5,0.0,
-		0.5,0.0,0.0,
-		0.0,0.0,0.0,
-	};    
-
 	D3D11_BUFFER_DESC BufferDesc;
 	ZeroMemory(&BufferDesc, sizeof(BufferDesc));
-	VertexBufferSize = ARRAYSIZE(Vertices);
+	VertexBufferSize = GetVertexDataSize();
 
 	BufferDesc.Usage = D3D11_USAGE_DEFAULT;
 	BufferDesc.ByteWidth = sizeof(Vertex)*VertexBufferSize;
@@ -51,7 +40,7 @@ int TBuffer::CreateVertexBuffer(TShader * shader)
 
 	D3D11_SUBRESOURCE_DATA SubresourceData;
 	ZeroMemory(&SubresourceData, sizeof(SubresourceData));
-	SubresourceData.pSysMem = Vertices;
+	SubresourceData.pSysMem = GetVertexData();
 
 	if ( FAILED(Device->GetDevice()->CreateBuffer(&BufferDesc,&SubresourceData,&VertexBuffer) ) ){
 		return 0;
@@ -72,19 +61,9 @@ int TBuffer::CreateVertexBuffer(TEffectShader * effect)
 		return 0;
 	}
 
-	Vertex Vertices[]=
-	{
-		0.0,0.0,0.0,
-		0.0,0.5,0.0,
-		0.5,0.5,0.0,
-		0.5,0.5,0.0,
-		0.5,0.0,0.0,
-		0.0,0.0,0.0,
-	};    
-
 	D3D11_BUFFER_DESC BufferDesc;
 	ZeroMemory(&BufferDesc, sizeof(BufferDesc));
-	VertexBufferSize = ARRAYSIZE(Vertices);
+	VertexBufferSize = GetVertexDataSize();
 
 	BufferDesc.Usage = D3D11_USAGE_DEFAULT;
 	BufferDesc.ByteWidth = sizeof(Vertex)*VertexBufferSize;
@@ -94,7 +73,7 @@ int TBuffer::CreateVertexBuffer(TEffectShader * effect)
 
 	D3D11_SUBRESOURCE_DATA SubresourceData;
 	ZeroMemory(&SubresourceData, sizeof(SubresourceData));
-	SubresourceData.pSysMem = Vertices;
+	SubresourceData.pSysMem = GetVertexData();
 
 	if ( FAILED(Device->GetDevice()->CreateBuffer(&BufferDesc,&SubresourceData,&VertexBuffer) ) ){
 		return 0;

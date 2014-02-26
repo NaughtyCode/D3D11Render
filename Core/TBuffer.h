@@ -7,11 +7,6 @@ class TD3DDevice;
 class TShader;
 class TEffectShader;
 
-
-struct Vertex{
-	FLOAT x,y,z;
-};
-
 class TBuffer
 {
 public:

@@ -1,5 +1,9 @@
 #pragma once
 
+struct Vertex{
+	FLOAT x,y,z;
+};
+
 typedef enum INPUTELEMENTDESC
 {
 	LAYOUTTYPE_POSITION                = 0,

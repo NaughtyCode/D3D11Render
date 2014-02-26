@@ -38,15 +38,11 @@ int TEffectShader::CreateEffectShader(const WCHAR* szFileName)
 	if (!CompileShaderFromFile(szFileName,"fx_5_0", &EffectBuffer)){
 		return 0;
 	}
-
 	HRESULT hr=D3DX11CreateEffectFromMemory(EffectBuffer->GetBufferPointer(),EffectBuffer->GetBufferSize(),0,Device->GetDevice(),&Effect);
 	if (FAILED(hr)){
-		printf("D3DX11CreateEffectFromMemory fail\n");
 		return 0;
 	}
-
 	Technique=Effect->GetTechniqueByName("BasicEffect");
-	printf("0x%x\n",Technique);
 	return 1;
 }
 

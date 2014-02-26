@@ -36,7 +36,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\Bin\</OutDir>
-    <TargetName>D3D11Render</TargetName>
+    <TargetName>Render</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -49,7 +49,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.\;..\lua-5.2.3\;..\Core\;..\externel\include\Effects11\;D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4305;</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4305;4244;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -75,12 +75,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Core\RenderData.h" />
     <ClInclude Include="..\Core\TD3DDevice.h" />
     <ClInclude Include="..\Core\TD3DWindow.h" />
     <ClInclude Include="..\Core\LayoutDefinitions.h" />
     <ClInclude Include="..\Core\stdafx.h" />
     <ClInclude Include="..\Core\targetver.h" />
     <ClInclude Include="..\Core\TBuffer.h" />
+    <ClInclude Include="..\Core\TEffectShader.h" />
     <ClInclude Include="..\Core\TInputLayout.h" />
     <ClInclude Include="..\Core\TRender.h" />
     <ClInclude Include="..\Core\TRenderConfig.h" />
@@ -126,10 +128,11 @@
   <ItemGroup>
     <ClCompile Include="..\Core\TD3DDevice.cpp" />
     <ClCompile Include="..\Core\TD3DWindow.cpp" />
-    <ClCompile Include="..\Core\Data.cpp" />
+    <ClCompile Include="..\Core\RenderData.cpp" />
     <ClCompile Include="..\Core\LayoutDefinitions.cpp" />
     <ClCompile Include="..\Core\stdafx.cpp" />
     <ClCompile Include="..\Core\TBuffer.cpp" />
+    <ClCompile Include="..\Core\TEffectShader.cpp" />
     <ClCompile Include="..\Core\TInputLayout.cpp" />
     <ClCompile Include="..\Core\TRender.cpp" />
     <ClCompile Include="..\Core\TRenderConfig.cpp" />

@@ -136,6 +136,12 @@
     <ClInclude Include="..\Core\TD3DWindow.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\Core\TEffectShader.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\RenderData.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="small.ico">
@@ -146,9 +152,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Core\Data.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\Core\LayoutDefinitions.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -288,6 +291,12 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TD3DWindow.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TEffectShader.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\RenderData.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
