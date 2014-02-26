@@ -4,12 +4,17 @@
 #include "TRenderTarget.h"
 #include "TViewPort.h"
 #include "TResource.h"
+#include "TRenderConfig.h"
+
+
 
 class TD3DDevice;
 class TRenderTarget;
 class TViewPort;
 class TShader;
 class TResource;
+class TRenderConfig;
+
 
 class TRender
 {

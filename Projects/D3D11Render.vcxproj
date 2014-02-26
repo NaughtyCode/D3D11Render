@@ -83,6 +83,7 @@
     <ClInclude Include="..\Core\TBuffer.h" />
     <ClInclude Include="..\Core\TInputLayout.h" />
     <ClInclude Include="..\Core\TRender.h" />
+    <ClInclude Include="..\Core\TRenderConfig.h" />
     <ClInclude Include="..\Core\TRenderTarget.h" />
     <ClInclude Include="..\Core\TResource.h" />
     <ClInclude Include="..\Core\TShader.h" />
@@ -131,6 +132,7 @@
     <ClCompile Include="..\Core\TBuffer.cpp" />
     <ClCompile Include="..\Core\TInputLayout.cpp" />
     <ClCompile Include="..\Core\TRender.cpp" />
+    <ClCompile Include="..\Core\TRenderConfig.cpp" />
     <ClCompile Include="..\Core\TRenderTarget.cpp" />
     <ClCompile Include="..\Core\TResource.cpp" />
     <ClCompile Include="..\Core\TShader.cpp" />
@@ -169,6 +171,7 @@
     <ClCompile Include="..\lua-5.2.3\lundump.c" />
     <ClCompile Include="..\lua-5.2.3\lvm.c" />
     <ClCompile Include="..\lua-5.2.3\lzio.c" />
+    <ClCompile Include="..\Main\Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

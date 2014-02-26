@@ -11,6 +11,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{06db2bf4-f649-4a9b-9c5f-d04391e0a18b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Core\D3DDevice.h">
@@ -129,6 +132,9 @@
     </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TRenderConfig.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +283,12 @@
     </ClCompile>
     <ClCompile Include="..\lua-5.2.3\lzio.c">
       <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TRenderConfig.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Main\Main.cpp">
+      <Filter>Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
