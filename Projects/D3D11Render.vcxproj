@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\Bin\</OutDir>
+    <TargetName>D3D11Render</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\;..\lua-5.2.3;..\Core;D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4305;</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Winmm.lib;version.lib;d3dx11.lib;d3d11.lib;d3dx10.lib;d3d10.lib;d3dcompiler.lib;dxguid.lib;DXErr.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Core\D3DDevice.h" />
+    <ClInclude Include="..\Core\D3DRenderWindow.h" />
+    <ClInclude Include="..\Core\LayoutDefinitions.h" />
+    <ClInclude Include="..\Core\stdafx.h" />
+    <ClInclude Include="..\Core\targetver.h" />
+    <ClInclude Include="..\Core\TBuffer.h" />
+    <ClInclude Include="..\Core\TInputLayout.h" />
+    <ClInclude Include="..\Core\TRender.h" />
+    <ClInclude Include="..\Core\TRenderTarget.h" />
+    <ClInclude Include="..\Core\TResource.h" />
+    <ClInclude Include="..\Core\TShader.h" />
+    <ClInclude Include="..\Core\TTexture.h" />
+    <ClInclude Include="..\Core\TViewPort.h" />
+    <ClInclude Include="..\lua-5.2.3\lapi.h" />
+    <ClInclude Include="..\lua-5.2.3\lauxlib.h" />
+    <ClInclude Include="..\lua-5.2.3\lcode.h" />
+    <ClInclude Include="..\lua-5.2.3\lctype.h" />
+    <ClInclude Include="..\lua-5.2.3\ldebug.h" />
+    <ClInclude Include="..\lua-5.2.3\ldo.h" />
+    <ClInclude Include="..\lua-5.2.3\lfunc.h" />
+    <ClInclude Include="..\lua-5.2.3\lgc.h" />
+    <ClInclude Include="..\lua-5.2.3\llex.h" />
+    <ClInclude Include="..\lua-5.2.3\llimits.h" />
+    <ClInclude Include="..\lua-5.2.3\lmem.h" />
+    <ClInclude Include="..\lua-5.2.3\lobject.h" />
+    <ClInclude Include="..\lua-5.2.3\lopcodes.h" />
+    <ClInclude Include="..\lua-5.2.3\lparser.h" />
+    <ClInclude Include="..\lua-5.2.3\lstate.h" />
+    <ClInclude Include="..\lua-5.2.3\lstring.h" />
+    <ClInclude Include="..\lua-5.2.3\ltable.h" />
+    <ClInclude Include="..\lua-5.2.3\ltm.h" />
+    <ClInclude Include="..\lua-5.2.3\lua.h" />
+    <ClInclude Include="..\lua-5.2.3\lua.hpp" />
+    <ClInclude Include="..\lua-5.2.3\luaconf.h" />
+    <ClInclude Include="..\lua-5.2.3\lualib.h" />
+    <ClInclude Include="..\lua-5.2.3\lundump.h" />
+    <ClInclude Include="..\lua-5.2.3\lvm.h" />
+    <ClInclude Include="..\lua-5.2.3\lzio.h" />
+    <ClInclude Include="Resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="render.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="render.ico" />
+    <None Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Core\D3DDevice.cpp" />
+    <ClCompile Include="..\Core\D3DRenderWindow.cpp" />
+    <ClCompile Include="..\Core\Data.cpp" />
+    <ClCompile Include="..\Core\LayoutDefinitions.cpp" />
+    <ClCompile Include="..\Core\stdafx.cpp" />
+    <ClCompile Include="..\Core\TBuffer.cpp" />
+    <ClCompile Include="..\Core\TInputLayout.cpp" />
+    <ClCompile Include="..\Core\TRender.cpp" />
+    <ClCompile Include="..\Core\TRenderTarget.cpp" />
+    <ClCompile Include="..\Core\TResource.cpp" />
+    <ClCompile Include="..\Core\TShader.cpp" />
+    <ClCompile Include="..\Core\TTexture.cpp" />
+    <ClCompile Include="..\Core\TViewPort.cpp" />
+    <ClCompile Include="..\lua-5.2.3\lapi.c" />
+    <ClCompile Include="..\lua-5.2.3\lauxlib.c" />
+    <ClCompile Include="..\lua-5.2.3\lbaselib.c" />
+    <ClCompile Include="..\lua-5.2.3\lbitlib.c" />
+    <ClCompile Include="..\lua-5.2.3\lcode.c" />
+    <ClCompile Include="..\lua-5.2.3\lcorolib.c" />
+    <ClCompile Include="..\lua-5.2.3\lctype.c" />
+    <ClCompile Include="..\lua-5.2.3\ldblib.c" />
+    <ClCompile Include="..\lua-5.2.3\ldebug.c" />
+    <ClCompile Include="..\lua-5.2.3\ldo.c" />
+    <ClCompile Include="..\lua-5.2.3\ldump.c" />
+    <ClCompile Include="..\lua-5.2.3\lfunc.c" />
+    <ClCompile Include="..\lua-5.2.3\lgc.c" />
+    <ClCompile Include="..\lua-5.2.3\linit.c" />
+    <ClCompile Include="..\lua-5.2.3\liolib.c" />
+    <ClCompile Include="..\lua-5.2.3\llex.c" />
+    <ClCompile Include="..\lua-5.2.3\lmathlib.c" />
+    <ClCompile Include="..\lua-5.2.3\lmem.c" />
+    <ClCompile Include="..\lua-5.2.3\loadlib.c" />
+    <ClCompile Include="..\lua-5.2.3\lobject.c" />
+    <ClCompile Include="..\lua-5.2.3\lopcodes.c" />
+    <ClCompile Include="..\lua-5.2.3\loslib.c" />
+    <ClCompile Include="..\lua-5.2.3\lparser.c" />
+    <ClCompile Include="..\lua-5.2.3\lstate.c" />
+    <ClCompile Include="..\lua-5.2.3\lstring.c" />
+    <ClCompile Include="..\lua-5.2.3\lstrlib.c" />
+    <ClCompile Include="..\lua-5.2.3\ltable.c" />
+    <ClCompile Include="..\lua-5.2.3\ltablib.c" />
+    <ClCompile Include="..\lua-5.2.3\ltm.c" />
+    <ClCompile Include="..\lua-5.2.3\lua.c" />
+    <ClCompile Include="..\lua-5.2.3\lundump.c" />
+    <ClCompile Include="..\lua-5.2.3\lvm.c" />
+    <ClCompile Include="..\lua-5.2.3\lzio.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
