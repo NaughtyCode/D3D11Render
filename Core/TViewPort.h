@@ -1,5 +1,5 @@
 #pragma once
-#include "D3DDevice.h"
+#include "TD3DDevice.h"
 
 class TD3DDevice;
 

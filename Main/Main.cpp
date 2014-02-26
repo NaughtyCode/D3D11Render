@@ -1,12 +1,12 @@
 #include "stdafx.h"
-#include "D3DRenderWindow.h"
+#include "TD3DWindow.h"
 
 class D3DRenderWindow;
 
 int main()
 {
-	D3DRenderWindow render;
-	if(render.CreateRenderWindow()){
+	TD3DWindow render;
+	if(render.CreateD3DWindow()){
 		render.Loop();
 	}
 	return 0;

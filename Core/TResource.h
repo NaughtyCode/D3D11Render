@@ -2,7 +2,7 @@
 
 #include "TShader.h"
 #include "TBuffer.h"
-#include "D3DDevice.h"
+#include "TD3DDevice.h"
 
 class TD3DDevice;
 class TShader;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "D3DDevice.h"
+#include "TD3DDevice.h"
 #include "TRenderTarget.h"
 #include "TViewPort.h"
 #include "TResource.h"
