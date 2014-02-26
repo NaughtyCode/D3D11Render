@@ -4,8 +4,12 @@
 const WCHAR* vsfile = L"..\\Resource\\shaders\\primitivevsshader.hlsl";
 const WCHAR* psfile = L"..\\Resource\\shaders\\primitivepsshader.hlsl";
 
-TRender::TRender() :Device(0), RenderTarget(0), ViewPort(0), Resource(0)
+TRender::TRender() :Device(0), 
+	RenderTarget(0),
+	ViewPort(0), 
+	Resource(0)
 {
+
 }
 
 TRender::~TRender()

@@ -1,9 +1,12 @@
 #pragma once
 #include "TD3DDevice.h"
 #include "TShader.h"
+#include "TEffectShader.h"
 
 class TD3DDevice;
 class TShader;
+class TEffectShader;
+
 
 struct Vertex{
 	FLOAT x,y,z;
@@ -12,15 +15,15 @@ struct Vertex{
 class TBuffer
 {
 public:
-	TBuffer(TD3DDevice* device, TShader * shader);
+	TBuffer(TD3DDevice* device);
 	~TBuffer();
-	int CreateVertexBuffer();
+	int CreateVertexBuffer(TShader * shader);
+	int CreateVertexBuffer(TEffectShader * effect);
 	int CreateIndexBuffer();
 	void PostRenderResource();
 
 private:
 	TD3DDevice* Device;
-	TShader * Shader;
 	ID3D11InputLayout* VertexLayout;
 	ID3D11Buffer* VertexBuffer;
 	ID3D11Buffer* IndexBuffer;

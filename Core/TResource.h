@@ -3,10 +3,13 @@
 #include "TShader.h"
 #include "TBuffer.h"
 #include "TD3DDevice.h"
+#include "TEffectShader.h"
 
 class TD3DDevice;
 class TShader;
 class TBuffer;
+class TEffectShader;
+
 
 class TResource
 {
@@ -19,5 +22,6 @@ public:
 private:
 	TD3DDevice* Device;
 	TShader* Shader;
-	TBuffer* RenderResource;
+	TBuffer* Buffer;
+	TEffectShader*  EffectShader;
 };

@@ -4,8 +4,7 @@
 
 TShader::TShader(TD3DDevice* device):Device(device),
 									VertexShaderBuffer(0),
-									PixelShaderBuffer(0),
-									EffectBuffer(0)
+									PixelShaderBuffer(0)
 {
 	
 }
@@ -44,20 +43,6 @@ int TShader::CreateShaders(const WCHAR* VSFilename, const WCHAR* PSFilename, con
 		return 0;
 	}
 	HRESULT hr;
-
-	if (!CompileShaderFromFile(L"..\\Resource\\shaders\\PrimitiveEffectFramework.hlsl", NULL, "fx_5_0", &EffectBuffer)){
-		return 0;
-	}
-
-	hr=D3DX11CreateEffectFromMemory(EffectBuffer->GetBufferPointer(),EffectBuffer->GetBufferSize(),0,Device->GetDevice(),&Effect);
-	if (FAILED(hr)){
-		printf("D3DX11CreateEffectFromMemory fail\n");
-		return 0;
-	}
-	
-	Tech=Effect->GetTechniqueByName("BasicEffect");
-
-	printf("0x%x\n",Tech);
 
 	hr = Device->GetDevice()->CreateVertexShader(
 		VertexShaderBuffer->GetBufferPointer(),

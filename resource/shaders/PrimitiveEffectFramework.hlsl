@@ -11,7 +11,7 @@ float4 VSMain( VS_INPUT Input ): SV_POSITION
 
 float4 PSMain( float4 Pos : SV_POSITION ) : SV_Target
 {
-	return float4(0.2,0.5,0,1.0);
+	return float4(0.2,1.0,0,1.0);
 }
 
 technique11 BasicEffect
