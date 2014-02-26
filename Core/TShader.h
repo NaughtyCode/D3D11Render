@@ -16,10 +16,13 @@ public:
 
 	void Release();
 private:
-	TD3DDevice* Device;
-	ID3D11VertexShader* VertexShader;
-	ID3D11PixelShader* PixelShader;
-	ID3DBlob* VertexShaderBuffere;
-	ID3DBlob* PixelShaderBuffere;
+	ID3DX11Effect*          Effect;
+	ID3DX11EffectTechnique* Tech;
+	TD3DDevice*             Device;
+	ID3D11VertexShader*     VertexShader;
+	ID3D11PixelShader*      PixelShader;
+	ID3DBlob*               VertexShaderBuffer;
+	ID3DBlob*               PixelShaderBuffer;
+	ID3DBlob*               EffectBuffer;
 };
 

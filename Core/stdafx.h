@@ -21,6 +21,9 @@
 #include <D3DX11async.h>
 #include <xnamath.h>
 
+//effect11 head fiels
+#include <d3dx11effect.h>
+
 void DumpErrorInfo(HRESULT hr);
 
 #ifndef SAFE_DELETE

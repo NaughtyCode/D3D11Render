@@ -48,15 +48,15 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\;..\lua-5.2.3;..\Core;D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\lua-5.2.3\;..\Core\;..\externel\include\Effects11\;D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4305;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Winmm.lib;version.lib;d3dx11.lib;d3d11.lib;d3dx10.lib;d3d10.lib;d3dcompiler.lib;dxguid.lib;DXErr.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\externel\lib;D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Winmm.lib;version.lib;d3dx11.lib;d3d11.lib;d3dx10.lib;d3d10.lib;d3dcompiler.lib;dxguid.lib;DXErr.lib;d3d9.lib;Effects11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -75,8 +75,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\Core\D3DDevice.h" />
-    <ClInclude Include="..\Core\D3DRenderWindow.h" />
+    <ClInclude Include="..\Core\TD3DDevice.h" />
+    <ClInclude Include="..\Core\TD3DWindow.h" />
     <ClInclude Include="..\Core\LayoutDefinitions.h" />
     <ClInclude Include="..\Core\stdafx.h" />
     <ClInclude Include="..\Core\targetver.h" />
@@ -124,8 +124,8 @@
     <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Core\D3DDevice.cpp" />
-    <ClCompile Include="..\Core\D3DRenderWindow.cpp" />
+    <ClCompile Include="..\Core\TD3DDevice.cpp" />
+    <ClCompile Include="..\Core\TD3DWindow.cpp" />
     <ClCompile Include="..\Core\Data.cpp" />
     <ClCompile Include="..\Core\LayoutDefinitions.cpp" />
     <ClCompile Include="..\Core\stdafx.cpp" />

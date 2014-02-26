@@ -16,12 +16,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Core\D3DDevice.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\D3DRenderWindow.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\Core\LayoutDefinitions.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -136,6 +130,12 @@
     <ClInclude Include="..\Core\TRenderConfig.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\Core\TD3DDevice.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TD3DWindow.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="small.ico">
@@ -146,12 +146,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Core\D3DDevice.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\D3DRenderWindow.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\Core\Data.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -289,6 +283,12 @@
     </ClCompile>
     <ClCompile Include="..\Main\Main.cpp">
       <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TD3DDevice.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TD3DWindow.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "TShader.h"
 
+
 TShader::TShader(TD3DDevice* device):Device(device),
-									VertexShaderBuffere(0),
-									PixelShaderBuffere(0)
+									VertexShaderBuffer(0),
+									PixelShaderBuffer(0),
+									EffectBuffer(0)
 {
 	
 }
@@ -34,18 +36,32 @@ int TShader::CompileShaderFromFile(const WCHAR* szFileName, LPCSTR szEntryPoint,
 
 int TShader::CreateShaders(const WCHAR* VSFilename, const WCHAR* PSFilename, const char* szVertexShaderEntryPoint, const char* szPixelShaderEntryPoint)
 {
-	if (!CompileShaderFromFile(VSFilename, szVertexShaderEntryPoint, "vs_5_0", &VertexShaderBuffere)){
+	if (!CompileShaderFromFile(VSFilename, szVertexShaderEntryPoint, "vs_5_0", &VertexShaderBuffer)){
 		return 0;
 	}
 
-	if (!CompileShaderFromFile(PSFilename, szPixelShaderEntryPoint, "ps_5_0", &PixelShaderBuffere)){
+	if (!CompileShaderFromFile(PSFilename, szPixelShaderEntryPoint, "ps_5_0", &PixelShaderBuffer)){
 		return 0;
 	}
-
 	HRESULT hr;
+
+	if (!CompileShaderFromFile(L"..\\Resource\\shaders\\PrimitiveEffectFramework.hlsl", NULL, "fx_5_0", &EffectBuffer)){
+		return 0;
+	}
+
+	hr=D3DX11CreateEffectFromMemory(EffectBuffer->GetBufferPointer(),EffectBuffer->GetBufferSize(),0,Device->GetDevice(),&Effect);
+	if (FAILED(hr)){
+		printf("D3DX11CreateEffectFromMemory fail\n");
+		return 0;
+	}
+	
+	Tech=Effect->GetTechniqueByName("BasicEffect");
+
+	printf("0x%x\n",Tech);
+
 	hr = Device->GetDevice()->CreateVertexShader(
-		VertexShaderBuffere->GetBufferPointer(),
-		VertexShaderBuffere->GetBufferSize(),
+		VertexShaderBuffer->GetBufferPointer(),
+		VertexShaderBuffer->GetBufferSize(),
 		NULL,
 		&VertexShader);
 	if (FAILED(hr)){
@@ -53,8 +69,8 @@ int TShader::CreateShaders(const WCHAR* VSFilename, const WCHAR* PSFilename, con
 	}
 
 	hr = Device->GetDevice()->CreatePixelShader(
-		PixelShaderBuffere->GetBufferPointer(),
-		PixelShaderBuffere->GetBufferSize(),
+		PixelShaderBuffer->GetBufferPointer(),
+		PixelShaderBuffer->GetBufferSize(),
 		NULL,
 		&PixelShader);
 	if (FAILED(hr)){
@@ -72,14 +88,14 @@ void TShader::PostShaders()
 
 LPVOID TShader::GetVSBufferPointer()
 {
-	assert(VertexShaderBuffere);
-	return VertexShaderBuffere->GetBufferPointer();
+	assert(VertexShaderBuffer);
+	return VertexShaderBuffer->GetBufferPointer();
 }
 
 SIZE_T TShader::GetVSBufferSize()
 {
-	assert(VertexShaderBuffere);
-	return VertexShaderBuffere->GetBufferSize();
+	assert(VertexShaderBuffer);
+	return VertexShaderBuffer->GetBufferSize();
 }
 
 void TShader::Release()
