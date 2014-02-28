@@ -16,8 +16,8 @@ TInputLayout::~TInputLayout(void)
 
 int TInputLayout::CreateInputLayout(IShader* shader,INPUTELEMENTDESCTYPE type)
 {
-	D3D11_INPUT_ELEMENT_DESC* desc = GetLayoutDescArray(type);
-	UINT Num = GetLayoutDescArraySize(type);
+	D3D11_INPUT_ELEMENT_DESC* desc = GetLayoutArray(type);
+	UINT Num = GetLayoutArraySize(type);
 	if (FAILED(Device->GetDevice()->CreateInputLayout(desc,
 		Num,
 		shader->GetVSBufferPointer(),

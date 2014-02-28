@@ -23,7 +23,6 @@ int TTexture::CreateTexture(const TCHAR* TextureFileName)
 	{
 		return 0;
 	}
-	printf("创建纹理成功\n");
 	return 1;
 }
 
