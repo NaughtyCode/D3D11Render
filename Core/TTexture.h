@@ -14,7 +14,5 @@ public:
 private:
 	TD3DDevice*               Device;
 	ID3D11ShaderResourceView* TextureView;
-	ID3D11SamplerState*       SamplerLinear;
-	UINT                      NumQuality;
 };
 

@@ -21,9 +21,10 @@ public:
 	TResource(TD3DDevice* device);
 	~TResource();
 	int CreateResource(const TCHAR* vsfile,const TCHAR* psfile);
-	int CreateResource(const TCHAR* effectfile);
+	int CreateResource();
 	void PostResource();
 	void Release();
+
 private:
 	TD3DDevice*     Device;
 	TShader*        Shader;

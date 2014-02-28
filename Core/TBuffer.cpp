@@ -9,8 +9,8 @@ TBuffer::TBuffer(TD3DDevice* device) :
 								VertexBuffer(0),
 								IndexBuffer(0),
 								VertexBufferSize(0),
-								ElementSize(0),
-								IndexDraw(FALSE)
+								VertexSize(0),
+								IsIndexDraw(FALSE)
 {
 }
 
@@ -20,13 +20,14 @@ TBuffer::~TBuffer()
 
 int TBuffer::CreateStaticVertexBuffer(void* pData,UINT size,UINT elemsize)
 {
-	ElementSize = elemsize;
-	D3D11_BUFFER_DESC BufferDesc;
-	ZeroMemory(&BufferDesc, sizeof(BufferDesc));
+	VertexSize = elemsize;
 	VertexBufferSize = size;
 
+	D3D11_BUFFER_DESC BufferDesc;
+	ZeroMemory(&BufferDesc, sizeof(BufferDesc));
+	
 	BufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	BufferDesc.ByteWidth = ElementSize*VertexBufferSize;
+	BufferDesc.ByteWidth = VertexSize*VertexBufferSize;
 	BufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	BufferDesc.CPUAccessFlags = 0;
 	BufferDesc.MiscFlags = 0;
@@ -41,12 +42,13 @@ int TBuffer::CreateStaticVertexBuffer(void* pData,UINT size,UINT elemsize)
 	return 1;
 }
 
-int TBuffer::CreateVertexBuffer( void* pData,UINT size,UINT elemsize,bool dynamic,bool streamout)
+int TBuffer::CreateVertexBuffer( void* pData,UINT size,UINT vertexsize,bool dynamic,bool streamout)
 {
 	VertexBufferSize=size;
-	ElementSize = elemsize;
+	this->VertexSize = vertexsize;
 	D3D11_BUFFER_DESC BufferDesc;
-	BufferDesc.ByteWidth = size*elemsize;
+	ZeroMemory( &BufferDesc, sizeof(BufferDesc) );
+	BufferDesc.ByteWidth = size*VertexSize;
 	BufferDesc.MiscFlags = 0;
 	BufferDesc.StructureByteStride = 0;
 	if (streamout){
@@ -74,12 +76,13 @@ int TBuffer::CreateVertexBuffer( void* pData,UINT size,UINT elemsize,bool dynami
 	return 1;
 }
 
-int TBuffer::CreateIndexBuffer(void* pData,UINT size,bool dynamic)
+int TBuffer::CreateIndexBuffer(void* pData,UINT size,UINT indexsize,bool dynamic)
 {
 	IndexBufferSize=size;
-	IndexDraw=TRUE;
+	IsIndexDraw=TRUE;
 	D3D11_BUFFER_DESC BufferDesc;
-	BufferDesc.ByteWidth = size;
+	ZeroMemory( &BufferDesc,sizeof(BufferDesc));
+	BufferDesc.ByteWidth = indexsize*size;
 	BufferDesc.MiscFlags = 0;
 	BufferDesc.StructureByteStride = 0;
 	BufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
@@ -88,7 +91,7 @@ int TBuffer::CreateIndexBuffer(void* pData,UINT size,bool dynamic)
 		BufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 	}
 	else{
-		BufferDesc.Usage = D3D11_USAGE_IMMUTABLE;
+		BufferDesc.Usage = D3D11_USAGE_DEFAULT;
 		BufferDesc.CPUAccessFlags = 0;
 	}
 
@@ -114,17 +117,19 @@ int TBuffer::CreateInputLayout(IShader * shader,INPUTELEMENTDESCTYPE type)
 void TBuffer::PostResource()
 {
 	UINT offset = 0;
+
 	InputLayout->PostInputLayout();
-	Device->GetImmediateContext()->IASetVertexBuffers(0, 1, &VertexBuffer, &ElementSize, &offset);
+	Device->GetImmediateContext()->IASetVertexBuffers(0, 1, &VertexBuffer, &VertexSize, &offset);
 	Device->GetImmediateContext()->IASetIndexBuffer( IndexBuffer, DXGI_FORMAT_R16_UINT, 0 );
 	Device->GetImmediateContext()->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 
-	if (IndexDraw)
-	{
-		Device->GetImmediateContext()->DrawIndexed(IndexBufferSize, 0, 0 );
-	}else
-	{
-		Device->GetImmediateContext()->Draw(VertexBufferSize,0);
+	if (IsIndexDraw){
+		INT StartIndexLocation = 0;
+		INT BaseVertexLocation = 0;
+		Device->GetImmediateContext()->DrawIndexed(IndexBufferSize, StartIndexLocation, BaseVertexLocation );
+	}else{
+		INT StartVertexLocation = 0;
+		Device->GetImmediateContext()->Draw(VertexBufferSize,StartVertexLocation);
 	}
 }
 

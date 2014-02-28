@@ -25,38 +25,72 @@ UINT GetRectDataSize()
 
 VERTEX_POSITIONTEX BoxData[] =
 {
-	{ ( -1.0f, 1.0f, -1.0f ), ( 0.0f, 0.0f ) },
-	{ ( 1.0f, 1.0f, -1.0f ), ( 1.0f, 0.0f ) },
-	{ ( 1.0f, 1.0f, 1.0f ), ( 1.0f, 1.0f ) },
-	{ ( -1.0f, 1.0f, 1.0f ), ( 0.0f, 1.0f ) },
+	{ XMFLOAT3( -1.0f, 1.0f, -1.0f ), XMFLOAT2( 0.0f, 0.0f ) },
+	{ XMFLOAT3( 1.0f, 1.0f, -1.0f ), XMFLOAT2( 1.0f, 0.0f ) },
+	{ XMFLOAT3( 1.0f, 1.0f, 1.0f ), XMFLOAT2( 1.0f, 1.0f ) },
+	{ XMFLOAT3( -1.0f, 1.0f, 1.0f ), XMFLOAT2( 0.0f, 1.0f ) },
 
-	{ ( -1.0f, -1.0f, -1.0f ), ( 0.0f, 0.0f ) },
-	{ ( 1.0f, -1.0f, -1.0f ), ( 1.0f, 0.0f ) },
-	{ ( 1.0f, -1.0f, 1.0f ), ( 1.0f, 1.0f ) },
-	{ ( -1.0f, -1.0f, 1.0f ), ( 0.0f, 1.0f ) },
+	{ XMFLOAT3( -1.0f, -1.0f, -1.0f ), XMFLOAT2( 0.0f, 0.0f ) },
+	{ XMFLOAT3( 1.0f, -1.0f, -1.0f ), XMFLOAT2( 1.0f, 0.0f ) },
+	{ XMFLOAT3( 1.0f, -1.0f, 1.0f ), XMFLOAT2( 1.0f, 1.0f ) },
+	{ XMFLOAT3( -1.0f, -1.0f, 1.0f ), XMFLOAT2( 0.0f, 1.0f ) },
 
-	{ ( -1.0f, -1.0f, 1.0f ), ( 0.0f, 0.0f ) },
-	{ ( -1.0f, -1.0f, -1.0f ), ( 1.0f, 0.0f ) },
-	{ ( -1.0f, 1.0f, -1.0f ), ( 1.0f, 1.0f ) },
-	{ ( -1.0f, 1.0f, 1.0f ), ( 0.0f, 1.0f ) },
+	{ XMFLOAT3( -1.0f, -1.0f, 1.0f ), XMFLOAT2( 0.0f, 0.0f ) },
+	{ XMFLOAT3( -1.0f, -1.0f, -1.0f ), XMFLOAT2( 1.0f, 0.0f ) },
+	{ XMFLOAT3( -1.0f, 1.0f, -1.0f ), XMFLOAT2( 1.0f, 1.0f ) },
+	{ XMFLOAT3( -1.0f, 1.0f, 1.0f ), XMFLOAT2( 0.0f, 1.0f ) },
 
-	{ ( 1.0f, -1.0f, 1.0f ), ( 0.0f, 0.0f ) },
-	{ ( 1.0f, -1.0f, -1.0f ), ( 1.0f, 0.0f ) },
-	{ ( 1.0f, 1.0f, -1.0f ), ( 1.0f, 1.0f ) },
-	{ ( 1.0f, 1.0f, 1.0f ), ( 0.0f, 1.0f ) },
+	{ XMFLOAT3( 1.0f, -1.0f, 1.0f ), XMFLOAT2( 0.0f, 0.0f ) },
+	{ XMFLOAT3( 1.0f, -1.0f, -1.0f ), XMFLOAT2( 1.0f, 0.0f ) },
+	{ XMFLOAT3( 1.0f, 1.0f, -1.0f ), XMFLOAT2( 1.0f, 1.0f ) },
+	{ XMFLOAT3( 1.0f, 1.0f, 1.0f ), XMFLOAT2( 0.0f, 1.0f ) },
 
-	{ ( -1.0f, -1.0f, -1.0f ), ( 0.0f, 0.0f ) },
-	{ ( 1.0f, -1.0f, -1.0f ), ( 1.0f, 0.0f ) },
-	{ ( 1.0f, 1.0f, -1.0f ), ( 1.0f, 1.0f ) },
-	{ ( -1.0f, 1.0f, -1.0f ), ( 0.0f, 1.0f ) },
+	{ XMFLOAT3( -1.0f, -1.0f, -1.0f ), XMFLOAT2( 0.0f, 0.0f ) },
+	{ XMFLOAT3( 1.0f, -1.0f, -1.0f ), XMFLOAT2( 1.0f, 0.0f ) },
+	{ XMFLOAT3( 1.0f, 1.0f, -1.0f ), XMFLOAT2( 1.0f, 1.0f ) },
+	{ XMFLOAT3( -1.0f, 1.0f, -1.0f ), XMFLOAT2( 0.0f, 1.0f ) },
 
-	{ ( -1.0f, -1.0f, 1.0f ), ( 0.0f, 0.0f ) },
-	{ ( 1.0f, -1.0f, 1.0f ), ( 1.0f, 0.0f ) },
-	{ ( 1.0f, 1.0f, 1.0f ), ( 1.0f, 1.0f ) },
-	{ ( -1.0f, 1.0f, 1.0f ), ( 0.0f, 1.0f ) },
+	{ XMFLOAT3( -1.0f, -1.0f, 1.0f ), XMFLOAT2( 0.0f, 0.0f ) },
+	{ XMFLOAT3( 1.0f, -1.0f, 1.0f ), XMFLOAT2( 1.0f, 0.0f ) },
+	{ XMFLOAT3( 1.0f, 1.0f, 1.0f ), XMFLOAT2( 1.0f, 1.0f ) },
+	{ XMFLOAT3( -1.0f, 1.0f, 1.0f ), XMFLOAT2( 0.0f, 1.0f ) },
 };
 
-static UINT BoxVertexDataSize=ARRAYSIZE(RectData);
+//
+//VERTEX_POSITIONTEX BoxData[] =
+//{
+//	{ ( -1.0f, 1.0f, -1.0f ), ( 0.0f, 0.0f ) },
+//	{ ( 1.0f, 1.0f, -1.0f ), ( 1.0f, 0.0f ) },
+//	{ ( 1.0f, 1.0f, 1.0f ), ( 1.0f, 1.0f ) },
+//	{ ( -1.0f, 1.0f, 1.0f ), ( 0.0f, 1.0f ) },
+//
+//	{ ( -1.0f, -1.0f, -1.0f ), ( 0.0f, 0.0f ) },
+//	{ ( 1.0f, -1.0f, -1.0f ), ( 1.0f, 0.0f ) },
+//	{ ( 1.0f, -1.0f, 1.0f ), ( 1.0f, 1.0f ) },
+//	{ ( -1.0f, -1.0f, 1.0f ), ( 0.0f, 1.0f ) },
+//
+//	{ ( -1.0f, -1.0f, 1.0f ), ( 0.0f, 0.0f ) },
+//	{ ( -1.0f, -1.0f, -1.0f ), ( 1.0f, 0.0f ) },
+//	{ ( -1.0f, 1.0f, -1.0f ), ( 1.0f, 1.0f ) },
+//	{ ( -1.0f, 1.0f, 1.0f ), ( 0.0f, 1.0f ) },
+//
+//	{ ( 1.0f, -1.0f, 1.0f ), ( 0.0f, 0.0f ) },
+//	{ ( 1.0f, -1.0f, -1.0f ), ( 1.0f, 0.0f ) },
+//	{ ( 1.0f, 1.0f, -1.0f ), ( 1.0f, 1.0f ) },
+//	{ ( 1.0f, 1.0f, 1.0f ), ( 0.0f, 1.0f ) },
+//
+//	{ ( -1.0f, -1.0f, -1.0f ), ( 0.0f, 0.0f ) },
+//	{ ( 1.0f, -1.0f, -1.0f ), ( 1.0f, 0.0f ) },
+//	{ ( 1.0f, 1.0f, -1.0f ), ( 1.0f, 1.0f ) },
+//	{ ( -1.0f, 1.0f, -1.0f ), ( 0.0f, 1.0f ) },
+//
+//	{ ( -1.0f, -1.0f, 1.0f ), ( 0.0f, 0.0f ) },
+//	{ ( 1.0f, -1.0f, 1.0f ), ( 1.0f, 0.0f ) },
+//	{ ( 1.0f, 1.0f, 1.0f ), ( 1.0f, 1.0f ) },
+//	{ ( -1.0f, 1.0f, 1.0f ), ( 0.0f, 1.0f ) },
+//};
+
+static UINT BoxVertexDataSize=ARRAYSIZE(BoxData);
 
 WORD BoxIndices[] =
 {
@@ -79,7 +113,7 @@ WORD BoxIndices[] =
 	23,20,22
 };
 
-static UINT BoxIndexDataSize=ARRAYSIZE(RectData);
+static UINT BoxIndexDataSize=ARRAYSIZE(BoxIndices);
 
 VERTEX_POSITIONTEX* GetBoxVertexData()
 {

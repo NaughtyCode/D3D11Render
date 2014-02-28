@@ -18,10 +18,9 @@ int TD3DDevice::CreateDevice()
 	RECT rect;
 	UINT width = 900;
 	UINT height = 600;
-	if (GetWindowRect(Handle, &rect)){
-		width = rect.right - rect.left;
-		height = rect.bottom - rect.top;
-	}
+	GetWindowRect(Handle, &rect);
+	width = rect.right - rect.left;
+	height = rect.bottom - rect.top;
 	
 	DXGI_SWAP_CHAIN_DESC sd;
 	ZeroMemory(&sd, sizeof(sd));
@@ -47,9 +46,11 @@ int TD3DDevice::CreateDevice()
 		D3D_FEATURE_LEVEL_11_0,
 		D3D_FEATURE_LEVEL_10_1,
 		D3D_FEATURE_LEVEL_10_0,
+		/*
 		D3D_FEATURE_LEVEL_9_3,
 		D3D_FEATURE_LEVEL_9_2,
 		D3D_FEATURE_LEVEL_9_1
+		*/
 	};
 
 	UINT FeatureNum = ARRAYSIZE(FeatureArray);

@@ -7,9 +7,10 @@ public:
 	~TCamera();
 	void SetView();
 	void SetProjection();
+	XMMATRIX GetTransposeView();
 	XMMATRIX GetTransposeProjection();
 	XMMATRIX GetTransposeWorld();
-
+	
 private:
 	XMMATRIX World;
 	XMMATRIX View;

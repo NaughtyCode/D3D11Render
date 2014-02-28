@@ -11,28 +11,28 @@ D3D11_INPUT_ELEMENT_DESC PositionTexDesc[] =
 	{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 };
 
-static D3D11_INPUT_ELEMENT_DESC* AllInputElementDesc[]={
+static D3D11_INPUT_ELEMENT_DESC* DescArray[]={
 	PositionDesc,
 	PositionTexDesc,
 };
 
-static UINT AllInputElementDescArraySize[]={
+static UINT DescArraySizes[]={
 	ARRAYSIZE(PositionDesc),
 	ARRAYSIZE(PositionTexDesc),
 };
 
-D3D11_INPUT_ELEMENT_DESC* GetInputElementDesc(INPUTELEMENTDESCTYPE type)
+D3D11_INPUT_ELEMENT_DESC* GetLayoutDescArray(INPUTELEMENTDESCTYPE type)
 {
 	UINT index=(UINT)type;
-	assert(index<ARRAYSIZE(AllInputElementDesc));
-	return AllInputElementDesc[index];
+	assert(index<ARRAYSIZE(DescArray));
+	return DescArray[index];
 }
 
-UINT GetInputElementDescSize(INPUTELEMENTDESCTYPE type)
+UINT GetLayoutDescArraySize(INPUTELEMENTDESCTYPE type)
 {
 	UINT index=(UINT)type;
-	assert(index<ARRAYSIZE(AllInputElementDescArraySize));
-	return AllInputElementDescArraySize[index];
+	assert(index<ARRAYSIZE(DescArraySizes));
+	return DescArraySizes[index];
 }
 
 

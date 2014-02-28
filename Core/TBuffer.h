@@ -17,8 +17,8 @@ public:
 	TBuffer(TD3DDevice* device);
 	~TBuffer();
 	int CreateStaticVertexBuffer(void* pData,UINT size,UINT elemsize);
-	int CreateVertexBuffer(void* pData,UINT size,UINT elemsize,bool dynamic,bool streamout);
-	int CreateIndexBuffer(void* pData,UINT size,bool dynamic);
+	int CreateVertexBuffer(void* pData,UINT size,UINT vertexsize,bool dynamic,bool streamout);
+	int CreateIndexBuffer(void* pData,UINT size,UINT indexsize,bool dynamic);
 	int CreateInputLayout(IShader * shader,INPUTELEMENTDESCTYPE type);
 	void PostResource();
 	void Release();
@@ -30,7 +30,7 @@ private:
 	ID3D11Buffer*      IndexBuffer;
 	UINT               VertexBufferSize;
 	UINT               IndexBufferSize;
-	UINT               ElementSize;
-	BOOL               IndexDraw;
+	UINT               VertexSize;
+	BOOL               IsIndexDraw;
 };
 

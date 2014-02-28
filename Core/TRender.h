@@ -24,9 +24,10 @@ public:
 	TRender();
 	~TRender();
 	int CreateRender(HWND hWnd);
+	TCamera* GetCamera();
 	void RenderFrame();
-	void Release();
 
+	void Release();
 private:
 	TD3DDevice*     Device;
 	TRenderTarget*  RenderTarget;
@@ -34,4 +35,7 @@ private:
 	TResource*      Resource;
 	TCamera*        Camera;
 };
+
+extern TRender* g_Render;
+
 

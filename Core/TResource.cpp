@@ -19,27 +19,33 @@ int TResource::CreateResource(const TCHAR* vsfile,const TCHAR* psfile)
 	return 1;
 }
 
-int TResource::CreateResource(const TCHAR* EffectFile)
+int TResource::CreateResource()
 {
-	EffectShader=new TEffectShader(Device);
-	EffectShader->CreateEffectShader(EffectFile);
-	
-	Texture = new TTexture(Device);
-	Texture->CreateTexture(L"..\\Resource\\texture\\plastic.dds");
+	int result;
+	Shader=new TShader(Device);
+	TCHAR* ShaderName=L"..\\Resource\\shaders\\BoxShader.hlsl";
+	Shader->CreateShaders(ShaderName,ShaderName,"VS","PS");
 
+	Texture = new TTexture(Device);
+	result=Texture->CreateTexture(L"..\\Resource\\texture\\circular_bokeh_sharp.dds");
+	assert(result);
+
+	UINT size;
 	Buffer = new TBuffer(Device);
-	Buffer->CreateInputLayout(EffectShader,LAYOUTTYPE_POSITIONTEX0);
-	UINT size=GetBoxVertexDataSize();
+	Buffer->CreateInputLayout(Shader,LAYOUTTYPE_POSITIONTEX0);
+
+	size=GetBoxVertexDataSize();
 	Buffer->CreateVertexBuffer(GetBoxVertexData(),size,sizeof(VERTEX_POSITIONTEX),false,false);
+	
 	size=GetBoxIndexDataSize();
-	Buffer->CreateIndexBuffer(GetBoxIndexData(),size,false);
+	Buffer->CreateIndexBuffer(GetBoxIndexData(),size,sizeof(WORD),false);
 
 	return 1;
 }
 
 void TResource::PostResource()
 {
-	EffectShader->PostEffect();
+	Shader->PostEffect();
 	Texture->PostTexture();
 	Buffer->PostResource();
 }

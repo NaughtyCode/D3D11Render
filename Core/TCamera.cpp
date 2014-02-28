@@ -12,6 +12,8 @@ TCamera::TCamera(UINT w,UINT h):
 	EyeVector = XMVectorSet( 0.0f, 3.0f, -6.0f, 0.0f );
 	AtVector = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
 	UpVector = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
+	SetProjection();
+	SetView();
 }
 
 TCamera::~TCamera()
@@ -27,6 +29,11 @@ void TCamera::SetView()
 void TCamera::SetProjection()
 {
 	Projection = XMMatrixPerspectiveFovLH( XM_PIDIV4,(FLOAT)Width/(FLOAT)Height,NearZ,FarZ);
+}
+
+XMMATRIX TCamera::GetTransposeView()
+{
+	return XMMatrixTranspose(View);
 }
 
 XMMATRIX TCamera::GetTransposeProjection()

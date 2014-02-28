@@ -124,6 +124,7 @@
     <ResourceCompile Include="render.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Resource\shaders\BoxShader.hlsl" />
     <None Include="..\Resource\shaders\BoxShaderFramework.hlsl" />
     <None Include="..\Resource\shaders\PrimitiveEffectFramework.hlsl" />
     <None Include="..\Resource\shaders\primitivepsshader.hlsl" />
