@@ -142,6 +142,9 @@
     <ClInclude Include="..\Core\RenderData.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\Core\IShader.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="small.ico">
@@ -297,6 +300,9 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\RenderData.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\IShader.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>

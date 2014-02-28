@@ -65,7 +65,7 @@ int TShader::CreateShaders(const WCHAR* VSFilename, const WCHAR* PSFilename, con
 	return 1;
 }
 
-void TShader::PostShaders()
+void TShader::PostEffect()
 {
 	Device->GetImmediateContext()->VSSetShader(VertexShader, NULL, 0);
 	Device->GetImmediateContext()->PSSetShader(PixelShader, NULL, 0);

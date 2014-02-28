@@ -3,24 +3,23 @@
 #include "TShader.h"
 #include "TEffectShader.h"
 #include "TInputLayout.h"
+#include "IShader.h"
 
-
-
+class IShader;
 class TD3DDevice;
 class TShader;
 class TEffectShader;
 class TInputLayout;
-
-
 
 class TBuffer
 {
 public:
 	TBuffer(TD3DDevice* device);
 	~TBuffer();
-	int CreateVertexBuffer(TShader * shader);
-	int CreateVertexBuffer(TEffectShader * effect);
-	int CreateIndexBuffer();
+	int CreateStaticVertexBuffer(UINT size,void* pData);
+	int CreateVertexBuffer( UINT size,bool dynamic,	bool streamout,D3D11_SUBRESOURCE_DATA* pData);
+	int CreateIndexBuffer(UINT size,bool dynamic,D3D11_SUBRESOURCE_DATA*pData);
+	int CreateInputLayout(IShader * shader);
 	void PostRenderResource();
 
 private:

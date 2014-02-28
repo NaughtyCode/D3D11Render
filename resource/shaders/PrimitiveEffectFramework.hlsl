@@ -1,4 +1,7 @@
 
+Texture2D     Diffuse   : register( t0 );
+SamplerState  samLinear : register( s0 );
+
 struct VS_INPUT
 {
 	float4 pos : POSITION;

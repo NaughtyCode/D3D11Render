@@ -60,13 +60,12 @@ SIZE_T TEffectShader::GetVSBufferSize()
 	return desc.IAInputSignatureSize;
 }
 
-void TEffectShader::PostEffectShader()
+void TEffectShader::PostEffect()
 {
 	D3DX11_TECHNIQUE_DESC  desc;
 	ID3DX11EffectPass*     pass;
 	Technique->GetDesc(&desc);
 	int num = desc.Passes;
-
 	for(int i=0;i<num;i++)
 	{
 		pass=Technique->GetPassByIndex(i);

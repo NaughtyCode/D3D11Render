@@ -56,10 +56,11 @@ int TD3DWindow::CreateD3DWindow()
 	if (!RegisterClassEx(&WndClass)){
 		return 0;
 	}
-	
-	hWnd = CreateWindow(L"D3DRenderWindow", L"D3DRender", WS_OVERLAPPEDWINDOW,CW_USEDEFAULT,0,CW_USEDEFAULT,0,0,0,0,0);
+	hWnd = CreateWindow(L"D3DRenderWindow", L"D3DRender", WS_OVERLAPPEDWINDOW,100,80,1440,900,0,0,0,0);
+	if (!hWnd){
+		return 0;
+	}
 
-	if (!hWnd){return 0;}
 	D3D11Render = new TRender();
 	D3D11Render->CreateRender(hWnd);
 	ShowWindow(hWnd, 1);

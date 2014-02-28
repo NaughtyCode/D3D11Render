@@ -10,7 +10,6 @@ class TShader;
 class TBuffer;
 class TEffectShader;
 
-
 class TResource
 {
 public:

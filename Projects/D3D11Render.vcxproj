@@ -48,14 +48,14 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\;..\lua-5.2.3\;..\Core\;..\externel\include\Effects11\;D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\lua-5.2.3\;..\Core\;..\externel\include\Effects11\;$(DXSDK_DIR)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4305;4244;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>..\externel\lib;D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\externel\lib;$(DXSDK_DIR)\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Winmm.lib;version.lib;d3dx11.lib;d3d11.lib;d3dx10.lib;d3d10.lib;d3dcompiler.lib;dxguid.lib;DXErr.lib;d3d9.lib;Effects11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -75,6 +75,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Core\IShader.h" />
     <ClInclude Include="..\Core\RenderData.h" />
     <ClInclude Include="..\Core\TD3DDevice.h" />
     <ClInclude Include="..\Core\TD3DWindow.h" />
@@ -126,6 +127,7 @@
     <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Core\IShader.cpp" />
     <ClCompile Include="..\Core\TD3DDevice.cpp" />
     <ClCompile Include="..\Core\TD3DWindow.cpp" />
     <ClCompile Include="..\Core\RenderData.cpp" />

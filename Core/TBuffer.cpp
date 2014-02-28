@@ -15,14 +15,11 @@ TBuffer::~TBuffer()
 {
 }
 
-int TBuffer::CreateVertexBuffer(TShader * shader)
+int TBuffer::CreateStaticVertexBuffer(UINT size,void* pData)
 {
-	InputLayout=new TInputLayout(Device);
-	assert(InputLayout->CreateInputLayout(shader,LAYOUTTYPE_POSITION));
-
 	D3D11_BUFFER_DESC BufferDesc;
 	ZeroMemory(&BufferDesc, sizeof(BufferDesc));
-	VertexBufferSize = GetVertexDataSize();
+	VertexBufferSize = size;
 
 	BufferDesc.Usage = D3D11_USAGE_DEFAULT;
 	BufferDesc.ByteWidth = sizeof(Vertex)*VertexBufferSize;
@@ -30,44 +27,72 @@ int TBuffer::CreateVertexBuffer(TShader * shader)
 	BufferDesc.CPUAccessFlags = 0;
 	BufferDesc.MiscFlags = 0;
 
-	D3D11_SUBRESOURCE_DATA SubresourceData;
-	ZeroMemory(&SubresourceData, sizeof(SubresourceData));
-	SubresourceData.pSysMem = GetVertexData();
+	D3D11_SUBRESOURCE_DATA Data;
+	ZeroMemory(&Data, sizeof(Data));
+	Data.pSysMem = pData;
 
-	if ( FAILED(Device->GetDevice()->CreateBuffer(&BufferDesc,&SubresourceData,&VertexBuffer) ) ){
+	if ( FAILED(Device->GetDevice()->CreateBuffer(&BufferDesc,&Data,&VertexBuffer) ) ){
 		return 0;
 	}
 	return 1;
 }
 
-int TBuffer::CreateVertexBuffer(TEffectShader * effect)
+int TBuffer::CreateVertexBuffer( UINT size,bool dynamic,bool streamout,D3D11_SUBRESOURCE_DATA* pData)
 {
-	InputLayout=new TInputLayout(Device);
-	assert(InputLayout->CreateInputLayout(effect,LAYOUTTYPE_POSITION));
-
+	VertexBufferSize=size;
 	D3D11_BUFFER_DESC BufferDesc;
-	ZeroMemory(&BufferDesc, sizeof(BufferDesc));
-	VertexBufferSize = GetVertexDataSize();
-
-	BufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	BufferDesc.ByteWidth = sizeof(Vertex)*VertexBufferSize;
-	BufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	BufferDesc.CPUAccessFlags = 0;
+	BufferDesc.ByteWidth = size;
 	BufferDesc.MiscFlags = 0;
+	BufferDesc.StructureByteStride = 0;
+	if (streamout){
+		BufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER | D3D11_BIND_STREAM_OUTPUT;
+	}
+	else{
+		BufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	}
+	if (dynamic){
+		BufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+		BufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	}
+	else{
+		BufferDesc.Usage = D3D11_USAGE_IMMUTABLE;
+		BufferDesc.CPUAccessFlags = 0;
+	}
 
-	D3D11_SUBRESOURCE_DATA SubresourceData;
-	ZeroMemory(&SubresourceData, sizeof(SubresourceData));
-	SubresourceData.pSysMem = GetVertexData();
-
-	if ( FAILED(Device->GetDevice()->CreateBuffer(&BufferDesc,&SubresourceData,&VertexBuffer) ) ){
+	if ( FAILED( Device->GetDevice()->CreateBuffer( &BufferDesc, pData, &VertexBuffer ) ) ) {
 		return 0;
 	}
 	return 1;
 }
 
-int TBuffer::CreateIndexBuffer()
+int TBuffer::CreateIndexBuffer(UINT size,bool dynamic,D3D11_SUBRESOURCE_DATA*pData)
 {
+	D3D11_BUFFER_DESC desc;
+	desc.ByteWidth = size;
+	desc.MiscFlags = 0;
+	desc.StructureByteStride = 0;
+	desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+	if ( dynamic ){
+		desc.Usage = D3D11_USAGE_DYNAMIC;
+		desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	}
+	else{
+		desc.Usage = D3D11_USAGE_IMMUTABLE;
+		desc.CPUAccessFlags = 0;
+	}
+	if ( FAILED( Device->GetDevice()->CreateBuffer( &desc, pData, &IndexBuffer ) ) ){
+		return 0;
+	}
 	return 1;
+}
+
+int TBuffer::CreateInputLayout(IShader * shader)
+{
+	InputLayout = new TInputLayout(Device);
+	if ( InputLayout->CreateInputLayout(shader,LAYOUTTYPE_POSITION)){
+		return 1;
+	}
+	return 0;
 }
 
 void TBuffer::PostRenderResource()

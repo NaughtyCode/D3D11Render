@@ -44,7 +44,6 @@ int TD3DDevice::CreateDevice()
 	sd.Flags = 0;
 
 	D3D_FEATURE_LEVEL  FeatureArray[] = {
-		//D3D_FEATURE_LEVEL_11_1,
 		D3D_FEATURE_LEVEL_11_0,
 		D3D_FEATURE_LEVEL_10_1,
 		D3D_FEATURE_LEVEL_10_0,
