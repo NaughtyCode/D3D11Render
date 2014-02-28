@@ -7,18 +7,18 @@ class TD3DDevice;
 
 struct CBNeverChanges
 {
-	XMMATRIX mView;
+	XMMATRIX View;
 };
 
 struct CBChangeOnResize
 {
-	XMMATRIX mProjection;
+	XMMATRIX Projection;
 };
 
 struct CBChangesEveryFrame
 {
-	XMMATRIX mWorld;
-	XMFLOAT4 vMeshColor;
+	XMMATRIX World;
+	XMFLOAT4 ObjectColor;
 };
 
 class TShader:public IShader
@@ -47,7 +47,7 @@ private:
 	ID3D11Buffer*           ConstantBufferChangeOnResize;
 	ID3D11Buffer*           ConstantBufferChangesEveryFrame;
 	ID3D11SamplerState*     Sampler;
-	XMFLOAT4                MeshColor;
+	XMFLOAT4                ObjectColor;
 };
 
 

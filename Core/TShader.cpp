@@ -7,7 +7,7 @@ extern TRender* g_Render;
 TShader::TShader(TD3DDevice* device):Device(device),
 									VertexShaderBuffer(0),
 									PixelShaderBuffer(0),
-									MeshColor( 0.7f, 0.7f, 0.7f, 1.0f )
+									ObjectColor( 0.7f, 0.125f, 0.8f, 1.0f )
 {
 	
 }
@@ -113,7 +113,6 @@ int TShader::CreateConstantBuffer()
 
 int TShader::CreateSampler()
 {
-	HRESULT hr;
 	D3D11_SAMPLER_DESC SampleDesc;
 	ZeroMemory( &SampleDesc, sizeof(SampleDesc) );
 	SampleDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
@@ -123,8 +122,7 @@ int TShader::CreateSampler()
 	SampleDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
 	SampleDesc.MinLOD = 0;
 	SampleDesc.MaxLOD = D3D11_FLOAT32_MAX;
-	hr = Device->GetDevice()->CreateSamplerState(&SampleDesc,&Sampler);
-	if( FAILED( hr ) )
+	if( FAILED( Device->GetDevice()->CreateSamplerState(&SampleDesc,&Sampler) ) )
 	{
 		return 0;
 	}
@@ -135,10 +133,10 @@ void TShader::UpdateConstantBuffer()
 {
 	CBNeverChanges cbNeverChanges;
 	TCamera* camera=g_Render->GetCamera();
-	cbNeverChanges.mView = camera->GetTransposeView();
+	cbNeverChanges.View = camera->GetTransposeView();
 	Device->GetImmediateContext()->UpdateSubresource( ConstantBufferNeverChanges, 0, NULL, &cbNeverChanges, 0, 0 );
 	CBChangeOnResize cbChangesOnResize;
-	cbChangesOnResize.mProjection = camera->GetTransposeProjection();
+	cbChangesOnResize.Projection = camera->GetTransposeProjection();
 	Device->GetImmediateContext()->UpdateSubresource( ConstantBufferChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0 );
 }
 
@@ -153,13 +151,10 @@ void TShader::UpdateConstantBufferFrame()
 	t = ( dwTimeCur - dwTimeStart ) / 1000.0f;
 	TCamera* camera=g_Render->GetCamera();
 
-	MeshColor.x = ( sinf( t * 1.0f ) + 1.0f ) * 0.5f;
-	MeshColor.y = ( cosf( t * 3.0f ) + 1.0f ) * 0.5f;
-	MeshColor.z = ( sinf( t * 5.0f ) + 1.0f ) * 0.5f;
 	XMMATRIX world=camera->GetTransposeWorld();
 	CBChangesEveryFrame ChangesEveryFrame;
-	ChangesEveryFrame.mWorld = world;
-	ChangesEveryFrame.vMeshColor = MeshColor;
+	ChangesEveryFrame.World = world;
+	ChangesEveryFrame.ObjectColor = ObjectColor;
 	Device->GetImmediateContext()->UpdateSubresource( ConstantBufferChangesEveryFrame, 0, NULL, &ChangesEveryFrame, 0, 0 );
 	
 	Device->GetImmediateContext()->VSSetConstantBuffers( 0, 1, &ConstantBufferNeverChanges );

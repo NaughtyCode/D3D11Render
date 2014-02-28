@@ -1,13 +1,18 @@
 #pragma once
 
 typedef struct VERTEX_POSITION{
-	FLOAT x,y,z;
+	FLOAT x;
+	FLOAT y;
+	FLOAT z;
 }VERTEX_POSITION;
 
 typedef struct VERTEX_POSITIONTEX
 {
-	XMFLOAT3 pos;
-	XMFLOAT2 tex;
+	FLOAT x;
+	FLOAT y;
+	FLOAT z;
+	FLOAT u;
+	FLOAT v;
 }VERTEX_POSITIONTEX;
 
 typedef enum INPUTELEMENTDESCTYPE

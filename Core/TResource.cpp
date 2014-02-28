@@ -35,6 +35,7 @@ int TResource::CreateResource()
 	Buffer->CreateInputLayout(Shader,LAYOUTTYPE_POSITIONTEX0);
 
 	size=GetBoxVertexDataSize();
+	printf("(%d)\n",size);
 	Buffer->CreateVertexBuffer(GetBoxVertexData(),size,sizeof(VERTEX_POSITIONTEX),false,false);
 	
 	size=GetBoxIndexDataSize();
