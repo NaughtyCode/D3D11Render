@@ -102,10 +102,10 @@ int TBuffer::CreateIndexBuffer(void* pData,UINT size,bool dynamic)
 	return 1;
 }
 
-int TBuffer::CreateInputLayout(IShader * shader)
+int TBuffer::CreateInputLayout(IShader * shader,INPUTELEMENTDESCTYPE type)
 {
 	InputLayout = new TInputLayout(Device);
-	if ( InputLayout->CreateInputLayout(shader,LAYOUTTYPE_POSITION)){
+	if ( InputLayout->CreateInputLayout(shader,type)){
 		return 1;
 	}
 	return 0;

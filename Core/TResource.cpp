@@ -28,7 +28,7 @@ int TResource::CreateResource(const TCHAR* EffectFile)
 	Texture->CreateTexture(L"..\\Resource\\texture\\plastic.dds");
 
 	Buffer = new TBuffer(Device);
-	Buffer->CreateInputLayout(EffectShader);
+	Buffer->CreateInputLayout(EffectShader,LAYOUTTYPE_POSITIONTEX0);
 	UINT size=GetBoxVertexDataSize();
 	Buffer->CreateVertexBuffer(GetBoxVertexData(),size,sizeof(VERTEX_POSITIONTEX),false,false);
 	size=GetBoxIndexDataSize();
