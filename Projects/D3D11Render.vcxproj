@@ -77,6 +77,7 @@
   <ItemGroup>
     <ClInclude Include="..\Core\IShader.h" />
     <ClInclude Include="..\Core\RenderData.h" />
+    <ClInclude Include="..\Core\TCamera.h" />
     <ClInclude Include="..\Core\TD3DDevice.h" />
     <ClInclude Include="..\Core\TD3DWindow.h" />
     <ClInclude Include="..\Core\LayoutDefinitions.h" />
@@ -123,11 +124,17 @@
     <ResourceCompile Include="render.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Resource\shaders\BoxShaderFramework.hlsl" />
+    <None Include="..\Resource\shaders\PrimitiveEffectFramework.hlsl" />
+    <None Include="..\Resource\shaders\primitivepsshader.hlsl" />
+    <None Include="..\Resource\shaders\primitivevsshader.hlsl" />
+    <None Include="..\Resource\shaders\TexturePSShader.hlsl" />
     <None Include="render.ico" />
     <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Core\IShader.cpp" />
+    <ClCompile Include="..\Core\TCamera.cpp" />
     <ClCompile Include="..\Core\TD3DDevice.cpp" />
     <ClCompile Include="..\Core\TD3DWindow.cpp" />
     <ClCompile Include="..\Core\RenderData.cpp" />

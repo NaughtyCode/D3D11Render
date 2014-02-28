@@ -5,6 +5,8 @@
 #include "TViewPort.h"
 #include "TResource.h"
 #include "TRenderConfig.h"
+#include "TCamera.h"
+
 
 class TD3DDevice;
 class TRenderTarget;
@@ -12,6 +14,9 @@ class TViewPort;
 class TShader;
 class TResource;
 class TRenderConfig;
+class TCamera;
+
+
 
 class TRender
 {
@@ -27,5 +32,6 @@ private:
 	TRenderTarget*  RenderTarget;
 	TViewPort*      ViewPort;
 	TResource*      Resource;
+	TCamera*        Camera;
 };
 

@@ -5,7 +5,8 @@
 TResource::TResource(TD3DDevice* device) :Device(device),
 	Shader(0), 
 	Buffer(0),
-	EffectShader(0)
+	EffectShader(0),
+	Texture(0)
 {
 }
 
@@ -13,21 +14,34 @@ TResource::~TResource()
 {
 }
 
-int TResource::CreateResource(const WCHAR* vsfile,const WCHAR* psfile)
+int TResource::CreateResource(const TCHAR* vsfile,const TCHAR* psfile)
+{
+	return 1;
+}
+
+int TResource::CreateResource(const TCHAR* EffectFile)
 {
 	EffectShader=new TEffectShader(Device);
-	EffectShader->CreateEffectShader(L"..\\Resource\\shaders\\PrimitiveEffectFramework.hlsl");
+	EffectShader->CreateEffectShader(EffectFile);
+	
+	Texture = new TTexture(Device);
+	Texture->CreateTexture(L"..\\Resource\\texture\\plastic.dds");
+
 	Buffer = new TBuffer(Device);
-	UINT size=GetVertexDataSize();
 	Buffer->CreateInputLayout(EffectShader);
-	Buffer->CreateVertexBuffer(GetVertexData(),size,sizeof(Vertex),false,false);
+	UINT size=GetBoxVertexDataSize();
+	Buffer->CreateVertexBuffer(GetBoxVertexData(),size,sizeof(VERTEX_POSITIONTEX),false,false);
+	size=GetBoxIndexDataSize();
+	Buffer->CreateIndexBuffer(GetBoxIndexData(),size,false);
+
 	return 1;
 }
 
 void TResource::PostResource()
 {
 	EffectShader->PostEffect();
-	Buffer->PostRenderResource();
+	Texture->PostTexture();
+	Buffer->PostResource();
 }
 
 void TResource::Release()

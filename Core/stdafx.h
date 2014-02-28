@@ -15,6 +15,16 @@
 #include <assert.h>
 #include <stdio.h>
 
+
+// C++ head fiels
+#include <map>
+#include <string>
+#include <vector>
+#include <set>
+#include <iostream>
+#include <algorithm>
+
+
 // Direct3D 11 head fiels
 #include <d3d11.h>
 #include <D3Dcompiler.h>

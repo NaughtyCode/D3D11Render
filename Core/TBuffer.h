@@ -16,11 +16,12 @@ class TBuffer
 public:
 	TBuffer(TD3DDevice* device);
 	~TBuffer();
-	int CreateStaticVertexBuffer(UINT size,void* pData);
+	int CreateStaticVertexBuffer(void* pData,UINT size,UINT elemsize);
 	int CreateVertexBuffer(void* pData,UINT size,UINT elemsize,bool dynamic,bool streamout);
-	int CreateIndexBuffer(UINT size,bool dynamic,D3D11_SUBRESOURCE_DATA*pData);
+	int CreateIndexBuffer(void* pData,UINT size,bool dynamic);
 	int CreateInputLayout(IShader * shader);
-	void PostRenderResource();
+	void PostResource();
+	void Release();
 
 private:
 	TD3DDevice*        Device;
@@ -28,5 +29,8 @@ private:
 	ID3D11Buffer*      VertexBuffer;
 	ID3D11Buffer*      IndexBuffer;
 	UINT               VertexBufferSize;
+	UINT               IndexBufferSize;
+	UINT               ElementSize;
+	BOOL               IndexDraw;
 };
 

@@ -1,15 +1,13 @@
 #include "stdafx.h"
 #include "TRender.h"
 
-const WCHAR* vsfile = L"..\\Resource\\shaders\\primitivevsshader.hlsl";
-const WCHAR* psfile = L"..\\Resource\\shaders\\primitivepsshader.hlsl";
-
 TRender::TRender() :Device(0), 
 	RenderTarget(0),
 	ViewPort(0), 
-	Resource(0)
+	Resource(0),
+	Camera(0)
 {
-
+	
 }
 
 TRender::~TRender()
@@ -19,6 +17,12 @@ TRender::~TRender()
 
 int TRender::CreateRender(HWND hWnd)
 {
+	RECT rc;
+	GetClientRect(hWnd,&rc);
+	UINT width = rc.right - rc.left;
+	UINT height = rc.bottom - rc.top;
+	Camera = new TCamera(width,height);
+
 	Device = new TD3DDevice(hWnd);
 	assert(Device);
 	int rt;
@@ -32,7 +36,7 @@ int TRender::CreateRender(HWND hWnd)
 	ViewPort->CreateViewPort();
 	Resource = new TResource(Device);
 	assert(Resource);
-	Resource->CreateResource(vsfile,psfile);
+	Resource->CreateResource(L"..\\Resource\\shaders\\BoxShaderFramework.hlsl");
 	return 1;
 }
 

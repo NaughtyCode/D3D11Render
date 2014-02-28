@@ -13,7 +13,7 @@ TEffectShader::~TEffectShader(void)
 {
 }
 
-int TEffectShader::CompileShaderFromFile(const WCHAR* szFileName,LPCSTR szShaderModel, ID3DBlob** ppBlobOut)
+int TEffectShader::CompileShaderFromFile(const TCHAR* szFileName,LPCSTR szShaderModel, ID3DBlob** ppBlobOut)
 {
 	HRESULT hr = S_OK;
 	DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
