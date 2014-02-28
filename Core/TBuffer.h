@@ -17,7 +17,7 @@ public:
 	TBuffer(TD3DDevice* device);
 	~TBuffer();
 	int CreateStaticVertexBuffer(UINT size,void* pData);
-	int CreateVertexBuffer( UINT size,bool dynamic,	bool streamout,D3D11_SUBRESOURCE_DATA* pData);
+	int CreateVertexBuffer(void* pData,UINT size,UINT elemsize,bool dynamic,bool streamout);
 	int CreateIndexBuffer(UINT size,bool dynamic,D3D11_SUBRESOURCE_DATA*pData);
 	int CreateInputLayout(IShader * shader);
 	void PostRenderResource();

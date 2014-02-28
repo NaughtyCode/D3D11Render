@@ -20,7 +20,7 @@ int TResource::CreateResource(const WCHAR* vsfile,const WCHAR* psfile)
 	Buffer = new TBuffer(Device);
 	UINT size=GetVertexDataSize();
 	Buffer->CreateInputLayout(EffectShader);
-	Buffer->CreateStaticVertexBuffer(size,GetVertexData());
+	Buffer->CreateVertexBuffer(GetVertexData(),size,sizeof(Vertex),false,false);
 	return 1;
 }
 

@@ -37,11 +37,11 @@ int TBuffer::CreateStaticVertexBuffer(UINT size,void* pData)
 	return 1;
 }
 
-int TBuffer::CreateVertexBuffer( UINT size,bool dynamic,bool streamout,D3D11_SUBRESOURCE_DATA* pData)
+int TBuffer::CreateVertexBuffer( void* pData,UINT size,UINT elemsize,bool dynamic,bool streamout)
 {
 	VertexBufferSize=size;
 	D3D11_BUFFER_DESC BufferDesc;
-	BufferDesc.ByteWidth = size;
+	BufferDesc.ByteWidth = size*elemsize;
 	BufferDesc.MiscFlags = 0;
 	BufferDesc.StructureByteStride = 0;
 	if (streamout){
@@ -59,9 +59,14 @@ int TBuffer::CreateVertexBuffer( UINT size,bool dynamic,bool streamout,D3D11_SUB
 		BufferDesc.CPUAccessFlags = 0;
 	}
 
-	if ( FAILED( Device->GetDevice()->CreateBuffer( &BufferDesc, pData, &VertexBuffer ) ) ) {
+	D3D11_SUBRESOURCE_DATA Data;
+	ZeroMemory(&Data, sizeof(Data));
+	Data.pSysMem = pData;
+
+	if ( FAILED( Device->GetDevice()->CreateBuffer( &BufferDesc,&Data, &VertexBuffer ) ) ) {
 		return 0;
 	}
+
 	return 1;
 }
 
