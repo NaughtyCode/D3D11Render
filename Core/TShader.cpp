@@ -24,7 +24,17 @@ int TShader::CompileShaderFromFile(const WCHAR* szFileName, LPCSTR szEntryPoint,
 	dwShaderFlags |= D3DCOMPILE_DEBUG;
 #endif
 	ID3DBlob* pError;
-	hr = D3DX11CompileFromFile(szFileName, NULL, NULL, szEntryPoint, szShaderModel,dwShaderFlags, 0, NULL, ppBlobOut, &pError, NULL);
+	hr = D3DX11CompileFromFile(szFileName,
+			NULL, NULL,
+			szEntryPoint,
+			szShaderModel,
+			dwShaderFlags,
+			0,
+			NULL,
+			ppBlobOut,
+			&pError,
+			NULL);
+	
 	if (FAILED(hr))
 	{
 		if (pError != NULL)
@@ -36,7 +46,10 @@ int TShader::CompileShaderFromFile(const WCHAR* szFileName, LPCSTR szEntryPoint,
 	return 1;
 }
 
-int TShader::CreateShaders(const WCHAR* VSFilename, const WCHAR* PSFilename, const char* szVertexShaderEntryPoint, const char* szPixelShaderEntryPoint)
+int TShader::CreateShaders(const WCHAR* VSFilename,
+			const WCHAR* PSFilename,
+			const char* szVertexShaderEntryPoint,
+			const char* szPixelShaderEntryPoint)
 {
 	if (!CompileShaderFromFile(VSFilename, szVertexShaderEntryPoint, "vs_5_0", &VertexShaderBuffer)){
 		return 0;
@@ -155,7 +168,12 @@ void TShader::UpdateConstantBufferFrame()
 	CBChangesEveryFrame ChangesEveryFrame;
 	ChangesEveryFrame.World = world;
 	ChangesEveryFrame.ObjectColor = ObjectColor;
-	Device->GetImmediateContext()->UpdateSubresource( ConstantBufferChangesEveryFrame, 0, NULL, &ChangesEveryFrame, 0, 0 );
+	Device->GetImmediateContext()->UpdateSubresource( ConstantBufferChangesEveryFrame,
+					0,
+					NULL,
+					&ChangesEveryFrame,
+					0,
+					0 );
 	
 	Device->GetImmediateContext()->VSSetConstantBuffers( 0, 1, &ConstantBufferNeverChanges );
 	Device->GetImmediateContext()->VSSetConstantBuffers( 1, 1, &ConstantBufferChangeOnResize );

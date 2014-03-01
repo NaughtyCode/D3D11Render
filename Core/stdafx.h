@@ -46,3 +46,11 @@ void DumpErrorInfo(HRESULT hr);
 #define SAFE_RELEASE(p)      { if (p) { (p)->Release(); (p)=NULL; } }
 #endif
 
+#include "TColor.h"
+
+
+
+
+
+
+

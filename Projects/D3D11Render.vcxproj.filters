@@ -4,9 +4,6 @@
     <Filter Include="Core">
       <UniqueIdentifier>{e67d61ca-fe6b-412d-bc15-bb471e9047e5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lua">
-      <UniqueIdentifier>{5b6b233f-8337-44bf-bcca-0caad127aa61}</UniqueIdentifier>
-    </Filter>
     <Filter Include="resource">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
@@ -17,11 +14,17 @@
     <Filter Include="shader">
       <UniqueIdentifier>{89c8f082-ffa7-4fbc-b0c1-4541c525ff4b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{cd2ddc5b-6791-4f44-b93f-49c88a52cf65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{615ac097-d264-4bd9-81ab-ccdba2a650d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua">
+      <UniqueIdentifier>{5b6b233f-8337-44bf-bcca-0caad127aa61}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Core\LayoutDefinitions.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\Core\stdafx.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -52,81 +55,6 @@
     <ClInclude Include="..\Core\TViewPort.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lapi.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lauxlib.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lcode.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lctype.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\ldebug.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\ldo.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lfunc.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lgc.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\llex.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\llimits.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lmem.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lobject.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lopcodes.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lparser.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lstate.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lstring.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\ltable.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\ltm.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lua.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lua.hpp">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\luaconf.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lualib.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lundump.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lvm.h">
-      <Filter>lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lua-5.2.3\lzio.h">
-      <Filter>lua</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>resource</Filter>
     </ClInclude>
@@ -134,9 +62,6 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\TD3DDevice.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TD3DWindow.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\TEffectShader.h">
@@ -150,6 +75,93 @@
     </ClInclude>
     <ClInclude Include="..\Core\TCamera.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\LayoutDefinitions.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TColor.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TMatrix.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lapi.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lauxlib.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lcode.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lctype.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\ldebug.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\ldo.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lfunc.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lgc.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\llex.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\llimits.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lmem.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lobject.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lopcodes.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lparser.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lstate.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lstring.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\ltable.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\ltm.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lua.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lua.hpp">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\luaconf.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lualib.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lundump.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lvm.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lua\lzio.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\window\TD3DWindow.h">
+      <Filter>Window</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -179,9 +191,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Core\LayoutDefinitions.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\Core\stdafx.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -209,115 +218,10 @@
     <ClCompile Include="..\Core\TViewPort.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lapi.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lauxlib.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lbaselib.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lbitlib.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lcode.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lcorolib.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lctype.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\ldblib.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\ldebug.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\ldo.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\ldump.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lfunc.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lgc.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\linit.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\liolib.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\llex.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lmathlib.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lmem.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\loadlib.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lobject.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lopcodes.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\loslib.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lparser.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lstate.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lstring.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lstrlib.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\ltable.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\ltablib.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\ltm.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lua.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lundump.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lvm.c">
-      <Filter>lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lua-5.2.3\lzio.c">
-      <Filter>lua</Filter>
-    </ClCompile>
     <ClCompile Include="..\Core\TRenderConfig.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\Main\Main.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
     <ClCompile Include="..\Core\TD3DDevice.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\TD3DWindow.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TEffectShader.cpp">
@@ -331,6 +235,114 @@
     </ClCompile>
     <ClCompile Include="..\Core\TCamera.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Main\Entry.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\LayoutDefinitions.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lapi.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lauxlib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lbaselib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lbitlib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lcode.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lcorolib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lctype.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\ldblib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\ldebug.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\ldo.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\ldump.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lfunc.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lgc.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\linit.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\liolib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\llex.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lmathlib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lmem.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\loadlib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lobject.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lopcodes.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\loslib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lparser.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lstate.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lstring.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lstrlib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\ltable.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\ltablib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\ltm.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lua.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lundump.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lvm.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lua\lzio.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\window\TD3DWindow.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

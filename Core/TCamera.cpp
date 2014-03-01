@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "TCamera.h"
+#include "TMatrix.h"
 
 TCamera::TCamera(UINT w,UINT h):
 			World(XMMatrixIdentity()),

@@ -27,7 +27,7 @@ int TResource::CreateResource()
 	Shader->CreateShaders(ShaderName,ShaderName,"VS","PS");
 
 	Texture = new TTexture(Device);
-	result=Texture->CreateTexture(L"..\\Resource\\texture\\circular_bokeh_sharp.dds");
+	result=Texture->CreateTexture(L"..\\Resource\\texture\\boxskin.dds");
 	assert(result);
 
 	UINT size;

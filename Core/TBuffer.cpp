@@ -117,7 +117,6 @@ int TBuffer::CreateInputLayout(IShader * shader,INPUTELEMENTDESCTYPE type)
 void TBuffer::PostResource()
 {
 	UINT offset = 0;
-
 	InputLayout->PostInputLayout();
 	Device->GetImmediateContext()->IASetVertexBuffers(0, 1, &VertexBuffer, &VertexSize, &offset);
 	Device->GetImmediateContext()->IASetIndexBuffer( IndexBuffer, DXGI_FORMAT_R16_UINT, 0 );

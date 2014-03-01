@@ -18,7 +18,7 @@ struct CBChangeOnResize
 struct CBChangesEveryFrame
 {
 	XMMATRIX World;
-	XMFLOAT4 ObjectColor;
+	ColorF ObjectColor;
 };
 
 class TShader:public IShader
@@ -47,7 +47,7 @@ private:
 	ID3D11Buffer*           ConstantBufferChangeOnResize;
 	ID3D11Buffer*           ConstantBufferChangesEveryFrame;
 	ID3D11SamplerState*     Sampler;
-	XMFLOAT4                ObjectColor;
+	ColorF                  ObjectColor;
 };
 
 
