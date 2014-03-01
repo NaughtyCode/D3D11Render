@@ -8,7 +8,7 @@ LRESULT CALLBACK RenderWindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 	int wmId, wmEvent;
 	PAINTSTRUCT ps;
 	HDC hdc;
-
+	
 	switch (message)
 	{
 	case WM_COMMAND:
@@ -115,6 +115,9 @@ void TD3DWindow::EnterLoop()
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		D3D11Render->RenderFrame();
+		else
+		{
+			D3D11Render->RenderFrame();
+		}
 	}
 }
