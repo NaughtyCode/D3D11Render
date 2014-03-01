@@ -14,8 +14,7 @@ struct TMatrix
 	};
 	
 	inline TMatrix<F>& operator = (const TMatrix<F> &m) 
-	{ 
-		assert(m.IsValid());
+	{
 		m00=m.m00;	m01=m.m01;	m02=m.m02; m03=m.m03; 
 		m10=m.m10;	m11=m.m11;	m12=m.m12; m13=m.m13; 
 		m20=m.m20;	m21=m.m21;	m22=m.m22; m23=m.m23; 
@@ -52,7 +51,6 @@ struct TMatrix
 	
 	inline TMatrix<F>(const TMatrix<F>& m ) 
 	{
-		assert(m.IsValid());
 		m00=m.m00;	m01=m.m01;	m02=m.m02;	m03=m.m03;	
 		m10=m.m10;	m11=m.m11;	m12=m.m12;	m13=m.m13;
 		m20=m.m20;	m21=m.m21;	m22=m.m22;	m23=m.m23;
@@ -61,7 +59,6 @@ struct TMatrix
 	
 	template<class F1> inline TMatrix<F>(const TMatrix<F1>& m ) 
 	{
-		assert(m.IsValid());
 		m00=F(m.m00);	m01=F(m.m01);	m02=F(m.m02);	m03=F(m.m03);	
 		m10=F(m.m10);	m11=F(m.m11);	m12=F(m.m12);	m13=F(m.m13);
 		m20=F(m.m20);	m21=F(m.m21);	m22=F(m.m22);	m23=F(m.m23);
@@ -70,7 +67,6 @@ struct TMatrix
 	
 	friend	inline TMatrix<F> operator * (const TMatrix<F>& m, const FLOAT f)	
 	{
-		assert(m.IsValid());
 		TMatrix<F> r;
 		r.m00=m.m00*f; r.m01=m.m01*f; r.m02=m.m02*f; r.m03=m.m03*f; 
 		r.m10=m.m10*f; r.m11=m.m11*f; r.m12=m.m12*f; r.m13=m.m13*f;
@@ -80,9 +76,7 @@ struct TMatrix
 	}
 	
 	friend	inline TMatrix<F> operator + (const TMatrix<F>& mm0, const TMatrix<F>& mm1)	
-	{ 
-		assert(mm0.IsValid());
-		assert(mm1.IsValid());
+	{
 		TMatrix<F> r;
 		r.m00=mm0.m00 + mm1.m00; r.m01=mm0.m01 + mm1.m01; r.m02=mm0.m02 + mm1.m02; r.m03=mm0.m03 + mm1.m03; 
 		r.m10=mm0.m10 + mm1.m10; r.m11=mm0.m11 + mm1.m11; r.m12=mm0.m12 + mm1.m12; r.m13=mm0.m13 + mm1.m13;
@@ -136,7 +130,6 @@ struct TMatrix
 		tmp[10]= m.m02 * m.m13;
 		tmp[11]= m.m12 * m.m03;
 		
-		// Calculate first 8 elements (cofactors)
 		m00 = tmp[0]*m.m11 + tmp[3]*m.m21 + tmp[ 4]*m.m31;
 		m00-= tmp[1]*m.m11 + tmp[2]*m.m21 + tmp[ 5]*m.m31;
 		m01 = tmp[1]*m.m01 + tmp[6]*m.m21 + tmp[ 9]*m.m31;
@@ -153,8 +146,7 @@ struct TMatrix
 		m12-= tmp[2]*m.m00 + tmp[7]*m.m10 + tmp[10]*m.m30;
 		m13 = tmp[4]*m.m00 + tmp[9]*m.m10 + tmp[10]*m.m20;
 		m13-= tmp[5]*m.m00 + tmp[8]*m.m10 + tmp[11]*m.m20;
-
-		// Calculate pairs for second 8 elements (cofactors)
+		
 		tmp[ 0] = m.m20*m.m31;
 		tmp[ 1] = m.m30*m.m21;
 		tmp[ 2] = m.m10*m.m31;
@@ -167,8 +159,7 @@ struct TMatrix
 		tmp[ 9] = m.m20*m.m01;
 		tmp[10] = m.m00*m.m11;
 		tmp[11] = m.m10*m.m01;
-
-		// Calculate second 8 elements (cofactors)
+		
 		m20 = tmp[ 0]*m.m13 + tmp[ 3]*m.m23 + tmp[ 4]*m.m33;
 		m20-= tmp[ 1]*m.m13 + tmp[ 2]*m.m23 + tmp[ 5]*m.m33;
 		m21 = tmp[ 1]*m.m03 + tmp[ 6]*m.m23 + tmp[ 9]*m.m33;
@@ -185,12 +176,8 @@ struct TMatrix
 		m32-= tmp[10]*m.m32 + tmp[ 2]*m.m02 + tmp[ 7]*m.m12;
 		m33 = tmp[10]*m.m22 + tmp[ 4]*m.m02 + tmp[ 9]*m.m12;
 		m33-= tmp[ 8]*m.m12 + tmp[11]*m.m22 + tmp[ 5]*m.m02;
-
-		// Calculate determinant
+		
 		F det=(m.m00*m00+m.m10*m01+m.m20*m02+m.m30*m03);
-		//if (fabs_tpl(det)<0.0001f) assert(0);	
-
-		// Divide the cofactor-matrix by the determinant
 		F idet=(F)1.0/det;
 		m00*=idet; m01*=idet; m02*=idet; m03*=idet;
 		m10*=idet; m11*=idet; m12*=idet; m13*=idet;
@@ -234,28 +221,7 @@ struct TMatrix
 		return p_data[i*4+j];
 	}
 	
-	bool IsValid() const
-	{
-		if (!NumberValid(m00)) return false;
-		if (!NumberValid(m01)) return false;
-		if (!NumberValid(m02)) return false;
-		if (!NumberValid(m03)) return false;
-		if (!NumberValid(m10)) return false;
-		if (!NumberValid(m11)) return false;
-		if (!NumberValid(m12)) return false;
-		if (!NumberValid(m13)) return false;
-		if (!NumberValid(m20)) return false;
-		if (!NumberValid(m21)) return false;
-		if (!NumberValid(m22)) return false;
-		if (!NumberValid(m23)) return false;
-		if (!NumberValid(m30)) return false;
-		if (!NumberValid(m31)) return false;
-		if (!NumberValid(m32)) return false;
-		if (!NumberValid(m33)) return false;
-		return true;
-	}
-	
-	static bool IsEquivalent( const TMatrix<F>& m0, const TMatrix<F>& m1, F e=VEC_EPSILON) 
+	static bool IsEquivalent( const TMatrix<F>& m0, const TMatrix<F>& m1, F e=0.005f) 
 	{
 		return  ( 
 			(fabs_tpl(m0.m00-m1.m00)<=e) && (fabs_tpl(m0.m01-m1.m01)<=e) && (fabs_tpl(m0.m02-m1.m02)<=e) && (fabs_tpl(m0.m03-m1.m03)<=e) && 
@@ -273,8 +239,6 @@ typedef TMatrix<UINT>  TMatrixU;
 template<class F1, class F2> 
 inline TMatrix<F1> operator * (const TMatrix<F1>& l, const TMatrix<F2>& r)
 {
-	assert(l.IsValid());
-	assert(r.IsValid());
 	TMatrix<F1> res;
 	res.m00 = l.m00*r.m00 + l.m01*r.m10 + l.m02*r.m20 + l.m03*r.m30;
 	res.m10 = l.m10*r.m00 + l.m11*r.m10 + l.m12*r.m20 + l.m13*r.m30;
