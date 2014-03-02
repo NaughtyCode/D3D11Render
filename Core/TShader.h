@@ -17,7 +17,6 @@ typedef struct TConstantBufferData
 	XMMATRIX View;
 	XMMATRIX Projection;
 	XMMATRIX World;
-	TColorF ObjectColor;
 }TConstantBufferData;
 
 class TShader:public IShader
@@ -60,7 +59,6 @@ private:
 	ID3DBlob*               VertexShaderBuffer;
 	ID3DBlob*               PixelShaderBuffer;
 	ID3D11Buffer*           ConstantBufferData;
-	TColorF                 ObjectColor;
 	INPUTTYPE_TYPE          LayoutType;
 };
 

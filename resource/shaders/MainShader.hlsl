@@ -1,12 +1,11 @@
-Texture2D txDiffuse : register( t0 );
-SamplerState samLinear : register( s0 );
+Texture2D Diffuse : register( t0 );
+SamplerState LinearSample : register( s0 );
 
 cbuffer ConstantBuffer : register( b0 )
 {
     matrix View;
     matrix Projection;
     matrix World;
-    float4 vMeshColor;
 };
 
 struct VS_INPUT
@@ -34,5 +33,5 @@ PS_INPUT VS( VS_INPUT input )
 
 float4 PS( PS_INPUT input) : SV_Target
 {
-    return txDiffuse.Sample( samLinear, input.Tex ) * vMeshColor;
+    return Diffuse.Sample( LinearSample, input.Tex );
 }

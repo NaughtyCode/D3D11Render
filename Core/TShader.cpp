@@ -11,7 +11,6 @@ TShader::TShader(TD3DDevice* device):Device(device),
 				VertexShaderBuffer(0),
 				PixelShaderBuffer(0),
 				ConstantBufferData(0),
-				ObjectColor(1.0f,1.0f,1.0f,1.0f),
 				LayoutType(LAYOUTTYPE_UNKNOWN)
 {
 	
@@ -173,7 +172,6 @@ void TShader::PostEffect()
 	
 	Data.View = camera->GetTransposeView();
 	Data.World = camera->RotationY(0.35f);
-	Data.ObjectColor = ObjectColor;
 	Data.Projection = camera->GetTransposeProjection();
 	
 	DeviceContext->UpdateSubresource(ConstantBufferData,
@@ -185,7 +183,6 @@ void TShader::PostEffect()
 	
 	DeviceContext->IASetInputLayout(InputLayout);
 	DeviceContext->VSSetConstantBuffers(0,1,&ConstantBufferData);
-	DeviceContext->PSSetConstantBuffers(0,1,&ConstantBufferData );
 	DeviceContext->VSSetShader(VertexShader, NULL, 0);
 	DeviceContext->PSSetShader(PixelShader, NULL, 0);
 }
