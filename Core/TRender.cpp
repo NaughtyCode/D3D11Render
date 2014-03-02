@@ -51,7 +51,7 @@ void TRender::RenderFrame()
 {
 	RenderTarget->Clear();
 	Resource->PostResource();
-	Device->GetSwapChain()->Present(0,0);
+	Device->Present();
 }
 
 void TRender::Release()

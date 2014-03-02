@@ -14,6 +14,7 @@ public:
 	IDXGISwapChain* GetSwapChain();
 	ID3D11DeviceContext* GetImmediateContext();
 	HWND GetWindowHandle();
+	void Present(); 
 	void Release();
 
 private:

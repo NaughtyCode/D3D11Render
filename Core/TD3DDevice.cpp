@@ -96,6 +96,11 @@ HWND TD3DDevice::GetWindowHandle()
 	return Handle;
 }
 
+void TD3DDevice::Present()
+{
+	SwapChain->Present(0,0);
+}
+
 void TD3DDevice::Release()
 {
 	SAFE_RELEASE(Device);
