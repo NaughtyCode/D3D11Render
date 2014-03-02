@@ -6,8 +6,8 @@ inline float FClamp( FLOAT X, FLOAT Min, FLOAT Max )
 }
 
 template <typename T> struct TColor;
-typedef TColor<UINT8> ColorB;
-typedef TColor<FLOAT> ColorF;
+typedef TColor<UINT8> TColorB;
+typedef TColor<FLOAT> TColorF;
 
 template <typename T>
 struct TColor
@@ -24,8 +24,8 @@ struct TColor
 	
 	inline TColor(const unsigned int abgr );
 	inline TColor(const FLOAT c );
-	inline TColor(const ColorF& c);
-	inline TColor(const ColorF& c, float fAlpha);
+	inline TColor(const TColorF& c);
+	inline TColor(const TColorF& c, float fAlpha);
 
 	void Clamp(float Min = 0, float Max = 1.0f)  
 	{
@@ -50,7 +50,7 @@ struct TColor
 		return max(r, max(b, g));
 	}
 
-	float NormalizeCol (ColorF& out) const
+	float NormalizeCol (TColorF& out) const
 	{
 		float max = Max();
 
@@ -363,17 +363,17 @@ inline TColor<UINT8>::TColor(const float c)
 
 
 template<>
-inline TColor<FLOAT>::TColor(const ColorF& c)	
+inline TColor<FLOAT>::TColor(const TColorF& c)	
 {
 	r=c.r;	g=c.g;	b=c.b;	a=c.a;
 }
 template<>
-inline TColor<UINT8>::TColor(const ColorF& c)	{
+inline TColor<UINT8>::TColor(const TColorF& c)	{
 	r = (UINT8)(c.r*255);	g = (UINT8)(c.g*255);	b = (UINT8)(c.b*255);	a = (UINT8)(c.a*255);
 }
 
 template<>
-inline TColor<FLOAT>::TColor(const ColorF& c, float fAlpha)
+inline TColor<FLOAT>::TColor(const TColorF& c, float fAlpha)
 {
 	r=c.r;	g=c.g;	b=c.b;	a=fAlpha;
 }
@@ -871,79 +871,79 @@ inline void TColor<T>::grey(const TColor<T> &c)
 	#define RGBA8(r,g,b,a)     ((UINT)(((UINT8)(r)|((uint16)((UINT8)(g))<<8))|(((UINT)(UINT8)(b))<<16)) | (((UINT)(UINT8)(a))<<24) )
 #endif
 
-#define TColorBlack		ColorF (0.0f, 0.0f, 0.0f)
-#define TColorWhite		ColorF (1.0f, 1.0f, 1.0f)
-#define TColorAquamarine        ColorF (0.439216f, 0.858824f, 0.576471f)
-#define TColorBlue		ColorF (0.0f, 0.0f, 1.0f)
-#define TColorBlueViolet        ColorF (0.623529f, 0.372549f, 0.623529f)
-#define TColorBrown		ColorF (0.647059f, 0.164706f, 0.164706f)
-#define TColorCadetBlue		ColorF (0.372549f, 0.623529f, 0.623529f)
-#define TColorCoral		ColorF (1.0f, 0.498039f, 0.0f)
-#define TColorCornflowerBlue	ColorF (0.258824f, 0.258824f, 0.435294f)
-#define TColorCyan		ColorF (0.0f, 1.0f, 1.0f)
-#define TColorDarkGray		ColorF (0.5f, 0.5f, 0.5f)
-#define TColorDarkGreen		ColorF (0.184314f, 0.309804f, 0.184314f)
-#define TColorDarkOliveGreen	ColorF (0.309804f, 0.309804f, 0.184314f)
-#define TColorDarkOrchild       ColorF (0.6f, 0.196078f, 0.8f)
-#define TColorDarkSlateBlue	ColorF (0.419608f, 0.137255f, 0.556863f)
-#define TColorDarkSlateGray	ColorF (0.184314f, 0.309804f, 0.309804f)
-#define TColorDarkSlateGrey	ColorF (0.184314f, 0.309804f, 0.309804f)
-#define TColorDarkTurquoise	ColorF (0.439216f, 0.576471f, 0.858824f)
-#define TColorDarkWood		ColorF (0.05f, 0.01f, 0.005f)
-#define TColorDimGray		ColorF (0.329412f, 0.329412f, 0.329412f)
-#define TColorDimGrey		ColorF (0.329412f, 0.329412f, 0.329412f)
-#define TColorFireBrick		ColorF (0.9f, 0.4f, 0.3f)
-#define TColorForestGreen       ColorF (0.137255f, 0.556863f, 0.137255f)
-#define TColorGold		ColorF (0.8f, 0.498039f, 0.196078f)
-#define TColorGoldenrod		ColorF (0.858824f, 0.858824f, 0.439216f)
-#define TColorGray		ColorF (0.752941f, 0.752941f, 0.752941f)
-#define TColorGreen		ColorF (0.0f, 1.0f, 0.0f)
-#define TColorGreenYellow       ColorF (0.576471f, 0.858824f, 0.439216f)
-#define TColorGrey		ColorF (0.752941f, 0.752941f, 0.752941f)
-#define TColorIndianRed		ColorF (0.309804f, 0.184314f, 0.184314f)
-#define TColorKhaki		ColorF (0.623529f, 0.623529f, 0.372549f)
-#define TColorLightBlue		ColorF (0.74902f, 0.847059f, 0.847059f)
-#define TColorLightGray		ColorF (0.658824f, 0.658824f, 0.658824f)
-#define TColorLightGrey		ColorF (0.658824f, 0.658824f, 0.658824f)
-#define TColorLightSteelBlue	ColorF (0.560784f, 0.560784f, 0.737255f)
-#define TColorLightWood		ColorF (0.6f, 0.24f, 0.1f)
-#define TColorLimeGreen		ColorF (0.196078f, 0.8f, 0.196078f)
-#define TColorMagenta		ColorF (1.0f, 0.0f, 1.0f)
-#define TColorMaroon		ColorF (0.556863f, 0.137255f, 0.419608f)
-#define TColorMedianWood        ColorF (0.3f, 0.12f, 0.03f)
-#define TColorMediumAquamarine	ColorF (0.196078f, 0.8f, 0.6f)
-#define TColorMediumBlue        ColorF (0.196078f, 0.196078f, 0.8f)
-#define TColorMediumForestGreen	ColorF (0.419608f, 0.556863f, 0.137255f)
-#define TColorMediumGoldenrod	ColorF (0.917647f, 0.917647f, 0.678431f)
-#define TColorMediumOrchid	ColorF (0.576471f, 0.439216f, 0.858824f)
-#define TColorMediumSeaGreen	ColorF (0.258824f, 0.435294f, 0.258824f)
-#define TColorMediumSlateBlue	ColorF (0.498039f, 0.0f, 1.0f)
-#define TColorMediumSpringGreen	ColorF (0.498039f, 1.0f, 0.0f)
-#define TColorMediumTurquoise	ColorF (0.439216f, 0.858824f, 0.858824f)
-#define TColorMediumVioletRed	ColorF (0.858824f, 0.439216f, 0.576471f)
-#define TColorMidnightBlue      ColorF (0.184314f, 0.184314f, 0.309804f)
-#define TColorNavy                ColorF (0.137255f, 0.137255f, 0.556863f)
-#define TColorNavyBlue            ColorF (0.137255f, 0.137255f, 0.556863f)
-#define TColorOrange              ColorF (0.8f, 0.196078f, 0.196078f)
-#define TColorOrangeRed           ColorF (0.0f, 0.0f, 0.498039f)
-#define TColorOrchid              ColorF (0.858824f, 0.439216f, 0.858824f)
-#define TColorPaleGreen           ColorF (0.560784f, 0.737255f, 0.560784f)
-#define TColorPink                ColorF (0.737255f, 0.560784f, 0.560784f)
-#define TColorPlum                ColorF (0.917647f, 0.678431f, 0.917647f)
-#define TColorRed                 ColorF (1.0f, 0.0f, 0.0f)
-#define TColorSalmon              ColorF (0.435294f, 0.258824f, 0.258824f)
-#define TColorSeaGreen            ColorF (0.137255f, 0.556863f, 0.419608f)
-#define TColorSienna              ColorF (0.556863f, 0.419608f, 0.137255f)
-#define TColorSkyBlue             ColorF (0.196078f, 0.6f, 0.8f)
-#define TColorSlateBlue           ColorF (0.0f, 0.498039f, 1.0f)
-#define TColorSpringGreen         ColorF (0.0f, 1.0f, 0.498039f)
-#define TColorSteelBlue           ColorF (0.137255f, 0.419608f, 0.556863f)
-#define TColorTan                 ColorF (0.858824f, 0.576471f, 0.439216f)
-#define TColorThistle             ColorF (0.847059f, 0.74902f, 0.847059f)
-#define TColorTransparent         ColorF (0.0f, 0.0f, 0.0f, 0.0f)
-#define TColorTurquoise           ColorF (0.678431f, 0.917647f, 0.917647f)
-#define TColorViolet              ColorF (0.309804f, 0.184314f, 0.309804f)
-#define TColorVioletRed           ColorF (0.8f, 0.196078f, 0.6f)
-#define TColorWheat               ColorF (0.847059f, 0.847059f, 0.74902f)
-#define TColorYellow              ColorF (1.0f, 1.0f, 0.0f)
-#define TColorYellowGreen         ColorF (0.6f, 0.8f, 0.196078f)
+#define TColorBlack		TColorF(0.0f, 0.0f, 0.0f)
+#define TColorWhite		TColorF(1.0f, 1.0f, 1.0f)
+#define TColorAquamarine        TColorF(0.439216f, 0.858824f, 0.576471f)
+#define TColorBlue		TColorF(0.0f, 0.0f, 1.0f)
+#define TColorBlueViolet        TColorF(0.623529f, 0.372549f, 0.623529f)
+#define TColorBrown		TColorF(0.647059f, 0.164706f, 0.164706f)
+#define TColorCadetBlue		TColorF(0.372549f, 0.623529f, 0.623529f)
+#define TColorCoral		TColorF(1.0f, 0.498039f, 0.0f)
+#define TColorCornflowerBlue	TColorF(0.258824f, 0.258824f, 0.435294f)
+#define TColorCyan		TColorF(0.0f, 1.0f, 1.0f)
+#define TColorDarkGray		TColorF(0.5f, 0.5f, 0.5f)
+#define TColorDarkGreen		TColorF(0.184314f, 0.309804f, 0.184314f)
+#define TColorDarkOliveGreen	TColorF(0.309804f, 0.309804f, 0.184314f)
+#define TColorDarkOrchild       TColorF(0.6f, 0.196078f, 0.8f)
+#define TColorDarkSlateBlue	TColorF(0.419608f, 0.137255f, 0.556863f)
+#define TColorDarkSlateGray	TColorF(0.184314f, 0.309804f, 0.309804f)
+#define TColorDarkSlateGrey	TColorF(0.184314f, 0.309804f, 0.309804f)
+#define TColorDarkTurquoise	TColorF(0.439216f, 0.576471f, 0.858824f)
+#define TColorDarkWood		TColorF(0.05f, 0.01f, 0.005f)
+#define TColorDimGray		TColorF(0.329412f, 0.329412f, 0.329412f)
+#define TColorDimGrey		TColorF(0.329412f, 0.329412f, 0.329412f)
+#define TColorFireBrick		TColorF(0.9f, 0.4f, 0.3f)
+#define TColorForestGreen       TColorF(0.137255f, 0.556863f, 0.137255f)
+#define TColorGold		TColorF(0.8f, 0.498039f, 0.196078f)
+#define TColorGoldenrod		TColorF(0.858824f, 0.858824f, 0.439216f)
+#define TColorGray		TColorF(0.752941f, 0.752941f, 0.752941f)
+#define TColorGreen		TColorF(0.0f, 1.0f, 0.0f)
+#define TColorGreenYellow       TColorF(0.576471f, 0.858824f, 0.439216f)
+#define TColorGrey		TColorF(0.752941f, 0.752941f, 0.752941f)
+#define TColorIndianRed		TColorF(0.309804f, 0.184314f, 0.184314f)
+#define TColorKhaki		TColorF(0.623529f, 0.623529f, 0.372549f)
+#define TColorLightBlue		TColorF(0.74902f, 0.847059f, 0.847059f)
+#define TColorLightGray		TColorF(0.658824f, 0.658824f, 0.658824f)
+#define TColorLightGrey		TColorF(0.658824f, 0.658824f, 0.658824f)
+#define TColorLightSteelBlue	TColorF(0.560784f, 0.560784f, 0.737255f)
+#define TColorLightWood		TColorF(0.6f, 0.24f, 0.1f)
+#define TColorLimeGreen		TColorF(0.196078f, 0.8f, 0.196078f)
+#define TColorMagenta		TColorF(1.0f, 0.0f, 1.0f)
+#define TColorMaroon		TColorF(0.556863f, 0.137255f, 0.419608f)
+#define TColorMedianWood        TColorF(0.3f, 0.12f, 0.03f)
+#define TColorMediumAquamarine	TColorF(0.196078f, 0.8f, 0.6f)
+#define TColorMediumBlue        TColorF(0.196078f, 0.196078f, 0.8f)
+#define TColorMediumForestGreen	TColorF(0.419608f, 0.556863f, 0.137255f)
+#define TColorMediumGoldenrod	TColorF(0.917647f, 0.917647f, 0.678431f)
+#define TColorMediumOrchid	TColorF(0.576471f, 0.439216f, 0.858824f)
+#define TColorMediumSeaGreen	TColorF(0.258824f, 0.435294f, 0.258824f)
+#define TColorMediumSlateBlue	TColorF(0.498039f, 0.0f, 1.0f)
+#define TColorMediumSpringGreen	TColorF(0.498039f, 1.0f, 0.0f)
+#define TColorMediumTurquoise	TColorF(0.439216f, 0.858824f, 0.858824f)
+#define TColorMediumVioletRed	TColorF(0.858824f, 0.439216f, 0.576471f)
+#define TColorMidnightBlue      TColorF(0.184314f, 0.184314f, 0.309804f)
+#define TColorNavy                TColorF(0.137255f, 0.137255f, 0.556863f)
+#define TColorNavyBlue            TColorF(0.137255f, 0.137255f, 0.556863f)
+#define TColorOrange              TColorF(0.8f, 0.196078f, 0.196078f)
+#define TColorOrangeRed           TColorF(0.0f, 0.0f, 0.498039f)
+#define TColorOrchid              TColorF(0.858824f, 0.439216f, 0.858824f)
+#define TColorPaleGreen           TColorF(0.560784f, 0.737255f, 0.560784f)
+#define TColorPink                TColorF(0.737255f, 0.560784f, 0.560784f)
+#define TColorPlum                TColorF(0.917647f, 0.678431f, 0.917647f)
+#define TColorRed                 TColorF(1.0f, 0.0f, 0.0f)
+#define TColorSalmon              TColorF(0.435294f, 0.258824f, 0.258824f)
+#define TColorSeaGreen            TColorF(0.137255f, 0.556863f, 0.419608f)
+#define TColorSienna              TColorF(0.556863f, 0.419608f, 0.137255f)
+#define TColorSkyBlue             TColorF(0.196078f, 0.6f, 0.8f)
+#define TColorSlateBlue           TColorF(0.0f, 0.498039f, 1.0f)
+#define TColorSpringGreen         TColorF(0.0f, 1.0f, 0.498039f)
+#define TColorSteelBlue           TColorF(0.137255f, 0.419608f, 0.556863f)
+#define TColorTan                 TColorF(0.858824f, 0.576471f, 0.439216f)
+#define TColorThistle             TColorF(0.847059f, 0.74902f, 0.847059f)
+#define TColorTransparent         TColorF(0.0f, 0.0f, 0.0f, 0.0f)
+#define TColorTurquoise           TColorF(0.678431f, 0.917647f, 0.917647f)
+#define TColorViolet              TColorF(0.309804f, 0.184314f, 0.309804f)
+#define TColorVioletRed           TColorF(0.8f, 0.196078f, 0.6f)
+#define TColorWheat               TColorF(0.847059f, 0.847059f, 0.74902f)
+#define TColorYellow              TColorF(1.0f, 1.0f, 0.0f)
+#define TColorYellowGreen         TColorF(0.6f, 0.8f, 0.196078f)
