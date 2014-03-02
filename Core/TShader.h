@@ -12,21 +12,13 @@
 class IShader;
 class TD3DDevice;
 
-struct CBNeverChanges
+typedef struct TConstantBufferData
 {
 	XMMATRIX View;
-};
-
-struct CBChangeOnResize
-{
 	XMMATRIX Projection;
-};
-
-struct CBChangesEveryFrame
-{
 	XMMATRIX World;
 	TColorF ObjectColor;
-};
+}TConstantBufferData;
 
 class TShader:public IShader
 {
@@ -67,9 +59,7 @@ private:
 	ID3D11PixelShader*      PixelShader;
 	ID3DBlob*               VertexShaderBuffer;
 	ID3DBlob*               PixelShaderBuffer;
-	ID3D11Buffer*           ConstantBufferNeverChanges;
-	ID3D11Buffer*           ConstantBufferChangeOnResize;
-	ID3D11Buffer*           ConstantBufferChangesEveryFrame;
+	ID3D11Buffer*           ConstantBufferData;
 	TColorF                 ObjectColor;
 	INPUTTYPE_TYPE          LayoutType;
 };

@@ -10,9 +10,7 @@ TShader::TShader(TD3DDevice* device):Device(device),
 				PixelShader(0),
 				VertexShaderBuffer(0),
 				PixelShaderBuffer(0),
-				ConstantBufferNeverChanges(0),
-				ConstantBufferChangeOnResize(0),
-				ConstantBufferChangesEveryFrame(0),
+				ConstantBufferData(0),
 				ObjectColor(1.0f,1.0f,1.0f,1.0f),
 				LayoutType(LAYOUTTYPE_UNKNOWN)
 {
@@ -139,37 +137,14 @@ int TShader::InitConstantBuffer()
 
 int TShader::CreateConstantBuffer()
 {
+	HRESULT hr;
 	D3D11_BUFFER_DESC BufferDesc;
 	ZeroMemory(&BufferDesc,sizeof(D3D11_BUFFER_DESC));
 	BufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	BufferDesc.ByteWidth = sizeof(CBNeverChanges);
+	BufferDesc.ByteWidth = sizeof(TConstantBufferData);
 	BufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	BufferDesc.CPUAccessFlags = 0;
-	
-	HRESULT hr;
-	hr = Device->GetDevice()->CreateBuffer( &BufferDesc,
-		NULL,
-		&ConstantBufferNeverChanges );
-	
-	if( FAILED( hr ) )
-	{
-		return 0;
-	}
-
-	BufferDesc.ByteWidth = sizeof(CBChangeOnResize);
-	hr = Device->GetDevice()->CreateBuffer( &BufferDesc,
-		NULL,
-		&ConstantBufferChangeOnResize );
-	
-	if( FAILED( hr ) )
-	{
-		return 0;
-	}
-
-	BufferDesc.ByteWidth = sizeof(CBChangesEveryFrame);
-	hr = Device->GetDevice()->CreateBuffer( &BufferDesc,
-		NULL, 
-		&ConstantBufferChangesEveryFrame );
+	hr = Device->GetDevice()->CreateBuffer(&BufferDesc,NULL,&ConstantBufferData);
 	if( FAILED( hr ) )
 	{
 		return 0;
@@ -179,24 +154,6 @@ int TShader::CreateConstantBuffer()
 
 void TShader::UpdateConstantBuffer()
 {
-	CBNeverChanges cbNeverChanges;
-	TCamera* camera=g_Render->GetCamera();
-	cbNeverChanges.View = camera->GetTransposeView();
-	Device->GetDeviceContext()->UpdateSubresource( ConstantBufferNeverChanges,
-					0,
-					NULL,
-					&cbNeverChanges,
-					0,
-					0);
-	
-	CBChangeOnResize cbChangesOnResize;
-	cbChangesOnResize.Projection = camera->GetTransposeProjection();
-	Device->GetDeviceContext()->UpdateSubresource( ConstantBufferChangeOnResize,
-				0,
-				NULL,
-				&cbChangesOnResize,
-				0,
-				0);
 	
 }
 
@@ -207,26 +164,28 @@ void TShader::UpdateConstantBufferFrame()
 
 void TShader::PostEffect()
 {
-	Device->GetDeviceContext()->IASetInputLayout(InputLayout);
-	TCamera* camera=g_Render->GetCamera();
-	XMMATRIX world = camera->RotationY(0.35f);
+	TCamera* camera;
+	TConstantBufferData Data;
+	ID3D11DeviceContext* DeviceContext;
 	
-	CBChangesEveryFrame ChangesEveryFrame;
-	ChangesEveryFrame.World = world;
-	ChangesEveryFrame.ObjectColor = ObjectColor;
-	ID3D11DeviceContext* DeviceContext = Device->GetDeviceContext();
+	DeviceContext = Device->GetDeviceContext();
+	camera = g_Render->GetCamera();
 	
-	DeviceContext->UpdateSubresource( ConstantBufferChangesEveryFrame,
+	Data.View = camera->GetTransposeView();
+	Data.World = camera->RotationY(0.35f);
+	Data.ObjectColor = ObjectColor;
+	Data.Projection = camera->GetTransposeProjection();
+	
+	DeviceContext->UpdateSubresource(ConstantBufferData,
 					0,
 					NULL,
-					&ChangesEveryFrame,
+					&Data,
 					0,
 					0);
 	
-	DeviceContext->VSSetConstantBuffers( 0, 1, &ConstantBufferNeverChanges );
-	DeviceContext->VSSetConstantBuffers( 1, 1, &ConstantBufferChangeOnResize );
-	DeviceContext->VSSetConstantBuffers( 2, 1, &ConstantBufferChangesEveryFrame );
-	DeviceContext->PSSetConstantBuffers( 2, 1, &ConstantBufferChangesEveryFrame );
+	DeviceContext->IASetInputLayout(InputLayout);
+	DeviceContext->VSSetConstantBuffers(0,1,&ConstantBufferData);
+	DeviceContext->PSSetConstantBuffers(0,1,&ConstantBufferData );
 	DeviceContext->VSSetShader(VertexShader, NULL, 0);
 	DeviceContext->PSSetShader(PixelShader, NULL, 0);
 }
@@ -254,9 +213,7 @@ void TShader::Release()
 	SAFE_RELEASE(PixelShader);
 	SAFE_RELEASE(VertexShaderBuffer);
 	SAFE_RELEASE(PixelShaderBuffer);
-	SAFE_RELEASE(ConstantBufferNeverChanges);
-	SAFE_RELEASE(ConstantBufferChangeOnResize);
-	SAFE_RELEASE(ConstantBufferChangesEveryFrame);
+	SAFE_RELEASE(ConstantBufferData);
 	SAFE_RELEASE(InputLayout);
 }
 

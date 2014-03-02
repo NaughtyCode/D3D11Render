@@ -24,7 +24,7 @@ int TResource::CreateResource()
 	int result;
 	Shader=new TShader(Device);
 	
-	TCHAR* filename=L"..\\Resource\\shaders\\BoxShader.hlsl";
+	TCHAR* filename=L"..\\Resource\\shaders\\MainShader.hlsl";
 	Shader->SetLayoutType(LAYOUTTYPE_POSITIONTEX0);
 	Shader->CreateVertexShader(filename,"VS","vs_5_0");
 	Shader->CreatePixelShader(filename,"PS","ps_5_0");

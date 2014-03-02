@@ -189,6 +189,7 @@ BOOL TConstantBuffer::PostConstantBuffer(BOOL IsDiscard)
 	{
 		if(CurrentSize>0)
 		{
+			ID3D11DeviceContext* DeviceContext = Device->GetDeviceContext();
 			Device->GetDeviceContext()->UpdateSubresource(ConstantBuffer,0,NULL,(void*)Data,CurrentSize,CurrentSize);
 		}
 		
