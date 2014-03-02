@@ -1,5 +1,5 @@
-#ifndef LAYPUTDEFINITIONS_H
-#define LAYPUTDEFINITIONS_H
+#ifndef DEFINITIONS_H
+#define DEFINITIONS_H
 
 #if _MSC_VER > 1000
 # pragma once

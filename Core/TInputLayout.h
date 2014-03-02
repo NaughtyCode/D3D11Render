@@ -8,7 +8,7 @@
 #include "TD3DDevice.h"
 #include "TShader.h"
 #include "TEffectShader.h"
-#include "LayoutDefinitions.h"
+#include "Definitions.h"
 #include "IShader.h"
 
 class IShader;

@@ -8,7 +8,7 @@
 #include "IShader.h"
 #include "TD3DDevice.h"
 #include "TInputLayout.h"
-#include "LayoutDefinitions.h"
+#include "Definitions.h"
 
 
 class IShader;

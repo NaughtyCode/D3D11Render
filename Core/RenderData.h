@@ -5,7 +5,7 @@
 # pragma once
 #endif
 
-#include "LayoutDefinitions.h"
+#include "Definitions.h"
 
 VERTEX_POSITION* GetRectData();
 UINT GetRectDataSize();
