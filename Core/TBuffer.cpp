@@ -108,17 +108,17 @@ int TBuffer::CreateIndexBuffer(void* pData,UINT size,UINT indexsize,bool dynamic
 void TBuffer::PostResource()
 {
 	UINT offset = 0;
-	Device->GetImmediateContext()->IASetVertexBuffers(0, 1, &VertexBuffer, &VertexSize, &offset);
-	Device->GetImmediateContext()->IASetIndexBuffer( IndexBuffer, DXGI_FORMAT_R16_UINT, 0 );
-	Device->GetImmediateContext()->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+	Device->GetDeviceContext()->IASetVertexBuffers(0, 1, &VertexBuffer, &VertexSize, &offset);
+	Device->GetDeviceContext()->IASetIndexBuffer( IndexBuffer, DXGI_FORMAT_R16_UINT, 0 );
+	Device->GetDeviceContext()->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 	
 	if (IsIndexDraw){
 		INT StartIndexLocation = 0;
 		INT BaseVertexLocation = 0;
-		Device->GetImmediateContext()->DrawIndexed(IndexBufferSize, StartIndexLocation, BaseVertexLocation );
+		Device->GetDeviceContext()->DrawIndexed(IndexBufferSize, StartIndexLocation, BaseVertexLocation );
 	}else{
 		INT StartVertexLocation = 0;
-		Device->GetImmediateContext()->Draw(VertexBufferSize,StartVertexLocation);
+		Device->GetDeviceContext()->Draw(VertexBufferSize,StartVertexLocation);
 	}
 }
 
@@ -126,4 +126,92 @@ void TBuffer::Release()
 {
 	SAFE_RELEASE(VertexBuffer);
 	SAFE_RELEASE(IndexBuffer);
+}
+
+
+//--------------------------------------ConstantBuffer-------------------------------------
+
+TConstantBuffer::TConstantBuffer(TD3DDevice* device,WORD Size):
+			Data(0),
+			Device(device),
+			NeedPost(FALSE),
+			CurrentSize(0),
+			BufferSize(Size),
+			ConstantBuffer(0)
+{
+	
+}
+
+TConstantBuffer::~TConstantBuffer()
+{
+	
+}
+
+int TConstantBuffer::CreateConstantBuffer()
+{
+	// check constant buffer Width
+	assert(BufferSize <= D3D11_REQ_CONSTANT_BUFFER_ELEMENT_COUNT && (BufferSize%16) == 0);
+	
+	HRESULT hr;
+	D3D11_BUFFER_DESC BufferDesc;
+	ZeroMemory(&BufferDesc,sizeof(BufferDesc));
+	BufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	BufferDesc.ByteWidth = BufferSize;
+	BufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	BufferDesc.CPUAccessFlags = 0;
+	BufferDesc.MiscFlags = 0;
+	
+	hr = Device->GetDevice()->CreateBuffer(
+		&BufferDesc,
+		NULL,
+		&ConstantBuffer);
+	
+	if( FAILED( hr ) )
+	{
+		return 0;
+	}
+	
+	Data = new BYTE[BufferSize];
+	ZeroMemory(Data,BufferSize);
+	return 1;
+}
+
+void TConstantBuffer::UpdateBuffer(const BYTE* Data, WORD Offset, WORD Size)
+{
+	NeedPost=TRUE;
+	CopyMemory((void*)(Data+Offset),Data,Size);
+	CurrentSize = max( (UINT)(Offset+Size),CurrentSize );
+}
+
+BOOL TConstantBuffer::PostConstantBuffer(BOOL IsDiscard)
+{
+	if(NeedPost)
+	{
+		if(CurrentSize>0)
+		{
+			Device->GetDeviceContext()->UpdateSubresource(ConstantBuffer,0,NULL,(void*)Data,CurrentSize,CurrentSize);
+		}
+		
+		if(IsDiscard)
+		{
+			NeedPost = FALSE;
+			CurrentSize = 0;
+		}
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
+ID3D11Buffer* TConstantBuffer::GetConstantBuffer()
+{
+	return ConstantBuffer;
+}
+
+void TConstantBuffer::Release()
+{
+	SAFE_DELETE_ARRAY(Data);
+	SAFE_RELEASE(ConstantBuffer);
 }

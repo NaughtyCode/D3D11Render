@@ -69,7 +69,7 @@ void TEffectShader::PostEffect()
 	for(int i=0;i<num;i++)
 	{
 		pass=Technique->GetPassByIndex(i);
-		pass->Apply(0,Device->GetImmediateContext());
+		pass->Apply(0,Device->GetDeviceContext());
 	}
 }
 

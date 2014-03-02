@@ -7,15 +7,10 @@
 
 #include "IShader.h"
 #include "TD3DDevice.h"
-#include "TInputLayout.h"
 #include "Definitions.h"
-
 
 class IShader;
 class TD3DDevice;
-class TInputLayout;
-
-
 
 struct CBNeverChanges
 {
@@ -43,8 +38,14 @@ public:
 				LPCSTR shadermodel,
 				ID3DBlob** ppBlobOut);
 	
-	int CreateVertexShader(const TCHAR* filename,const char* entry,const char* shadermodel);
-	int CreatePixelShader(const TCHAR* filename,const char* entry,const char* shadermodel);
+	int CreateVertexShader(const TCHAR* filename,
+			       const char* entry,
+			       const char* shadermodel);
+	
+	int CreatePixelShader(const TCHAR* filename,
+			      const char* entry,
+			      const char* shadermodel);
+	
 	int InitConstantBuffer();
 	
 	int CreateConstantBuffer();
@@ -61,7 +62,7 @@ public:
 	
 private:
 	TD3DDevice*             Device;
-	TInputLayout*           InputLayout;
+	ID3D11InputLayout*      InputLayout;
 	ID3D11VertexShader*     VertexShader;
 	ID3D11PixelShader*      PixelShader;
 	ID3DBlob*               VertexShaderBuffer;
@@ -69,7 +70,6 @@ private:
 	ID3D11Buffer*           ConstantBufferNeverChanges;
 	ID3D11Buffer*           ConstantBufferChangeOnResize;
 	ID3D11Buffer*           ConstantBufferChangesEveryFrame;
-	ID3D11SamplerState*     Sampler;
 	TColorF                 ObjectColor;
 	INPUTTYPE_TYPE          LayoutType;
 };

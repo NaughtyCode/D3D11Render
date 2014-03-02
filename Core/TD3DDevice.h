@@ -18,7 +18,7 @@ public:
     int CreateDevice();
     ID3D11Device* GetDevice();
     IDXGISwapChain* GetSwapChain();
-    ID3D11DeviceContext* GetImmediateContext();
+    ID3D11DeviceContext* GetDeviceContext();
     HWND GetWindowHandle();
     void Present(); 
     void Release();

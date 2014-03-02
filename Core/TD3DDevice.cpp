@@ -86,7 +86,7 @@ IDXGISwapChain* TD3DDevice::GetSwapChain()
 	return SwapChain;
 }
 
-ID3D11DeviceContext* TD3DDevice::GetImmediateContext()
+ID3D11DeviceContext* TD3DDevice::GetDeviceContext()
 {
 	return ImmediateContext;
 }

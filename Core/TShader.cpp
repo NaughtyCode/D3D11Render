@@ -13,8 +13,7 @@ TShader::TShader(TD3DDevice* device):Device(device),
 				ConstantBufferNeverChanges(0),
 				ConstantBufferChangeOnResize(0),
 				ConstantBufferChangesEveryFrame(0),
-				Sampler(0),
-				ObjectColor(0.7f,0.125f,0.8f,1.0f),
+				ObjectColor(1.0f,1.0f,1.0f,1.0f),
 				LayoutType(LAYOUTTYPE_UNKNOWN)
 {
 	
@@ -92,10 +91,17 @@ int TShader::CreateVertexShader(const TCHAR* filename,
 
 int TShader::CreateInputLayout()
 {
-	InputLayout = new TInputLayout(Device);
-	int r = InputLayout->CreateInputLayout(this,LayoutType);
-	assert(r);
-	return r;
+	D3D11_INPUT_ELEMENT_DESC* Desc = GetLayoutArray(LayoutType);
+	UINT Num = GetLayoutArraySize(LayoutType);
+	if (FAILED(Device->GetDevice()->CreateInputLayout(Desc,
+		Num,
+		this->GetShaderBufferPointer(),
+		this->GetShaderBufferSize(),
+		&InputLayout)))
+	{
+		return 0;
+	}
+	return 1;
 }
 
 int TShader::CreatePixelShader(const TCHAR* filename,
@@ -126,12 +132,8 @@ int TShader::CreatePixelShader(const TCHAR* filename,
 
 int TShader::InitConstantBuffer()
 {
-	int r;
-	r = this->CreateConstantBuffer();
-	assert(r);
+	this->CreateConstantBuffer();
 	this->UpdateConstantBuffer();
-	r = this->CreateSampler();
-	assert(r);
 	return 1;
 }
 
@@ -175,30 +177,12 @@ int TShader::CreateConstantBuffer()
 	return 1;
 }
 
-int TShader::CreateSampler()
-{
-	D3D11_SAMPLER_DESC SampleDesc;
-	ZeroMemory( &SampleDesc, sizeof(SampleDesc) );
-	SampleDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
-	SampleDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
-	SampleDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
-	SampleDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
-	SampleDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
-	SampleDesc.MinLOD = 0;
-	SampleDesc.MaxLOD = D3D11_FLOAT32_MAX;
-	if( FAILED( Device->GetDevice()->CreateSamplerState(&SampleDesc,&Sampler) ) )
-	{
-		return 0;
-	}
-	return 1;
-}
-
 void TShader::UpdateConstantBuffer()
 {
 	CBNeverChanges cbNeverChanges;
 	TCamera* camera=g_Render->GetCamera();
 	cbNeverChanges.View = camera->GetTransposeView();
-	Device->GetImmediateContext()->UpdateSubresource( ConstantBufferNeverChanges,
+	Device->GetDeviceContext()->UpdateSubresource( ConstantBufferNeverChanges,
 					0,
 					NULL,
 					&cbNeverChanges,
@@ -207,7 +191,7 @@ void TShader::UpdateConstantBuffer()
 	
 	CBChangeOnResize cbChangesOnResize;
 	cbChangesOnResize.Projection = camera->GetTransposeProjection();
-	Device->GetImmediateContext()->UpdateSubresource( ConstantBufferChangeOnResize,
+	Device->GetDeviceContext()->UpdateSubresource( ConstantBufferChangeOnResize,
 				0,
 				NULL,
 				&cbChangesOnResize,
@@ -218,32 +202,33 @@ void TShader::UpdateConstantBuffer()
 
 void TShader::UpdateConstantBufferFrame()
 {
+	
+}
+
+void TShader::PostEffect()
+{
+	Device->GetDeviceContext()->IASetInputLayout(InputLayout);
 	TCamera* camera=g_Render->GetCamera();
 	XMMATRIX world = camera->RotationY(0.35f);
 	
 	CBChangesEveryFrame ChangesEveryFrame;
 	ChangesEveryFrame.World = world;
 	ChangesEveryFrame.ObjectColor = ObjectColor;
-	Device->GetImmediateContext()->UpdateSubresource( ConstantBufferChangesEveryFrame,
+	ID3D11DeviceContext* DeviceContext = Device->GetDeviceContext();
+	
+	DeviceContext->UpdateSubresource( ConstantBufferChangesEveryFrame,
 					0,
 					NULL,
 					&ChangesEveryFrame,
 					0,
 					0);
 	
-	Device->GetImmediateContext()->VSSetConstantBuffers( 0, 1, &ConstantBufferNeverChanges );
-	Device->GetImmediateContext()->VSSetConstantBuffers( 1, 1, &ConstantBufferChangeOnResize );
-	Device->GetImmediateContext()->VSSetConstantBuffers( 2, 1, &ConstantBufferChangesEveryFrame );
-	Device->GetImmediateContext()->PSSetConstantBuffers( 2, 1, &ConstantBufferChangesEveryFrame );
-	Device->GetImmediateContext()->PSSetSamplers(0,1,&Sampler);
-}
-
-void TShader::PostEffect()
-{
-	InputLayout->PostInputLayout();
-	this->UpdateConstantBufferFrame();
-	Device->GetImmediateContext()->VSSetShader(VertexShader, NULL, 0);
-	Device->GetImmediateContext()->PSSetShader(PixelShader, NULL, 0);
+	DeviceContext->VSSetConstantBuffers( 0, 1, &ConstantBufferNeverChanges );
+	DeviceContext->VSSetConstantBuffers( 1, 1, &ConstantBufferChangeOnResize );
+	DeviceContext->VSSetConstantBuffers( 2, 1, &ConstantBufferChangesEveryFrame );
+	DeviceContext->PSSetConstantBuffers( 2, 1, &ConstantBufferChangesEveryFrame );
+	DeviceContext->VSSetShader(VertexShader, NULL, 0);
+	DeviceContext->PSSetShader(PixelShader, NULL, 0);
 }
 
 LPVOID TShader::GetShaderBufferPointer()
@@ -272,8 +257,7 @@ void TShader::Release()
 	SAFE_RELEASE(ConstantBufferNeverChanges);
 	SAFE_RELEASE(ConstantBufferChangeOnResize);
 	SAFE_RELEASE(ConstantBufferChangesEveryFrame);
-	SAFE_RELEASE(Sampler);
-	SAFE_DELETERELEASE(InputLayout);
+	SAFE_RELEASE(InputLayout);
 }
 
 

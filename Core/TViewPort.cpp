@@ -28,7 +28,7 @@ int TViewPort::CreateViewPort()
 	ViewPort.MaxDepth = 1.0f;
 	ViewPort.TopLeftX = 0;
 	ViewPort.TopLeftY = 0;
-	Device->GetImmediateContext()->RSSetViewports(1,&ViewPort);
+	Device->GetDeviceContext()->RSSetViewports(1,&ViewPort);
 	return 1;
 }
 

@@ -34,9 +34,6 @@
     <ClInclude Include="..\Core\TBuffer.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\TInputLayout.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\Core\TRender.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -74,9 +71,6 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\TCamera.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\LayoutDefinitions.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\TColor.h">
@@ -163,6 +157,12 @@
     <ClInclude Include="..\window\TD3DWindow.h">
       <Filter>Window</Filter>
     </ClInclude>
+    <ClInclude Include="..\Core\MathCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Definitions.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="small.ico">
@@ -195,9 +195,6 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TBuffer.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\TInputLayout.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TRender.cpp">
@@ -238,9 +235,6 @@
     </ClCompile>
     <ClCompile Include="..\Main\Entry.cpp">
       <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\LayoutDefinitions.cpp">
-      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Lua\lapi.c">
       <Filter>Lua</Filter>
@@ -343,6 +337,9 @@
     </ClCompile>
     <ClCompile Include="..\window\TD3DWindow.cpp">
       <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\Definitions.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,7 @@ TRenderTarget::TRenderTarget(TD3DDevice* device) :
 			ReadDepthStencilView(0),
 			ShaderResourceView(0),
 			UnorderedAccessView(0),
-			ClearColor(1.0f,1.0f,1.0f,1.0f)
+			ClearColor(0.0f,0.0f,0.0f,1.0f)
 
 {
 	
@@ -30,7 +30,7 @@ int TRenderTarget::CreateRenderTarget()
 		return 0;
 	}
 	SAFE_RELEASE(pBackBuffer);
-	Device->GetImmediateContext()->OMSetRenderTargets(1,&RenderTargetView, NULL);
+	Device->GetDeviceContext()->OMSetRenderTargets(1,&RenderTargetView, NULL);
 	if (!CreateDepthStencil())
 	{
 		assert(0);
@@ -80,14 +80,14 @@ int TRenderTarget::CreateDepthStencil()
 		return 0;
 	}
 	
-	Device->GetImmediateContext()->OMSetRenderTargets(1,&RenderTargetView,DepthStencilView);
+	Device->GetDeviceContext()->OMSetRenderTargets(1,&RenderTargetView,DepthStencilView);
 	return 1;
 }
 
 void TRenderTarget::Clear()
 {
-	Device->GetImmediateContext()->ClearRenderTargetView(RenderTargetView,(FLOAT*)&ClearColor);
-	Device->GetImmediateContext()->ClearDepthStencilView(DepthStencilView,D3D11_CLEAR_DEPTH,1.0f,0);
+	Device->GetDeviceContext()->ClearRenderTargetView(RenderTargetView,(FLOAT*)&ClearColor);
+	Device->GetDeviceContext()->ClearDepthStencilView(DepthStencilView,D3D11_CLEAR_DEPTH,1.0f,0);
 }
 
 ID3D11RenderTargetView* TRenderTarget::GetRenderTargetView()

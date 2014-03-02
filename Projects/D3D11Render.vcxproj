@@ -78,9 +78,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Core\MathCore.h" />
     <ClInclude Include="..\Core\TColor.h" />
     <ClInclude Include="..\Core\IShader.h" />
-    <ClInclude Include="..\Core\LayoutDefinitions.h" />
+    <ClInclude Include="..\Core\Definitions.h" />
     <ClInclude Include="..\Core\RenderData.h" />
     <ClInclude Include="..\Core\TCamera.h" />
     <ClInclude Include="..\Core\TD3DDevice.h" />
@@ -88,7 +89,6 @@
     <ClInclude Include="..\Core\targetver.h" />
     <ClInclude Include="..\Core\TBuffer.h" />
     <ClInclude Include="..\Core\TEffectShader.h" />
-    <ClInclude Include="..\Core\TInputLayout.h" />
     <ClInclude Include="..\Core\TMatrix.h" />
     <ClInclude Include="..\Core\TRender.h" />
     <ClInclude Include="..\Core\TRenderConfig.h" />
@@ -140,14 +140,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Core\IShader.cpp" />
-    <ClCompile Include="..\Core\LayoutDefinitions.cpp" />
+    <ClCompile Include="..\Core\Definitions.cpp" />
     <ClCompile Include="..\Core\TCamera.cpp" />
     <ClCompile Include="..\Core\TD3DDevice.cpp" />
     <ClCompile Include="..\Core\RenderData.cpp" />
     <ClCompile Include="..\Core\stdafx.cpp" />
     <ClCompile Include="..\Core\TBuffer.cpp" />
     <ClCompile Include="..\Core\TEffectShader.cpp" />
-    <ClCompile Include="..\Core\TInputLayout.cpp" />
     <ClCompile Include="..\Core\TRender.cpp" />
     <ClCompile Include="..\Core\TRenderConfig.cpp" />
     <ClCompile Include="..\Core\TRenderTarget.cpp" />
