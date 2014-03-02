@@ -1,4 +1,9 @@
-#pragma once
+#ifndef TRENDERCONFIG_H
+#define TRENDERCONFIG_H
+
+#if _MSC_VER > 1000
+# pragma once
+#endif
 
 class TRenderConfig
 {
@@ -16,4 +21,10 @@ private:
 	UINT Width;
 	UINT Height;
 };
+
+
+
+
+
+#endif
 

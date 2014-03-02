@@ -1,4 +1,9 @@
-#pragma once
+#ifndef TRENDERTARGET_H
+#define TRENDERTARGET_H
+
+#if _MSC_VER > 1000
+# pragma once
+#endif
 
 #include "TD3DDevice.h"
 
@@ -24,5 +29,9 @@ private:
     ID3D11UnorderedAccessView* UnorderedAccessView;
     TColorF                    ClearColor;
 };
+
+
+#endif
+
 
 

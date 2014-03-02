@@ -46,8 +46,12 @@ void DumpErrorInfo(HRESULT hr);
 #define SAFE_RELEASE(p)      { if (p) { (p)->Release(); (p)=NULL; } }
 #endif
 
-#include "TColor.h"
+#ifndef FORCEINLINE
+#define FORCEINLINE inline
+#endif
 
+#include "TColor.h"
+#include "MathCore.h"
 
 
 

@@ -1,4 +1,10 @@
-#pragma once
+#ifndef TBUFFER_H
+#define TBUFFER_H
+
+#if _MSC_VER > 1000
+# pragma once
+#endif
+
 #include "TD3DDevice.h"
 #include "TShader.h"
 #include "TEffectShader.h"
@@ -33,4 +39,7 @@ private:
 	UINT               VertexSize;
 	BOOL               IsIndexDraw;
 };
+
+#endif
+
 

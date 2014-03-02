@@ -1,4 +1,10 @@
-#pragma once
+#ifndef TSHADER_H
+#define TSHADER_H
+
+#if _MSC_VER > 1000
+# pragma once
+#endif
+
 #include "IShader.h"
 #include "TD3DDevice.h"
 
@@ -49,5 +55,8 @@ private:
 	ID3D11SamplerState*     Sampler;
 	TColorF                 ObjectColor;
 };
+
+#endif
+
 
 

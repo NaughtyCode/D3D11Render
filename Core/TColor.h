@@ -1,4 +1,10 @@
-#pragma once
+#ifndef TCOLOR_H
+#define TCOLOR_H
+
+
+#if _MSC_VER > 1000
+# pragma once
+#endif
 
 inline float FClamp( FLOAT X, FLOAT Min, FLOAT Max )
 {
@@ -947,3 +953,5 @@ inline void TColor<T>::grey(const TColor<T> &c)
 #define TColorWheat               TColorF(0.847059f, 0.847059f, 0.74902f)
 #define TColorYellow              TColorF(1.0f, 1.0f, 0.0f)
 #define TColorYellowGreen         TColorF(0.6f, 0.8f, 0.196078f)
+
+#endif

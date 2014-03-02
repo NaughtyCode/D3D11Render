@@ -1,4 +1,9 @@
-#pragma once
+#ifndef TCAMERA_H
+#define TCAMERA_H
+
+#if _MSC_VER > 1000
+# pragma once
+#endif
 
 class TCamera
 {
@@ -28,4 +33,6 @@ private:
 };
 
 
+
+#endif
 

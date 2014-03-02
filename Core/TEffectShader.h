@@ -1,4 +1,10 @@
-#pragma once
+#ifndef TEFFECTSHADER_H
+#define TEFFECTSHADER_H
+
+#if _MSC_VER > 1000
+# pragma once
+#endif
+
 #include "IShader.h"
 #include "TD3DDevice.h"
 
@@ -24,3 +30,6 @@ private:
 	ID3DBlob*               EffectBuffer;
 };
 
+
+
+#endif

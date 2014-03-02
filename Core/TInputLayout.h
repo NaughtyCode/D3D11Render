@@ -1,4 +1,10 @@
-#pragma once
+#ifndef TINPUTLAYOUT_H
+#define TINPUTLAYOUT_H
+
+#if _MSC_VER > 1000
+# pragma once
+#endif
+
 #include "TD3DDevice.h"
 #include "TShader.h"
 #include "TEffectShader.h"
@@ -22,4 +28,4 @@ private:
 };
 
 
-
+#endif

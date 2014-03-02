@@ -1,4 +1,9 @@
-#pragma once
+#ifndef TRESOURCE_H
+#define TRESOURCE_H
+
+#if _MSC_VER > 1000
+# pragma once
+#endif
 
 #include "TShader.h"
 #include "TBuffer.h"
@@ -32,3 +37,10 @@ private:
 	TEffectShader*  EffectShader;
 	TTexture*       Texture;
 };
+
+
+
+
+#endif
+
+

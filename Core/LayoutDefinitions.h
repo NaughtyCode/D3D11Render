@@ -1,4 +1,10 @@
-#pragma once
+#ifndef LAYPUTDEFINITIONS_H
+#define LAYPUTDEFINITIONS_H
+
+#if _MSC_VER > 1000
+# pragma once
+#endif
+
 
 typedef struct VERTEX_POSITION{
 	FLOAT x;
@@ -28,3 +34,6 @@ typedef enum INPUTELEMENTDESCTYPE
 D3D11_INPUT_ELEMENT_DESC* GetLayoutArray(INPUTELEMENTDESCTYPE type); 
 
 UINT GetLayoutArraySize(INPUTELEMENTDESCTYPE type); 
+
+
+#endif

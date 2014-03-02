@@ -1,4 +1,10 @@
-#pragma once
+#ifndef TVIEWPORT_H
+#define TVIEWPORT_H
+
+#if _MSC_VER > 1000
+# pragma once
+#endif
+
 #include "TD3DDevice.h"
 
 class TD3DDevice;
@@ -23,6 +29,9 @@ private:
     D3D11_VIEWPORT  ViewPort;
 };
 
+
+
+#endif
 
 
 

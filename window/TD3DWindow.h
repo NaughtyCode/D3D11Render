@@ -1,4 +1,9 @@
-#pragma once
+#ifndef TD3DWINDOW_H
+#define TD3DWINDOW_H
+
+#if _MSC_VER > 1000
+# pragma once
+#endif
 
 #include "resource.h"
 #include "TRender.h"
@@ -22,3 +27,7 @@ private:
     UINT      Height;
     TRender*  D3D11Render;
 };
+
+
+
+#endif

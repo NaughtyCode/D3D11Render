@@ -1,4 +1,9 @@
-#pragma once
+#ifndef TRENDER_H
+#define TRENDER_H
+
+#if _MSC_VER > 1000
+# pragma once
+#endif
 
 #include "TD3DDevice.h"
 #include "TRenderTarget.h"
@@ -39,3 +44,8 @@ private:
 extern TRender* g_Render;
 
 
+
+
+
+
+#endif
