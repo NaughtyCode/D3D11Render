@@ -24,7 +24,7 @@ public:
     int CreateStaticVertexBuffer(void* pData,UINT size,UINT elemsize);
     int CreateVertexBuffer(void* pData,UINT size,UINT vertexsize,bool dynamic,bool streamout);
     int CreateIndexBuffer(void* pData,UINT size,UINT indexsize,bool dynamic);
-    int CreateInputLayout(IShader * shader,INPUTELEMENTDESCTYPE type);
+    int CreateInputLayout(IShader * shader,INPUTTYPE_TYPE type);
     void PostResource();
     void Release();
 

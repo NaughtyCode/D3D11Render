@@ -18,7 +18,7 @@ class TInputLayout
 public:
     TInputLayout(TD3DDevice* device);
     ~TInputLayout(void);
-    int CreateInputLayout(IShader* shader,INPUTELEMENTDESCTYPE type);
+    int CreateInputLayout(IShader* shader,INPUTTYPE_TYPE type);
     void PostInputLayout();
     void Release();
     

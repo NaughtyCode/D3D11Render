@@ -21,14 +21,14 @@ static UINT LayoutArraySize[]={
 	ARRAYSIZE(PositionTexLayout),
 };
 
-D3D11_INPUT_ELEMENT_DESC* GetLayoutArray(INPUTELEMENTDESCTYPE type)
+D3D11_INPUT_ELEMENT_DESC* GetLayoutArray(INPUTTYPE_TYPE type)
 {
 	UINT index=(UINT)type;
 	assert(index<ARRAYSIZE(LayoutArray));
 	return LayoutArray[index];
 }
 
-UINT GetLayoutArraySize(INPUTELEMENTDESCTYPE type)
+UINT GetLayoutArraySize(INPUTTYPE_TYPE type)
 {
 	UINT index=(UINT)type;
 	assert(index<ARRAYSIZE(LayoutArraySize));

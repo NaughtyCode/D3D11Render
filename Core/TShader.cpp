@@ -258,7 +258,7 @@ SIZE_T TShader::GetShaderBufferSize()
 	return VertexShaderBuffer->GetBufferSize();
 }
 
-void TShader::SetLayoutType(INPUTELEMENTDESCTYPE type)
+void TShader::SetLayoutType(INPUTTYPE_TYPE type)
 {
 	LayoutType=type;
 }

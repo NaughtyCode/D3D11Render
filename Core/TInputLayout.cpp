@@ -14,7 +14,7 @@ TInputLayout::~TInputLayout(void)
 
 }
 
-int TInputLayout::CreateInputLayout(IShader* shader,INPUTELEMENTDESCTYPE type)
+int TInputLayout::CreateInputLayout(IShader* shader,INPUTTYPE_TYPE type)
 {
 	D3D11_INPUT_ELEMENT_DESC* desc = GetLayoutArray(type);
 	UINT Num = GetLayoutArraySize(type);

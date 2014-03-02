@@ -57,7 +57,7 @@ public:
 	virtual void   Release();
 	
 	int CreateInputLayout();
-	void SetLayoutType(INPUTELEMENTDESCTYPE type);
+	void SetLayoutType(INPUTTYPE_TYPE type);
 	
 private:
 	TD3DDevice*             Device;
@@ -71,7 +71,7 @@ private:
 	ID3D11Buffer*           ConstantBufferChangesEveryFrame;
 	ID3D11SamplerState*     Sampler;
 	TColorF                 ObjectColor;
-	INPUTELEMENTDESCTYPE    LayoutType;
+	INPUTTYPE_TYPE          LayoutType;
 };
 
 #endif
