@@ -15,6 +15,7 @@ TD3DDevice::~TD3DDevice()
 
 int TD3DDevice::CreateDevice()
 {
+	HRESULT hr;
 	RECT rect;
 	UINT width = 900;
 	UINT height = 600;
@@ -54,8 +55,7 @@ int TD3DDevice::CreateDevice()
 	};
 
 	UINT FeatureNum = ARRAYSIZE(FeatureArray);
-
-	if (FAILED(D3D11CreateDeviceAndSwapChain(NULL,
+	hr = D3D11CreateDeviceAndSwapChain(NULL,
 		D3D_DRIVER_TYPE_HARDWARE,
 		NULL,
 		0,
@@ -65,8 +65,10 @@ int TD3DDevice::CreateDevice()
 		&sd,
 		&SwapChain,
 		&Device,
-		NULL,
-		&ImmediateContext)))
+		&SelectedFeature,
+		&ImmediateContext);
+
+	if (FAILED(hr))
 	{
 		return 0;
 	}
@@ -96,5 +98,7 @@ HWND TD3DDevice::GetWindowHandle()
 
 void TD3DDevice::Release()
 {
-
+	SAFE_RELEASE(Device);
+	SAFE_RELEASE(SwapChain);
+	SAFE_RELEASE(ImmediateContext);
 }

@@ -52,4 +52,8 @@ void TResource::PostResource()
 
 void TResource::Release()
 {
+	SAFE_RELEASE(Shader);
+	SAFE_RELEASE(Texture);
+	SAFE_RELEASE(Buffer);
+	SAFE_RELEASE(EffectShader);
 }

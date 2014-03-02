@@ -56,5 +56,7 @@ void TRender::RenderFrame()
 
 void TRender::Release()
 {
-
+	SAFE_RELEASE(RenderTarget);
+	SAFE_RELEASE(Resource);
+	SAFE_RELEASE(Device);
 }

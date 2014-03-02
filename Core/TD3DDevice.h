@@ -17,10 +17,11 @@ public:
 	void Release();
 
 private:
-	HWND Handle;
-	ID3D11Device* Device;
-	IDXGISwapChain* SwapChain;
+	HWND                 Handle;
+	ID3D11Device*        Device;
+	IDXGISwapChain*      SwapChain;
 	ID3D11DeviceContext* ImmediateContext;
+	D3D_FEATURE_LEVEL    SelectedFeature;
 };
 
 

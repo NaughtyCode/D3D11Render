@@ -92,5 +92,8 @@ ID3D11RenderTargetView* TRenderTarget::GetRenderTargetView()
 
 void TRenderTarget::Release()
 {
-
+	SAFE_RELEASE(RenderTargetView);
+	SAFE_RELEASE(DepthStencil);
+	SAFE_RELEASE(DepthStencilView);
 }
+

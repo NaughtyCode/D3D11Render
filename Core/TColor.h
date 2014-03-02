@@ -349,9 +349,7 @@ template<>
 inline TColor<UINT8>::TColor(const unsigned int c)
 {
 	*(unsigned int*)(&r)=c;
-} //use this with RGBA8 macro!
-
-
+}
 
 template<>
 inline TColor<FLOAT>::TColor(const float c)	
