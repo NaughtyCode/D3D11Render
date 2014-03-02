@@ -5,18 +5,30 @@
 extern TRender* g_Render; 
 
 TShader::TShader(TD3DDevice* device):Device(device),
-									VertexShaderBuffer(0),
-									PixelShaderBuffer(0),
-									ObjectColor( 0.7f, 0.125f, 0.8f, 1.0f )
+				InputLayout(0),
+				VertexShader(0),
+				PixelShader(0),
+				VertexShaderBuffer(0),
+				PixelShaderBuffer(0),
+				ConstantBufferNeverChanges(0),
+				ConstantBufferChangeOnResize(0),
+				ConstantBufferChangesEveryFrame(0),
+				Sampler(0),
+				ObjectColor(0.7f,0.125f,0.8f,1.0f),
+				LayoutType(LAYOUTTYPE_UNKNOWN)
 {
 	
 }
 
 TShader::~TShader()
 {
+	
 }
 
-int TShader::CompileShaderFromFile(const TCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut)
+int TShader::CompileShaderFromFile(const TCHAR* filename,
+			LPCSTR entry,
+			LPCSTR shadermodel,
+			ID3DBlob** ppBlobOut)
 {
 	HRESULT hr = S_OK;
 	DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
@@ -24,10 +36,10 @@ int TShader::CompileShaderFromFile(const TCHAR* szFileName, LPCSTR szEntryPoint,
 	dwShaderFlags |= D3DCOMPILE_DEBUG;
 #endif
 	ID3DBlob* pError;
-	hr = D3DX11CompileFromFile(szFileName,
+	hr = D3DX11CompileFromFile(filename,
 			NULL, NULL,
-			szEntryPoint,
-			szShaderModel,
+			entry,
+			shadermodel,
 			dwShaderFlags,
 			0,
 			NULL,
@@ -38,7 +50,9 @@ int TShader::CompileShaderFromFile(const TCHAR* szFileName, LPCSTR szEntryPoint,
 	if (FAILED(hr))
 	{
 		if (pError != NULL)
+		{
 			OutputDebugStringA((char*)pError->GetBufferPointer());
+		}
 		SAFE_RELEASE(pError);
 		return 0;
 	}
@@ -46,43 +60,78 @@ int TShader::CompileShaderFromFile(const TCHAR* szFileName, LPCSTR szEntryPoint,
 	return 1;
 }
 
-int TShader::CreateShaders(const TCHAR* VSFilename,
-			const TCHAR* PSFilename,
-			const char* szVertexShaderEntryPoint,
-			const char* szPixelShaderEntryPoint)
+int TShader::CreateVertexShader(const TCHAR* filename,
+			const char* entry,
+			const char* shadermodel)
 {
-	if (!CompileShaderFromFile(VSFilename, szVertexShaderEntryPoint, "vs_5_0", &VertexShaderBuffer)){
-		return 0;
-	}
-
-	if (!CompileShaderFromFile(PSFilename, szPixelShaderEntryPoint, "ps_5_0", &PixelShaderBuffer)){
-		return 0;
-	}
 	HRESULT hr;
-
+	
+	if (!CompileShaderFromFile(filename,
+			entry,
+			shadermodel,
+			&VertexShaderBuffer))
+	{
+		return 0;
+	}
+	
 	hr = Device->GetDevice()->CreateVertexShader(
 		VertexShaderBuffer->GetBufferPointer(),
 		VertexShaderBuffer->GetBufferSize(),
 		NULL,
 		&VertexShader);
-	if (FAILED(hr)){
+	if (FAILED(hr))
+	{
 		return 0;
 	}
+	if(!CreateInputLayout())
+	{
+		return 0;
+	}
+	return 1;
+}
 
+int TShader::CreateInputLayout()
+{
+	InputLayout = new TInputLayout(Device);
+	int r = InputLayout->CreateInputLayout(this,LayoutType);
+	assert(r);
+	return r;
+}
+
+int TShader::CreatePixelShader(const TCHAR* filename,
+			       const char* entry,
+			       const char* shadermodel)
+{
+	HRESULT hr;
+	if (!CompileShaderFromFile(filename,
+				entry,
+				shadermodel,
+				&PixelShaderBuffer))
+	{
+		return 0;
+	}
+	
 	hr = Device->GetDevice()->CreatePixelShader(
 		PixelShaderBuffer->GetBufferPointer(),
 		PixelShaderBuffer->GetBufferSize(),
 		NULL,
 		&PixelShader);
-	if (FAILED(hr)){
+	if (FAILED(hr))
+	{
 		return 0;
 	}
-	int result;
-	result = this->CreateConstantBuffer();
-	assert(result);
+	
+	return 1;
+}
+
+int TShader::InitConstantBuffer()
+{
+	int r;
+	r = this->CreateConstantBuffer();
+	assert(r);
 	this->UpdateConstantBuffer();
-	result = this->CreateSampler();
-	assert(result);
+	r = this->CreateSampler();
+	assert(r);
 	return 1;
 }
 
@@ -94,13 +143,14 @@ int TShader::CreateConstantBuffer()
 	BufferDesc.ByteWidth = sizeof(CBNeverChanges);
 	BufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	BufferDesc.CPUAccessFlags = 0;
-
+	
 	HRESULT hr;
 	hr = Device->GetDevice()->CreateBuffer( &BufferDesc,
 		NULL,
 		&ConstantBufferNeverChanges );
 	
-	if( FAILED( hr ) ){
+	if( FAILED( hr ) )
+	{
 		return 0;
 	}
 
@@ -109,7 +159,8 @@ int TShader::CreateConstantBuffer()
 		NULL,
 		&ConstantBufferChangeOnResize );
 	
-	if( FAILED( hr ) ){
+	if( FAILED( hr ) )
+	{
 		return 0;
 	}
 
@@ -117,8 +168,8 @@ int TShader::CreateConstantBuffer()
 	hr = Device->GetDevice()->CreateBuffer( &BufferDesc,
 		NULL, 
 		&ConstantBufferChangesEveryFrame );
-	
-	if( FAILED( hr ) ){
+	if( FAILED( hr ) )
+	{
 		return 0;
 	}
 	return 1;
@@ -147,10 +198,22 @@ void TShader::UpdateConstantBuffer()
 	CBNeverChanges cbNeverChanges;
 	TCamera* camera=g_Render->GetCamera();
 	cbNeverChanges.View = camera->GetTransposeView();
-	Device->GetImmediateContext()->UpdateSubresource( ConstantBufferNeverChanges, 0, NULL, &cbNeverChanges, 0, 0 );
+	Device->GetImmediateContext()->UpdateSubresource( ConstantBufferNeverChanges,
+					0,
+					NULL,
+					&cbNeverChanges,
+					0,
+					0);
+	
 	CBChangeOnResize cbChangesOnResize;
 	cbChangesOnResize.Projection = camera->GetTransposeProjection();
-	Device->GetImmediateContext()->UpdateSubresource( ConstantBufferChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0 );
+	Device->GetImmediateContext()->UpdateSubresource( ConstantBufferChangeOnResize,
+				0,
+				NULL,
+				&cbChangesOnResize,
+				0,
+				0);
+	
 }
 
 void TShader::UpdateConstantBufferFrame()
@@ -166,7 +229,7 @@ void TShader::UpdateConstantBufferFrame()
 					NULL,
 					&ChangesEveryFrame,
 					0,
-					0 );
+					0);
 	
 	Device->GetImmediateContext()->VSSetConstantBuffers( 0, 1, &ConstantBufferNeverChanges );
 	Device->GetImmediateContext()->VSSetConstantBuffers( 1, 1, &ConstantBufferChangeOnResize );
@@ -177,6 +240,7 @@ void TShader::UpdateConstantBufferFrame()
 
 void TShader::PostEffect()
 {
+	InputLayout->PostInputLayout();
 	this->UpdateConstantBufferFrame();
 	Device->GetImmediateContext()->VSSetShader(VertexShader, NULL, 0);
 	Device->GetImmediateContext()->PSSetShader(PixelShader, NULL, 0);
@@ -194,6 +258,11 @@ SIZE_T TShader::GetShaderBufferSize()
 	return VertexShaderBuffer->GetBufferSize();
 }
 
+void TShader::SetLayoutType(INPUTELEMENTDESCTYPE type)
+{
+	LayoutType=type;
+}
+
 void TShader::Release()
 {
 	SAFE_RELEASE(VertexShader);
@@ -204,6 +273,7 @@ void TShader::Release()
 	SAFE_RELEASE(ConstantBufferChangeOnResize);
 	SAFE_RELEASE(ConstantBufferChangesEveryFrame);
 	SAFE_RELEASE(Sampler);
+	SAFE_DELETERELEASE(InputLayout);
 }
 
 

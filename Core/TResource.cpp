@@ -23,17 +23,20 @@ int TResource::CreateResource()
 {
 	int result;
 	Shader=new TShader(Device);
-	TCHAR* ShaderName=L"..\\Resource\\shaders\\BoxShader.hlsl";
-	Shader->CreateShaders(ShaderName,ShaderName,"VS","PS");
-
+	
+	TCHAR* filename=L"..\\Resource\\shaders\\BoxShader.hlsl";
+	Shader->SetLayoutType(LAYOUTTYPE_POSITIONTEX0);
+	Shader->CreateVertexShader(filename,"VS","vs_5_0");
+	Shader->CreatePixelShader(filename,"PS","ps_5_0");
+	Shader->InitConstantBuffer();
+	
 	Texture = new TTexture(Device);
 	result=Texture->CreateTexture(L"..\\Resource\\texture\\boxskin.dds");
 	assert(result);
-
+	
 	UINT size;
 	Buffer = new TBuffer(Device);
-	Buffer->CreateInputLayout(Shader,LAYOUTTYPE_POSITIONTEX0);
-
+	
 	size=GetBoxVertexDataSize();
 	Buffer->CreateVertexBuffer(GetBoxVertexData(),size,sizeof(VERTEX_POSITIONTEX),false,false);
 	

@@ -16,15 +16,15 @@ class IShader;
 class TInputLayout
 {
 public:
-	TInputLayout(TD3DDevice* device);
-	~TInputLayout(void);
-	int CreateInputLayout(IShader* shader,INPUTELEMENTDESCTYPE type);
-	void PostInputLayout();
-	void Release();
-
+    TInputLayout(TD3DDevice* device);
+    ~TInputLayout(void);
+    int CreateInputLayout(IShader* shader,INPUTELEMENTDESCTYPE type);
+    void PostInputLayout();
+    void Release();
+    
 private:
-	TD3DDevice* Device;
-	ID3D11InputLayout* Layout;
+    TD3DDevice*        Device;
+    ID3D11InputLayout* Layout;
 };
 
 

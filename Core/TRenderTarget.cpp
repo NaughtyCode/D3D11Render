@@ -10,7 +10,7 @@ TRenderTarget::TRenderTarget(TD3DDevice* device) :
 			ReadDepthStencilView(0),
 			ShaderResourceView(0),
 			UnorderedAccessView(0),
-			ClearColor(0.3f, 0.3f, 0.4f, 1.0f)
+			ClearColor(1.0f,1.0f,1.0f,1.0f)
 
 {
 	
