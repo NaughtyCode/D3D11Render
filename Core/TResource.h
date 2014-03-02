@@ -23,19 +23,19 @@ class TTexture;
 class TResource
 {
 public:
-	TResource(TD3DDevice* device);
-	~TResource();
-	int CreateResource(const TCHAR* vsfile,const TCHAR* psfile);
-	int CreateResource();
-	void PostResource();
-	void Release();
-
+    TResource(TD3DDevice* device);
+    ~TResource();
+    int CreateResource(const TCHAR* vsfile,const TCHAR* psfile);
+    int CreateResource();
+    void PostResource();
+    void Release();
+    
 private:
-	TD3DDevice*     Device;
-	TShader*        Shader;
-	TBuffer*        Buffer;
-	TEffectShader*  EffectShader;
-	TTexture*       Texture;
+    TD3DDevice*     Device;
+    TShader*        Shader;
+    TBuffer*        Buffer;
+    TEffectShader*  EffectShader;
+    TTexture*       Texture;
 };
 
 

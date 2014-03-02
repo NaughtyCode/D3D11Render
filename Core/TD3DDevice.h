@@ -28,7 +28,7 @@ private:
     BOOL                 IsFullScreen;
     ID3D11Device*        Device;
     IDXGISwapChain*      SwapChain;
-    ID3D11DeviceContext* ImmediateContext;
+    ID3D11DeviceContext* DeviceContext;
     D3D_FEATURE_LEVEL    SelectedFeature;
 };
 

@@ -6,7 +6,7 @@ TD3DDevice::TD3DDevice(HWND hWnd):
 			IsFullScreen(FALSE),
 			Device(0),
 			SwapChain(0),
-			ImmediateContext(0)
+			DeviceContext(0)
 {
 	
 }
@@ -66,8 +66,8 @@ int TD3DDevice::CreateDevice()
 		&SwapChain,
 		&Device,
 		&SelectedFeature,
-		&ImmediateContext);
-
+		&DeviceContext);
+	
 	if (FAILED(hr))
 	{
 		return 0;
@@ -88,7 +88,7 @@ IDXGISwapChain* TD3DDevice::GetSwapChain()
 
 ID3D11DeviceContext* TD3DDevice::GetDeviceContext()
 {
-	return ImmediateContext;
+	return DeviceContext;
 }
 
 HWND TD3DDevice::GetWindowHandle()
@@ -105,5 +105,5 @@ void TD3DDevice::Release()
 {
 	SAFE_RELEASE(Device);
 	SAFE_RELEASE(SwapChain);
-	SAFE_RELEASE(ImmediateContext);
+	SAFE_RELEASE(DeviceContext);
 }
