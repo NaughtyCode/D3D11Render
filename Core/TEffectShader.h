@@ -10,11 +10,11 @@ class TEffectShader:public IShader
 public:
 	TEffectShader(TD3DDevice* device);
 	virtual ~TEffectShader(void);
-	int CompileShaderFromFile(const WCHAR* szFileName,LPCSTR szShaderModel, ID3DBlob** ppBlobOut);
-	int CreateEffectShader(const WCHAR* szFileName);
+	int CompileShaderFromFile(const TCHAR* szFileName,LPCSTR szShaderModel, ID3DBlob** ppBlobOut);
+	int CreateEffectShader(const TCHAR* szFileName);
 	virtual void PostEffect();
-	virtual LPVOID GetVSBufferPointer();
-	virtual SIZE_T GetVSBufferSize();
+	virtual LPVOID GetShaderBufferPointer();
+	virtual SIZE_T GetShaderBufferSize();
 	virtual void Release();
 
 private:

@@ -16,7 +16,7 @@ TShader::~TShader()
 {
 }
 
-int TShader::CompileShaderFromFile(const WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut)
+int TShader::CompileShaderFromFile(const TCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut)
 {
 	HRESULT hr = S_OK;
 	DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
@@ -46,8 +46,8 @@ int TShader::CompileShaderFromFile(const WCHAR* szFileName, LPCSTR szEntryPoint,
 	return 1;
 }
 
-int TShader::CreateShaders(const WCHAR* VSFilename,
-			const WCHAR* PSFilename,
+int TShader::CreateShaders(const TCHAR* VSFilename,
+			const TCHAR* PSFilename,
 			const char* szVertexShaderEntryPoint,
 			const char* szPixelShaderEntryPoint)
 {
@@ -189,13 +189,13 @@ void TShader::PostEffect()
 	Device->GetImmediateContext()->PSSetShader(PixelShader, NULL, 0);
 }
 
-LPVOID TShader::GetVSBufferPointer()
+LPVOID TShader::GetShaderBufferPointer()
 {
 	assert(VertexShaderBuffer);
 	return VertexShaderBuffer->GetBufferPointer();
 }
 
-SIZE_T TShader::GetVSBufferSize()
+SIZE_T TShader::GetShaderBufferSize()
 {
 	assert(VertexShaderBuffer);
 	return VertexShaderBuffer->GetBufferSize();

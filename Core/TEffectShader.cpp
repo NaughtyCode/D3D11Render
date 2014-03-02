@@ -33,7 +33,7 @@ int TEffectShader::CompileShaderFromFile(const TCHAR* szFileName,LPCSTR szShader
 	return 1;
 }
 
-int TEffectShader::CreateEffectShader(const WCHAR* szFileName)
+int TEffectShader::CreateEffectShader(const TCHAR* szFileName)
 {
 	if (!CompileShaderFromFile(szFileName,"fx_5_0", &EffectBuffer)){
 		return 0;
@@ -46,14 +46,14 @@ int TEffectShader::CreateEffectShader(const WCHAR* szFileName)
 	return 1;
 }
 
-LPVOID TEffectShader::GetVSBufferPointer()
+LPVOID TEffectShader::GetShaderBufferPointer()
 {
 	D3DX11_PASS_DESC desc;
 	Technique->GetPassByIndex(0)->GetDesc(&desc);
 	return desc.pIAInputSignature;
 }
 
-SIZE_T TEffectShader::GetVSBufferSize()
+SIZE_T TEffectShader::GetShaderBufferSize()
 {
 	D3DX11_PASS_DESC desc;
 	Technique->GetPassByIndex(0)->GetDesc(&desc);

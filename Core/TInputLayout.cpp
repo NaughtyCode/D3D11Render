@@ -20,8 +20,8 @@ int TInputLayout::CreateInputLayout(IShader* shader,INPUTELEMENTDESCTYPE type)
 	UINT Num = GetLayoutArraySize(type);
 	if (FAILED(Device->GetDevice()->CreateInputLayout(desc,
 		Num,
-		shader->GetVSBufferPointer(),
-		shader->GetVSBufferSize(),
+		shader->GetShaderBufferPointer(),
+		shader->GetShaderBufferSize(),
 		&Layout)))
 	{
 		return 0;
