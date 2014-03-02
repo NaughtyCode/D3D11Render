@@ -1,48 +1,50 @@
 #include "stdafx.h"
 #include "TD3DDevice.h"
 
-TD3DDevice::TD3DDevice(HWND hWnd) :Handle(hWnd),
+TD3DDevice::TD3DDevice(HWND hWnd):
+			WindowHandle(hWnd),
+			IsFullScreen(FALSE),
 			Device(0),
 			SwapChain(0),
 			ImmediateContext(0)
 {
+	
 }
 
 TD3DDevice::~TD3DDevice()
 {
-
+	
 }
 
 int TD3DDevice::CreateDevice()
 {
 	HRESULT hr;
 	RECT rect;
-	UINT width = 900;
-	UINT height = 600;
-	GetWindowRect(Handle, &rect);
+	UINT width,height;
+	GetWindowRect(WindowHandle,&rect);
 	width = rect.right - rect.left;
 	height = rect.bottom - rect.top;
 	
-	DXGI_SWAP_CHAIN_DESC sd;
-	ZeroMemory(&sd, sizeof(sd));
-
-	sd.BufferCount = 1;
-	sd.BufferDesc.Width = width;
-	sd.BufferDesc.Height = height;
-	sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	sd.BufferDesc.RefreshRate.Numerator = 60;
-	sd.BufferDesc.RefreshRate.Denominator = 1;
-	sd.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-	sd.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
-
-	sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	sd.OutputWindow = Handle;
-	sd.SampleDesc.Count = 1;
-	sd.SampleDesc.Quality = 0;
-	sd.Windowed = TRUE;
-	sd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
-	sd.Flags = 0;
-
+	DXGI_SWAP_CHAIN_DESC SwapChainDesc;
+	
+	ZeroMemory(&SwapChainDesc, sizeof(SwapChainDesc));
+	SwapChainDesc.BufferCount = 1;
+	SwapChainDesc.BufferDesc.Width = width;
+	SwapChainDesc.BufferDesc.Height = height;
+	SwapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	SwapChainDesc.BufferDesc.RefreshRate.Numerator = 60;
+	SwapChainDesc.BufferDesc.RefreshRate.Denominator = 1;
+	SwapChainDesc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+	SwapChainDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+	
+	SwapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	SwapChainDesc.OutputWindow = WindowHandle;
+	SwapChainDesc.SampleDesc.Count = 1;
+	SwapChainDesc.SampleDesc.Quality = 0;
+	SwapChainDesc.Windowed = !IsFullScreen;
+	SwapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+	SwapChainDesc.Flags = 0;
+	
 	D3D_FEATURE_LEVEL  FeatureArray[] = {
 		D3D_FEATURE_LEVEL_11_0,
 		D3D_FEATURE_LEVEL_10_1,
@@ -60,7 +62,7 @@ int TD3DDevice::CreateDevice()
 		FeatureArray,
 		FeatureNum,
 		D3D11_SDK_VERSION,
-		&sd,
+		&SwapChainDesc,
 		&SwapChain,
 		&Device,
 		&SelectedFeature,
@@ -91,7 +93,7 @@ ID3D11DeviceContext* TD3DDevice::GetImmediateContext()
 
 HWND TD3DDevice::GetWindowHandle()
 {
-	return Handle;
+	return WindowHandle;
 }
 
 void TD3DDevice::Present()
