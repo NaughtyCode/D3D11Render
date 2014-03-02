@@ -37,13 +37,22 @@ XMMATRIX TCamera::GetTransposeView()
 	return XMMatrixTranspose(View);
 }
 
+XMMATRIX TCamera::GetTransposeWorld()
+{
+	return XMMatrixTranspose(World);
+}
+
 XMMATRIX TCamera::GetTransposeProjection()
 {
 	return XMMatrixTranspose(Projection);
 }
 
-XMMATRIX TCamera::GetTransposeWorld()
+XMMATRIX TCamera::RotationY(FLOAT Angle)
 {
-	return XMMatrixTranspose(World);
+	XMMATRIX world = XMMatrixRotationY(Angle);
+	return world;
 }
+
+
+
 

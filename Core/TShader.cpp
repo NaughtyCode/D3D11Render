@@ -155,16 +155,9 @@ void TShader::UpdateConstantBuffer()
 
 void TShader::UpdateConstantBufferFrame()
 {
-	static float t = 0.0f;
-	static DWORD dwTimeStart = 0;
-	DWORD dwTimeCur = GetTickCount();
-	if( dwTimeStart == 0 ){
-		dwTimeStart = dwTimeCur;
-	}
-	t = ( dwTimeCur - dwTimeStart ) / 1000.0f;
 	TCamera* camera=g_Render->GetCamera();
-
-	XMMATRIX world=camera->GetTransposeWorld();
+	XMMATRIX world = camera->RotationY(0.35f);
+	
 	CBChangesEveryFrame ChangesEveryFrame;
 	ChangesEveryFrame.World = world;
 	ChangesEveryFrame.ObjectColor = ObjectColor;

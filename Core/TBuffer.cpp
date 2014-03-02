@@ -4,18 +4,20 @@
 #include "RenderData.h"
 
 TBuffer::TBuffer(TD3DDevice* device) :
-								Device(device),
-								InputLayout(0),
-								VertexBuffer(0),
-								IndexBuffer(0),
-								VertexBufferSize(0),
-								VertexSize(0),
-								IsIndexDraw(FALSE)
+			Device(device),
+			InputLayout(0),
+			VertexBuffer(0),
+			IndexBuffer(0),
+			VertexBufferSize(0),
+			VertexSize(0),
+			IsIndexDraw(FALSE)
 {
+	
 }
 
 TBuffer::~TBuffer()
 {
+	
 }
 
 int TBuffer::CreateStaticVertexBuffer(void* pData,UINT size,UINT elemsize)

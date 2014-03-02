@@ -2,40 +2,63 @@
 #include "TViewPort.h"
 
 
-TViewPort::TViewPort(TD3DDevice* device) :Device(device)
+TViewPort::TViewPort(TD3DDevice* device) :
+		Device(device),
+		WindowHandle(Device->GetWindowHandle()),
+		IsFullscreen(FALSE)
 {
+	
 }
 
 TViewPort::~TViewPort()
 {
+	
 }
 
 int TViewPort::CreateViewPort()
 {
-	UINT width;
-	UINT height;
 	RECT rect;
-
-	HWND hWnd = Device->GetWindowHandle();
-
-	if (GetWindowRect(hWnd, &rect)){
-		width = rect.right - rect.left;
-		height = rect.bottom - rect.top;
-	}
-	else{
-		width = 900;
-		height = 600;
-	}
-
-	D3D11_VIEWPORT vp;
-	vp.Width = (FLOAT)width;
-	vp.Height = (FLOAT)height;
-	vp.MinDepth = 0.0f;
-	vp.MaxDepth = 1.0f;
-	vp.TopLeftX = 0;
-	vp.TopLeftY = 0;
-	Device->GetImmediateContext()->RSSetViewports(1, &vp);
+	GetWindowRect(WindowHandle, &rect);
+	Width=rect.right - rect.left;
+	Height=rect.bottom - rect.top;
+	ZeroMemory(&ViewPort,sizeof(ViewPort));;
+	ViewPort.Width = (FLOAT)Width;
+	ViewPort.Height = (FLOAT)Height;
+	ViewPort.MinDepth = 0.0f;
+	ViewPort.MaxDepth = 1.0f;
+	ViewPort.TopLeftX = 0;
+	ViewPort.TopLeftY = 0;
+	Device->GetImmediateContext()->RSSetViewports(1,&ViewPort);
 	return 1;
+}
+
+void TViewPort::ResizeViewPort(UINT width,UINT height,BOOL IsFullscreen)
+{
+	if(width != this->Width || height != this->Height)
+	{
+		this->Width  = width;
+		this->Height = height;
+		Device->GetSwapChain()->ResizeBuffers(1,
+				this->Width,
+				this->Height,
+				DXGI_FORMAT_R8G8B8A8_UNORM,
+				DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH);
+	}
+	
+	if(this->IsFullscreen != IsFullscreen)
+	{
+		this->IsFullscreen = IsFullscreen;
+	}
+}
+
+UINT TViewPort::GetWidth() const
+{
+    return Width;
+}
+
+UINT TViewPort::GetHeight() const
+{
+    return Height;
 }
 
 void TViewPort::Release()

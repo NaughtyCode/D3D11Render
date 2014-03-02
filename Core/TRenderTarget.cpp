@@ -3,13 +3,17 @@
 
 
 TRenderTarget::TRenderTarget(TD3DDevice* device) :
-							Device(device),
-							RenderTargetView(0),
-							DepthStencil(0),
-							DepthStencilView(0)
+			Device(device),
+			Resource(0),
+			RenderTargetView(0),
+			DepthStencilView(0),
+			ReadDepthStencilView(0),
+			ShaderResourceView(0),
+			UnorderedAccessView(0),
+			ClearColor(0.3f, 0.3f, 0.4f, 1.0f)
 
 {
-
+	
 }
 
 TRenderTarget::~TRenderTarget()
@@ -37,51 +41,52 @@ int TRenderTarget::CreateRenderTarget()
 
 int TRenderTarget::CreateDepthStencil()
 {
-	RECT rect;
 	HWND hWnd=Device->GetWindowHandle();
 	UINT width;
 	UINT height;
+	RECT rect;
 	GetWindowRect(hWnd, &rect);
 	width = rect.right - rect.left;
 	height = rect.bottom - rect.top;
-
+	
 	HRESULT hr;
-	D3D11_TEXTURE2D_DESC DescDepth;
-	ZeroMemory( &DescDepth, sizeof(DescDepth) );
-	DescDepth.Width = width;
-	DescDepth.Height = height;
-	DescDepth.MipLevels = 1;
-	DescDepth.ArraySize = 1;
-	DescDepth.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-	DescDepth.SampleDesc.Count = 1;
-	DescDepth.SampleDesc.Quality = 0;
-	DescDepth.Usage = D3D11_USAGE_DEFAULT;
-	DescDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL;
-	DescDepth.CPUAccessFlags = 0;
-	DescDepth.MiscFlags = 0;
-	hr = Device->GetDevice()->CreateTexture2D( &DescDepth, NULL, &DepthStencil );
+	D3D11_TEXTURE2D_DESC DepthDesc;
+	ZeroMemory( &DepthDesc, sizeof(DepthDesc) );
+	DepthDesc.Width = width;
+	DepthDesc.Height = height;
+	DepthDesc.MipLevels = 1;
+	DepthDesc.ArraySize = 1;
+	DepthDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+	DepthDesc.SampleDesc.Count = 1;
+	DepthDesc.SampleDesc.Quality = 0;
+	DepthDesc.Usage = D3D11_USAGE_DEFAULT;
+	DepthDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+	DepthDesc.CPUAccessFlags = 0;
+	DepthDesc.MiscFlags = 0;
+	hr = Device->GetDevice()->CreateTexture2D( &DepthDesc, NULL, &Resource);
 	if( FAILED( hr ) )
 	{
 		return 0;
 	}
-	D3D11_DEPTH_STENCIL_VIEW_DESC DescDSV;
-	ZeroMemory( &DescDSV, sizeof(DescDSV) );
-	DescDSV.Format = DescDepth.Format;
-	DescDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-	DescDSV.Texture2D.MipSlice = 0;
-	hr = Device->GetDevice()->CreateDepthStencilView( DepthStencil, &DescDSV, &DepthStencilView);
+	
+	D3D11_DEPTH_STENCIL_VIEW_DESC StencilDesc;
+	ZeroMemory( &StencilDesc, sizeof(StencilDesc) );
+	StencilDesc.Format = DepthDesc.Format;
+	StencilDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+	StencilDesc.Texture2D.MipSlice = 0;
+	hr = Device->GetDevice()->CreateDepthStencilView(Resource,&StencilDesc, &DepthStencilView);
 	if( FAILED( hr ) )
 	{
 		return 0;
 	}
+	
 	Device->GetImmediateContext()->OMSetRenderTargets(1,&RenderTargetView,DepthStencilView);
 	return 1;
 }
 
 void TRenderTarget::Clear()
 {
-	float ClearColor[4] = { 0.3f, 0.3f, 0.4f, 1.0f };
-	Device->GetImmediateContext()->ClearRenderTargetView(RenderTargetView, ClearColor);
+	Device->GetImmediateContext()->ClearRenderTargetView(RenderTargetView,(FLOAT*)&ClearColor);
 	Device->GetImmediateContext()->ClearDepthStencilView(DepthStencilView,D3D11_CLEAR_DEPTH,1.0f,0);
 }
 
@@ -92,8 +97,11 @@ ID3D11RenderTargetView* TRenderTarget::GetRenderTargetView()
 
 void TRenderTarget::Release()
 {
+	SAFE_RELEASE(Resource);
 	SAFE_RELEASE(RenderTargetView);
-	SAFE_RELEASE(DepthStencil);
 	SAFE_RELEASE(DepthStencilView);
+	SAFE_RELEASE(ReadDepthStencilView);
+	SAFE_RELEASE(ShaderResourceView);
+	SAFE_RELEASE(UnorderedAccessView);
 }
 
