@@ -49,7 +49,9 @@ XMMATRIX TCamera::GetTransposeProjection()
 
 XMMATRIX TCamera::RotationY(FLOAT Angle)
 {
-	XMMATRIX world = XMMatrixRotationY(Angle);
+	XMMATRIX scale = XMMatrixScaling(1.0f,0.8f,1.5f);
+	XMMATRIX rotate = XMMatrixRotationY(Angle);
+	XMMATRIX world = scale*rotate;
 	return world;
 }
 
