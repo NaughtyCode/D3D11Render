@@ -8,16 +8,20 @@
 #include "IShader.h"
 #include "TD3DDevice.h"
 #include "Definitions.h"
+#include "TConstantBuffer.h"
+
 
 class IShader;
 class TD3DDevice;
+class TConstantBuffer;
 
-typedef struct TConstantBufferData
+
+typedef struct TCommonShaderResource
 {
 	XMMATRIX View;
 	XMMATRIX Projection;
 	XMMATRIX World;
-}TConstantBufferData;
+}TCommonShaderResource;
 
 class TShader:public IShader
 {
@@ -40,9 +44,7 @@ public:
 	int InitConstantBuffer();
 	
 	int CreateConstantBuffer();
-	int CreateSampler();
-	void UpdateConstantBuffer();
-	void UpdateConstantBufferFrame();
+	
 	virtual void   PostEffect();
 	virtual LPVOID GetShaderBufferPointer();
 	virtual SIZE_T GetShaderBufferSize();
@@ -58,7 +60,7 @@ private:
 	ID3D11PixelShader*      PixelShader;
 	ID3DBlob*               VertexShaderBuffer;
 	ID3DBlob*               PixelShaderBuffer;
-	ID3D11Buffer*           ConstantBufferData;
+	TConstantBuffer*        ShaderResource;
 	INPUTTYPE_TYPE          LayoutType;
 };
 

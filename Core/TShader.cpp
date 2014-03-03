@@ -10,7 +10,7 @@ TShader::TShader(TD3DDevice* device):Device(device),
 				PixelShader(0),
 				VertexShaderBuffer(0),
 				PixelShaderBuffer(0),
-				ConstantBufferData(0),
+				ShaderResource(0),
 				LayoutType(LAYOUTTYPE_UNKNOWN)
 {
 	
@@ -130,59 +130,34 @@ int TShader::CreatePixelShader(const TCHAR* filename,
 int TShader::InitConstantBuffer()
 {
 	this->CreateConstantBuffer();
-	this->UpdateConstantBuffer();
 	return 1;
 }
 
 int TShader::CreateConstantBuffer()
 {
-	HRESULT hr;
-	D3D11_BUFFER_DESC BufferDesc;
-	ZeroMemory(&BufferDesc,sizeof(D3D11_BUFFER_DESC));
-	BufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	BufferDesc.ByteWidth = sizeof(TConstantBufferData);
-	BufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-	BufferDesc.CPUAccessFlags = 0;
-	hr = Device->GetDevice()->CreateBuffer(&BufferDesc,NULL,&ConstantBufferData);
-	if( FAILED( hr ) )
-	{
-		return 0;
-	}
+	ShaderResource = new TConstantBuffer(Device,sizeof(TCommonShaderResource));
+	ShaderResource->CreateConstantBuffer();
 	return 1;
-}
-
-void TShader::UpdateConstantBuffer()
-{
-	
-}
-
-void TShader::UpdateConstantBufferFrame()
-{
-	
 }
 
 void TShader::PostEffect()
 {
 	TCamera* camera;
-	TConstantBufferData Data;
+	TCommonShaderResource Data;
 	ID3D11DeviceContext* DeviceContext;
 	
 	DeviceContext = Device->GetDeviceContext();
 	camera = g_Render->GetCamera();
 	
 	Data.View = camera->GetTransposeView();
-	Data.World = camera->RotationY(0.35f);
+	Data.World = camera->RotationY(0.38f);
 	Data.Projection = camera->GetTransposeProjection();
 	
-	DeviceContext->UpdateSubresource(ConstantBufferData,
-					0,
-					NULL,
-					&Data,
-					0,
-					0);
+	ShaderResource->UpdateBufferData(&Data,0,sizeof(Data));
+	ShaderResource->UpdateConstantBufferResource(TRUE);
+	ShaderResource->PostConstantBuffer(0,1);
 	
 	DeviceContext->IASetInputLayout(InputLayout);
-	DeviceContext->VSSetConstantBuffers(0,1,&ConstantBufferData);
 	DeviceContext->VSSetShader(VertexShader, NULL, 0);
 	DeviceContext->PSSetShader(PixelShader, NULL, 0);
 }
@@ -210,7 +185,7 @@ void TShader::Release()
 	SAFE_RELEASE(PixelShader);
 	SAFE_RELEASE(VertexShaderBuffer);
 	SAFE_RELEASE(PixelShaderBuffer);
-	SAFE_RELEASE(ConstantBufferData);
+	SAFE_DELETERELEASE(ShaderResource);
 	SAFE_RELEASE(InputLayout);
 }
 

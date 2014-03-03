@@ -84,6 +84,7 @@
     <ClInclude Include="..\Core\Definitions.h" />
     <ClInclude Include="..\Core\RenderData.h" />
     <ClInclude Include="..\Core\TCamera.h" />
+    <ClInclude Include="..\Core\TConstantBuffer.h" />
     <ClInclude Include="..\Core\TD3DDevice.h" />
     <ClInclude Include="..\Core\stdafx.h" />
     <ClInclude Include="..\Core\targetver.h" />
@@ -131,6 +132,7 @@
   <ItemGroup>
     <None Include="..\Resource\shaders\BoxShader.hlsl" />
     <None Include="..\Resource\shaders\BoxShaderFramework.hlsl" />
+    <None Include="..\Resource\shaders\MainShader.hlsl" />
     <None Include="..\Resource\shaders\PrimitiveEffectFramework.hlsl" />
     <None Include="..\Resource\shaders\primitivepsshader.hlsl" />
     <None Include="..\Resource\shaders\primitivevsshader.hlsl" />
@@ -142,6 +144,7 @@
     <ClCompile Include="..\Core\IShader.cpp" />
     <ClCompile Include="..\Core\Definitions.cpp" />
     <ClCompile Include="..\Core\TCamera.cpp" />
+    <ClCompile Include="..\Core\TConstantBuffer.cpp" />
     <ClCompile Include="..\Core\TD3DDevice.cpp" />
     <ClCompile Include="..\Core\RenderData.cpp" />
     <ClCompile Include="..\Core\stdafx.cpp" />

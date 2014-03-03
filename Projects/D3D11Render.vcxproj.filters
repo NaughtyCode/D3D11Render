@@ -163,6 +163,9 @@
     <ClInclude Include="..\Core\Definitions.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\Core\TConstantBuffer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="small.ico">
@@ -187,6 +190,9 @@
       <Filter>shader</Filter>
     </None>
     <None Include="..\Resource\shaders\BoxShader.hlsl">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="..\Resource\shaders\MainShader.hlsl">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>
@@ -339,6 +345,9 @@
       <Filter>Window</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\Definitions.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TConstantBuffer.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>

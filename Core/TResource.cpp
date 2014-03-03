@@ -42,7 +42,7 @@ int TResource::CreateResource()
 	
 	size=GetBoxIndexDataSize();
 	Buffer->CreateIndexBuffer(GetBoxIndexData(),size,sizeof(WORD),false);
-
+	
 	return 1;
 }
 
@@ -55,8 +55,8 @@ void TResource::PostResource()
 
 void TResource::Release()
 {
-	SAFE_RELEASE(Shader);
-	SAFE_RELEASE(Texture);
-	SAFE_RELEASE(Buffer);
-	SAFE_RELEASE(EffectShader);
+	SAFE_DELETERELEASE(Shader);
+	SAFE_DELETERELEASE(Texture);
+	SAFE_DELETERELEASE(Buffer);
+	SAFE_DELETERELEASE(EffectShader);
 }

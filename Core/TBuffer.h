@@ -37,25 +37,6 @@ private:
     BOOL               IsIndexDraw;
 };
 
-class TConstantBuffer
-{
-public:
-    TConstantBuffer(TD3DDevice* device,WORD Size);
-    ~TConstantBuffer();
-    int  CreateConstantBuffer();
-    void UpdateBuffer(const BYTE* Data, WORD Offset, WORD Size);
-    BOOL PostConstantBuffer(BOOL IsDiscard);
-    ID3D11Buffer* GetConstantBuffer();
-    void Release();
-    
-private:
-    BYTE*              Data;
-    TD3DDevice*        Device;
-    BOOL               NeedPost;
-    UINT               CurrentSize;
-    UINT               BufferSize;
-    ID3D11Buffer*      ConstantBuffer;
-};
 
 #endif
 

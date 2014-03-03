@@ -60,6 +60,6 @@ void DumpErrorInfo(HRESULT hr);
 #include "MathCore.h"
 
 
-
+typedef ID3D11Buffer* LPID3D11Buffer;
 
 

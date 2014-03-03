@@ -3,9 +3,9 @@ SamplerState LinearSample : register( s0 );
 
 cbuffer ConstantBuffer : register( b0 )
 {
-    matrix View;
-    matrix Projection;
-    matrix World;
+    float4x4 View;
+    float4x4 Projection;
+    float4x4 World;
 };
 
 struct VS_INPUT
@@ -22,7 +22,7 @@ struct PS_INPUT
 
 PS_INPUT VS( VS_INPUT input )
 {
-    PS_INPUT output = (PS_INPUT)0;
+    PS_INPUT output;
     output.Pos = mul( input.Pos, World );
     output.Pos = mul( output.Pos, View );
     output.Pos = mul( output.Pos, Projection );
