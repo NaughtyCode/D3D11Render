@@ -7,8 +7,11 @@
 
 #include "resource.h"
 #include "TRender.h"
+#include "TMouseObject.h"
 
 class TRender;
+class TMouseObject;
+
 
 class TD3DWindow
 {
@@ -20,12 +23,14 @@ public:
     void SetWindowTitle(const TCHAR* Title);
     void SetWindowSize(UINT width,UINT height);
     void EnterLoop();
-    
+    void Release();
+
 private:
-    HWND      hWnd;
-    UINT      Width;
-    UINT      Height;
-    TRender*  D3D11Render;
+    HWND          WindowHandle;
+    UINT          Width;
+    UINT          Height;
+    TRender*      D3D11Render;
+	TMouseObject* MouseObject;
 };
 
 

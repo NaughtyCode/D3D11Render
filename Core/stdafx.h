@@ -6,6 +6,10 @@
 
 // Windows head fiels
 #include <windows.h>
+#include <commctrl.h>
+#include <basetsd.h>
+
+
 
 // C head fiels
 #include <stdlib.h>
@@ -60,3 +64,5 @@
 typedef ID3D11Buffer* LPID3D11Buffer;
 
 
+#define DIRECTINPUT_VERSION 0x0800
+#include <dinput.h>

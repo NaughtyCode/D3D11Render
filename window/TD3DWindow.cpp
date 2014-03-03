@@ -29,10 +29,12 @@ LRESULT CALLBACK RenderWindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 	return 0;
 }
 
-TD3DWindow::TD3DWindow():hWnd(0),
+TD3DWindow::TD3DWindow():
+			WindowHandle(0),
 			Width(0),
 			Height(0),
-			D3D11Render(0)
+			D3D11Render(0),
+			MouseObject(0)
 {
 	
 }
@@ -63,16 +65,20 @@ int TD3DWindow::CreateD3DWindow(UINT x,UINT y,UINT width,UINT height)
 	{
 		return 0;
 	}
-	hWnd = CreateWindow(L"GDKRender", L"GDK Render", WS_OVERLAPPEDWINDOW,x,y,width,height,0,0,0,0);
-	if (!hWnd)
+	WindowHandle = CreateWindow(L"GDKRender", L"GDK Render", WS_OVERLAPPEDWINDOW,x,y,width,height,0,0,0,0);
+	if (!WindowHandle)
 	{
 		return 0;
 	}
 	
 	D3D11Render = new TRender();
-	D3D11Render->CreateRender(hWnd);
-	ShowWindow(hWnd,1);
-	UpdateWindow(hWnd);
+	D3D11Render->CreateRender(WindowHandle);
+	ShowWindow(WindowHandle,1);
+	UpdateWindow(WindowHandle);
+	
+	MouseObject = new TMouseObject(WindowHandle);
+	int r=MouseObject->CreateDirectInput();
+	assert(r);
 	
 	return 1;
 }
@@ -81,25 +87,25 @@ void TD3DWindow::SetWindowPos(INT X,INT Y)
 {
 	RECT rect;
 	UINT width,height;
-	GetWindowRect(hWnd, &rect);
+	GetWindowRect(WindowHandle, &rect);
 	width  = rect.right  - rect.left;
 	height = rect.bottom - rect.top;
-	::SetWindowPos(hWnd,NULL,X,Y,width,height,SWP_SHOWWINDOW);
+	::SetWindowPos(WindowHandle,NULL,X,Y,width,height,SWP_SHOWWINDOW);
 }
 
 void TD3DWindow::SetWindowTitle(const TCHAR* Title)
 {
-	if (!hWnd)
+	if (!WindowHandle)
 	{
-		::SetWindowText(hWnd,Title);
+		::SetWindowText(WindowHandle,Title);
 	}
 }
 
 void TD3DWindow::SetWindowSize(UINT width,UINT height)
 {
 	RECT rect;
-	GetWindowRect(hWnd, &rect);
-	::SetWindowPos(hWnd,NULL,rect.left,rect.top,width,height,SWP_NOMOVE);
+	GetWindowRect(WindowHandle, &rect);
+	::SetWindowPos(WindowHandle,NULL,rect.left,rect.top,width,height,SWP_NOMOVE);
 }
 
 void TD3DWindow::EnterLoop()
@@ -119,5 +125,14 @@ void TD3DWindow::EnterLoop()
 		{
 			D3D11Render->RenderFrame();
 		}
+
+		MouseObject->UpdateInputState();
 	}
 }
+
+void TD3DWindow::Release()
+{
+	SAFE_DELETERELEASE(MouseObject);
+	SAFE_DELETERELEASE(D3D11Render);
+}
+
