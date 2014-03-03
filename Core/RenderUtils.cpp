@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "RenderUtils.h"
+#include "Definitions.h"
 
-#define CONSTANTBUFFERMETASIZE 16
 
 BOOL CheckConstantBufferSize(UINT Size)
 {

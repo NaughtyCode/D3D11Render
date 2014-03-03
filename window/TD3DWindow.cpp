@@ -56,24 +56,24 @@ int TD3DWindow::CreateD3DWindow(UINT x,UINT y,UINT width,UINT height)
 	WndClass.hCursor		= LoadCursor(NULL, IDC_ARROW);
 	WndClass.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
 	WndClass.lpszMenuName	= MAKEINTRESOURCE(IDC_D3DSHADERDEMO);
-	WndClass.lpszClassName	= L"D3DRenderWindow";
+	WndClass.lpszClassName	= L"GDKRender";
 	WndClass.hIconSm		= LoadIcon( NULL, ( LPCTSTR )IDI_D3DSHADERDEMO );
 
 	if (!RegisterClassEx(&WndClass))
 	{
 		return 0;
 	}
-	hWnd = CreateWindow(L"D3DRenderWindow", L"D3DRender", WS_OVERLAPPEDWINDOW,x,y,width,height,0,0,0,0);
+	hWnd = CreateWindow(L"GDKRender", L"GDK Render", WS_OVERLAPPEDWINDOW,x,y,width,height,0,0,0,0);
 	if (!hWnd)
 	{
 		return 0;
 	}
-
+	
 	D3D11Render = new TRender();
 	D3D11Render->CreateRender(hWnd);
 	ShowWindow(hWnd,1);
 	UpdateWindow(hWnd);
-
+	
 	return 1;
 }
 

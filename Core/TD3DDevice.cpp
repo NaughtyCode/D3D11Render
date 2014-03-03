@@ -6,7 +6,8 @@ TD3DDevice::TD3DDevice(HWND hWnd):
 			IsFullScreen(FALSE),
 			Device(0),
 			SwapChain(0),
-			DeviceContext(0)
+			DeviceContext(0),
+			DXGIFactory(0)
 {
 	
 }
@@ -18,6 +19,10 @@ TD3DDevice::~TD3DDevice()
 
 int TD3DDevice::CreateDevice()
 {
+	BOOL SupportD3D11Features;
+	CheckD3D11Supported(SupportD3D11Features);
+	assert(SupportD3D11Features);
+	
 	HRESULT hr;
 	RECT rect;
 	UINT width,height;
@@ -72,23 +77,109 @@ int TD3DDevice::CreateDevice()
 	{
 		return 0;
 	}
-
+	
 	return 1;
 }
 
-ID3D11Device* TD3DDevice::GetDevice()
+int TD3DDevice::CreateFactory(IDXGIFactory** ppDXGIFactory)
+{
+	HRESULT hr;
+	hr = CreateDXGIFactory(__uuidof(IDXGIFactory),(void**)ppDXGIFactory);
+	if (FAILED(hr))
+	{
+		return 0;
+	}
+	return 1;
+}
+
+BOOL TD3DDevice::TestD3D11Device(UINT AdapterIndex,IDXGIAdapter* Adapter,D3D_FEATURE_LEVEL& OutFeatureLevel)
+{
+	ID3D11Device* D3DDevice = NULL;
+	ID3D11DeviceContext* D3DDeviceContext = NULL;
+	UINT DeviceFlags = D3D11_CREATE_DEVICE_SINGLETHREADED;
+	
+#if defined( DEBUG ) || defined( _DEBUG )
+	DeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+#endif
+	
+	DXGI_ADAPTER_DESC Desc;
+	Adapter->GetDesc(&Desc);
+	
+	D3D_FEATURE_LEVEL RequestedFeatureLevels[] =
+	{
+		D3D_FEATURE_LEVEL_11_0
+	};
+	
+	if(SUCCEEDED(D3D11CreateDevice(
+		Adapter,
+		D3D_DRIVER_TYPE_UNKNOWN,
+		NULL,
+		DeviceFlags,
+		RequestedFeatureLevels,
+		ARRAYSIZE(RequestedFeatureLevels),
+		D3D11_SDK_VERSION,
+		&D3DDevice,
+		&OutFeatureLevel,
+		&D3DDeviceContext
+		)))
+	{
+		DXGI_ADAPTER_DESC AdapterDesc;
+		Adapter->GetDesc(&AdapterDesc);
+		D3DDevice->Release();
+		D3DDeviceContext->Release();
+		return TRUE;
+	}
+	return FALSE;
+}
+
+BOOL TD3DDevice::CheckD3D11Supported(BOOL& SupportD3D11Features)
+{
+	IDXGIFactory* DXGIFactory;
+	CreateFactory(&DXGIFactory);
+	if(!DXGIFactory)
+	{
+		return FALSE;
+	}
+	
+	UINT AdapterIndex = 0;
+	IDXGIAdapter* TempAdapter=0;
+	BOOL bHasD3D11Adapter = FALSE;
+	D3D_FEATURE_LEVEL MaxFeatureLevel;
+	
+	while( (DXGIFactory->EnumAdapters(AdapterIndex,&TempAdapter) ) != DXGI_ERROR_NOT_FOUND)
+	{
+		if(TempAdapter)
+		{
+			MaxFeatureLevel = D3D_FEATURE_LEVEL_11_0;
+			if(TestD3D11Device(AdapterIndex,TempAdapter,MaxFeatureLevel))
+			{
+				SupportD3D11Features = (MaxFeatureLevel == D3D_FEATURE_LEVEL_11_0);
+				bHasD3D11Adapter = TRUE;
+			}
+		}
+		AdapterIndex++;
+	};
+	return bHasD3D11Adapter;
+}
+
+ID3D11Device* TD3DDevice::GetDevice() const
 {
 	return Device;
 }
 
-IDXGISwapChain* TD3DDevice::GetSwapChain()
+IDXGISwapChain* TD3DDevice::GetSwapChain() const
 {
 	return SwapChain;
 }
 
-ID3D11DeviceContext* TD3DDevice::GetDeviceContext()
+ID3D11DeviceContext* TD3DDevice::GetDeviceContext() const
 {
 	return DeviceContext;
+}
+
+IDXGIFactory* TD3DDevice::GetFactory() const
+{
+	return DXGIFactory;
 }
 
 HWND TD3DDevice::GetWindowHandle()
@@ -105,5 +196,6 @@ void TD3DDevice::Release()
 {
 	SAFE_RELEASE(Device);
 	SAFE_RELEASE(SwapChain);
+	SAFE_RELEASE(DXGIFactory);
 	SAFE_RELEASE(DeviceContext);
 }

@@ -27,16 +27,16 @@ int TShader::CompileShaderFromFile(const TCHAR* filename,
 			ID3DBlob** ppBlobOut)
 {
 	HRESULT hr = S_OK;
-	DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
+	DWORD CompileFlags = D3DCOMPILE_ENABLE_STRICTNESS;
 #if defined( DEBUG ) || defined( _DEBUG )
-	dwShaderFlags |= D3DCOMPILE_DEBUG;
+	CompileFlags |= D3DCOMPILE_DEBUG;
 #endif
 	ID3DBlob* pError;
 	hr = D3DX11CompileFromFile(filename,
 			NULL, NULL,
 			entry,
 			shadermodel,
-			dwShaderFlags,
+			CompileFlags,
 			0,
 			NULL,
 			ppBlobOut,

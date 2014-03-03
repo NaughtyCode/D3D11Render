@@ -1,6 +1,22 @@
 #include "stdafx.h"
 #include "Definitions.h"
 
+static D3D11_TEXTURE_ADDRESS_MODE GetTextureAddressMode(TextureAddressModeType Mode)
+{
+	switch(Mode)
+	{
+		case TAM_CLAMP:
+			return D3D11_TEXTURE_ADDRESS_CLAMP;
+		case TAM_MIRROR:
+			return D3D11_TEXTURE_ADDRESS_MIRROR;
+		case TAM_BORDER:
+			return D3D11_TEXTURE_ADDRESS_BORDER;
+		default:
+			return D3D11_TEXTURE_ADDRESS_WRAP;
+	};
+}
+
+
 static D3D11_INPUT_ELEMENT_DESC PositionLayout[] = {
 	{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0,D3D11_INPUT_PER_VERTEX_DATA, 0 },
 };
@@ -34,6 +50,8 @@ UINT GetLayoutArraySize(INPUTTYPE_TYPE type)
 	assert(index<ARRAYSIZE(LayoutArraySize));
 	return LayoutArraySize[index];
 }
+
+
 
 
 
