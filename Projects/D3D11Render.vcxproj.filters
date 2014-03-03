@@ -166,6 +166,9 @@
     <ClInclude Include="..\Core\TConstantBuffer.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\Core\RenderUtils.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="small.ico">
@@ -348,6 +351,9 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TConstantBuffer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\RenderUtils.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>

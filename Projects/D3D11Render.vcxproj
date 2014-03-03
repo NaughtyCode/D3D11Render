@@ -79,6 +79,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Core\MathCore.h" />
+    <ClInclude Include="..\Core\RenderUtils.h" />
     <ClInclude Include="..\Core\TColor.h" />
     <ClInclude Include="..\Core\IShader.h" />
     <ClInclude Include="..\Core\Definitions.h" />
@@ -143,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="..\Core\IShader.cpp" />
     <ClCompile Include="..\Core\Definitions.cpp" />
+    <ClCompile Include="..\Core\RenderUtils.cpp" />
     <ClCompile Include="..\Core\TCamera.cpp" />
     <ClCompile Include="..\Core\TConstantBuffer.cpp" />
     <ClCompile Include="..\Core\TD3DDevice.cpp" />

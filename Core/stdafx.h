@@ -34,8 +34,6 @@
 //effect11 head fiels
 #include <d3dx11effect.h>
 
-void DumpErrorInfo(HRESULT hr);
-
 #ifndef SAFE_DELETE
 #define SAFE_DELETE(p)       { if (p) { delete (p);     (p)=NULL; } }
 #endif
@@ -58,7 +56,6 @@ void DumpErrorInfo(HRESULT hr);
 
 #include "TColor.h"
 #include "MathCore.h"
-
 
 typedef ID3D11Buffer* LPID3D11Buffer;
 

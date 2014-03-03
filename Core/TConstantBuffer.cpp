@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TConstantBuffer.h"
-
+#include "RenderUtils.h"
 
 TConstantBuffer::TConstantBuffer(TD3DDevice* device,UINT Size,UINT NumBuffers) : 
 	Device(device),
@@ -23,10 +23,12 @@ TConstantBuffer::~TConstantBuffer()
 
 void TConstantBuffer::CreateConstantBuffer()
 {
+	BOOL IsOK=CheckConstantBufferSize(MaxSize);
+	assert(IsOK);
+	
 	ID3D11Buffer* CBuffer = NULL;
 	D3D11_BUFFER_DESC BufferDesc;
 	
-	assert(MaxSize <= D3D11_REQ_CONSTANT_BUFFER_ELEMENT_COUNT && (MaxSize % 16) == 0);
 	BufferDesc.ByteWidth = MaxSize;
 	BufferDesc.Usage = D3D11_USAGE_DEFAULT;
 	BufferDesc.CPUAccessFlags = 0;
@@ -35,12 +37,14 @@ void TConstantBuffer::CreateConstantBuffer()
 	
 	ConstantBuffers = new LPID3D11Buffer[NumSubBuffers];
 	CurrentSubBuffer = 0;
+	UINT Size;
+	UINT NewSize;
 	for(UINT i = 0;i < NumSubBuffers;i++)
 	{
 		Device->GetDevice()->CreateBuffer(&BufferDesc, NULL, &ConstantBuffers[i]);
-		UINT size=BufferDesc.ByteWidth / 2;
-		UINT Times=((UINT)(size/16)+1)*16;
-		BufferDesc.ByteWidth = Times;
+		Size = BufferDesc.ByteWidth/2;
+		NewSize = AlignToBlock(Size,16);
+		BufferDesc.ByteWidth = NewSize;
 	}
 	
 	this->Data = new BYTE[MaxSize];
