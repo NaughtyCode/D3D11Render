@@ -59,7 +59,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;..\externel\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Winmm.lib;version.lib;d3dx11.lib;d3d11.lib;d3dx10.lib;d3d10.lib;d3dcompiler.lib;dxguid.lib;DXErr.lib;d3d9.lib;Effects11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Winmm.lib;version.lib;d3dx11.lib;d3d11.lib;d3dx10.lib;d3d10.lib;d3dcompiler.lib;dxguid.lib;DXErr.lib;d3d9.lib;Effects11.lib;dxgi.lib;dinput8.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -97,6 +97,7 @@
     <ClInclude Include="..\Core\TRenderTarget.h" />
     <ClInclude Include="..\Core\TResource.h" />
     <ClInclude Include="..\Core\TShader.h" />
+    <ClInclude Include="..\Core\TShaderState.h" />
     <ClInclude Include="..\Core\TTexture.h" />
     <ClInclude Include="..\Core\TViewPort.h" />
     <ClInclude Include="..\Lua\lapi.h" />
@@ -125,6 +126,7 @@
     <ClInclude Include="..\Lua\lvm.h" />
     <ClInclude Include="..\Lua\lzio.h" />
     <ClInclude Include="..\window\TD3DWindow.h" />
+    <ClInclude Include="..\window\TMouseObject.h" />
     <ClInclude Include="Resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +159,7 @@
     <ClCompile Include="..\Core\TRenderTarget.cpp" />
     <ClCompile Include="..\Core\TResource.cpp" />
     <ClCompile Include="..\Core\TShader.cpp" />
+    <ClCompile Include="..\Core\TShaderState.cpp" />
     <ClCompile Include="..\Core\TTexture.cpp" />
     <ClCompile Include="..\Core\TViewPort.cpp" />
     <ClCompile Include="..\Lua\lapi.c" />
@@ -194,6 +197,7 @@
     <ClCompile Include="..\Lua\lzio.c" />
     <ClCompile Include="..\Main\Entry.cpp" />
     <ClCompile Include="..\window\TD3DWindow.cpp" />
+    <ClCompile Include="..\window\TMouseObject.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

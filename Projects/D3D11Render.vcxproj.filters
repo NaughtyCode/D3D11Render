@@ -169,6 +169,12 @@
     <ClInclude Include="..\Core\RenderUtils.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\Core\TShaderState.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\window\TMouseObject.h">
+      <Filter>Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="small.ico">
@@ -355,6 +361,12 @@
     </ClCompile>
     <ClCompile Include="..\Core\RenderUtils.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TShaderState.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\window\TMouseObject.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
