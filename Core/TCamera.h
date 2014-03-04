@@ -5,25 +5,38 @@
 # pragma once
 #endif
 
+class TBaseCamera
+{
+public:
+    TBaseCamera();
+    TBaseCamera(XMFLOAT3 pos, XMFLOAT3 target);
+    void SetPositions( XMFLOAT3 pos, XMFLOAT3 target);
+    XMMATRIX GetViewMatrix();
+    
+private:
+    XMFLOAT3 LookPosition;
+    XMFLOAT3 LookTarget;
+    XMFLOAT3 Up;
+};
+
 class TCamera
 {
 public:
     TCamera(UINT w,UINT h);
     ~TCamera();
-	void InitializeCamera();
-	XMMATRIX GetMatrix();
+    void InitializeCamera();
+    XMMATRIX GetMatrix();
     XMMATRIX RotationY(FLOAT Angle);
     
 private:
     XMMATRIX World,View,Projection;
     XMVECTOR Eye,LookAt,LookUp;
-    
     UINT     Width,Height;
     FLOAT    FovAngleY;
     FLOAT    AspectRatio;
     FLOAT    NearZ;
     FLOAT    FarZ;
-	FLOAT    Speed;
+    FLOAT    Speed;
 
 };
 

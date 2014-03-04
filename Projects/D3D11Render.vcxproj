@@ -91,6 +91,8 @@
     <ClInclude Include="..\Core\targetver.h" />
     <ClInclude Include="..\Core\TBuffer.h" />
     <ClInclude Include="..\Core\TEffectShader.h" />
+    <ClInclude Include="..\Core\tinystr.h" />
+    <ClInclude Include="..\Core\tinyxml.h" />
     <ClInclude Include="..\Core\TMatrix.h" />
     <ClInclude Include="..\Core\TRender.h" />
     <ClInclude Include="..\Core\TRenderConfig.h" />
@@ -153,6 +155,10 @@
     <ClCompile Include="..\Core\stdafx.cpp" />
     <ClCompile Include="..\Core\TBuffer.cpp" />
     <ClCompile Include="..\Core\TEffectShader.cpp" />
+    <ClCompile Include="..\Core\tinystr.cpp" />
+    <ClCompile Include="..\Core\tinyxml.cpp" />
+    <ClCompile Include="..\Core\tinyxmlerror.cpp" />
+    <ClCompile Include="..\Core\tinyxmlparser.cpp" />
     <ClCompile Include="..\Core\TRender.cpp" />
     <ClCompile Include="..\Core\TRenderConfig.cpp" />
     <ClCompile Include="..\Core\TRenderTarget.cpp" />

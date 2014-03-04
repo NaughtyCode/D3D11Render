@@ -31,7 +31,7 @@ int TResource::CreateResource()
 	Shader->InitConstantBuffer();
 	
 	Texture = new TTexture(Device);
-	result=Texture->CreateTexture(L"..\\Resource\\texture\\distanceclouds.dds");
+	result=Texture->CreateTexture(L"..\\Resource\\texture\\TinyXML2_small.png");
 	assert(result);
 	
 	UINT size;

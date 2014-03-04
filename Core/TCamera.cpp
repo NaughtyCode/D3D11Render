@@ -2,6 +2,40 @@
 #include "TCamera.h"
 #include "TMatrix.h"
 
+
+TBaseCamera::TBaseCamera( ) :
+			LookPosition(XMFLOAT3( 0.0f, 0.0f, 0.0f ) ),
+			LookTarget( XMFLOAT3( 0.0f, 0.0f, 0.0f ) ),
+			Up( XMFLOAT3( 0.0f, 1.0f, 0.0f ) )
+{
+	
+}
+
+TBaseCamera::TBaseCamera( XMFLOAT3 position, XMFLOAT3 target ):
+			LookPosition(position),
+			LookTarget(target),
+			Up(XMFLOAT3(0.0f,1.0f,0.0f))
+{
+	
+}
+
+void TBaseCamera::SetPositions( XMFLOAT3 pos, XMFLOAT3 target )
+{
+	LookPosition = pos;
+	LookTarget = target;
+}
+
+XMMATRIX TBaseCamera::GetViewMatrix( )
+{
+	XMMATRIX view = XMMatrixLookAtLH(
+				XMLoadFloat3(&LookPosition),
+				XMLoadFloat3(&LookTarget),
+				XMLoadFloat3(&Up)
+				);
+	
+	return view;
+}
+
 TCamera::TCamera(UINT w,UINT h):
 			Width(w),
 			Height(h)

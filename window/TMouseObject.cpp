@@ -122,7 +122,7 @@ int TMouseObject::UpdateInputState()
     {
         if( StateObject.Buttons[i] & 0x80 )
         {
-            printf("%d\n",i);
+
         }
     }
     
