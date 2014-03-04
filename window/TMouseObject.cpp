@@ -4,13 +4,12 @@
 
 static DIOBJECTDATAFORMAT GObjectFormats[] =
 {
-    { &GUID_XAxis, FIELD_OFFSET( MouseStateObject, X ),     DIDFT_AXIS   | DIDFT_ANYINSTANCE,                  0 },
-    { &GUID_YAxis, FIELD_OFFSET( MouseStateObject, Y ),     DIDFT_AXIS   | DIDFT_ANYINSTANCE,                  0 },
+    { &GUID_XAxis, FIELD_OFFSET( MouseStateObject, X ),     DIDFT_AXIS   | DIDFT_ANYINSTANCE,                       0 },
+    { &GUID_YAxis, FIELD_OFFSET( MouseStateObject, Y ),     DIDFT_AXIS   | DIDFT_ANYINSTANCE,                       0 },
     { 0,           FIELD_OFFSET( MouseStateObject, Buttons[0] ), DIDFT_BUTTON | DIDFT_ANYINSTANCE,                  0 },
     { 0,           FIELD_OFFSET( MouseStateObject, Buttons[1] ), DIDFT_BUTTON | DIDFT_ANYINSTANCE | DIDFT_OPTIONAL, 0 },
     { 0,           FIELD_OFFSET( MouseStateObject, Buttons[2] ), DIDFT_BUTTON | DIDFT_ANYINSTANCE | DIDFT_OPTIONAL, 0 }
 };
-
 
 static DIDATAFORMAT GMouse =
 {
@@ -119,13 +118,11 @@ int TMouseObject::UpdateInputState()
     X = StateObject.X - point.x;
     Y = StateObject.Y - point.y;
     
-    printf("(%d,%d)\n",X,Y);
-    
     for( int i = 0; i < 3; i++ )
     {
         if( StateObject.Buttons[i] & 0x80 )
         {
-            
+            printf("%d\n",i);
         }
     }
     

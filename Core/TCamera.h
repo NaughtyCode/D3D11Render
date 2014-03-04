@@ -10,23 +10,15 @@ class TCamera
 public:
     TCamera(UINT w,UINT h);
     ~TCamera();
-    void SetView();
-    void SetProjection();
-    XMMATRIX GetTransposeView();
-    XMMATRIX GetTransposeWorld();
-    XMMATRIX GetTransposeProjection();
+	void InitializeCamera();
 	XMMATRIX GetMatrix();
     XMMATRIX RotationY(FLOAT Angle);
     
 private:
-    XMMATRIX World;
-    XMMATRIX View;
-    XMMATRIX Projection;
-    XMVECTOR EyeVector;
-    XMVECTOR AtVector;
-    XMVECTOR UpVector;
-    UINT     Width;
-    UINT     Height;
+    XMMATRIX World,View,Projection;
+    XMVECTOR Eye,LookAt,LookUp;
+    
+    UINT     Width,Height;
     FLOAT    FovAngleY;
     FLOAT    AspectRatio;
     FLOAT    NearZ;

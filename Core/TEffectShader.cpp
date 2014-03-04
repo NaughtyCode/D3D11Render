@@ -11,9 +11,13 @@ TEffectShader::TEffectShader(TD3DDevice* device):Device(device),
 
 TEffectShader::~TEffectShader(void)
 {
+	
 }
 
-int TEffectShader::CompileShaderFromFile(const TCHAR* szFileName,LPCSTR szShaderModel, ID3DBlob** ppBlobOut)
+
+int TEffectShader::CompileShaderFromFile(const TCHAR* szFileName,
+				LPCSTR szShaderModel,
+				ID3DBlob** ppBlobOut)
 {
 	HRESULT hr = S_OK;
 	DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
@@ -21,7 +25,17 @@ int TEffectShader::CompileShaderFromFile(const TCHAR* szFileName,LPCSTR szShader
 	dwShaderFlags |= D3DCOMPILE_DEBUG;
 #endif
 	ID3DBlob* pError;
-	hr = D3DX11CompileFromFile(szFileName, NULL, NULL, NULL, szShaderModel,dwShaderFlags, 0, NULL, ppBlobOut, &pError, NULL);
+	hr = D3DX11CompileFromFile(szFileName,
+				NULL,
+				NULL,
+				NULL,
+				szShaderModel,
+				dwShaderFlags,
+				0,
+				NULL,
+				ppBlobOut,
+				&pError,
+				NULL);
 	if (FAILED(hr))
 	{
 		if (pError != NULL)
@@ -38,7 +52,12 @@ int TEffectShader::CreateEffectShader(const TCHAR* szFileName)
 	if (!CompileShaderFromFile(szFileName,"fx_5_0", &EffectBuffer)){
 		return 0;
 	}
-	HRESULT hr=D3DX11CreateEffectFromMemory(EffectBuffer->GetBufferPointer(),EffectBuffer->GetBufferSize(),0,Device->GetDevice(),&Effect);
+	HRESULT hr=D3DX11CreateEffectFromMemory(EffectBuffer->GetBufferPointer(),
+					EffectBuffer->GetBufferSize(),
+					0,
+					Device->GetDevice(),
+					&Effect);
+	
 	if (FAILED(hr)){
 		return 0;
 	}

@@ -8,17 +8,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
-    <Filter Include="Main">
-      <UniqueIdentifier>{06db2bf4-f649-4a9b-9c5f-d04391e0a18b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="shader">
       <UniqueIdentifier>{89c8f082-ffa7-4fbc-b0c1-4541c525ff4b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Math">
       <UniqueIdentifier>{cd2ddc5b-6791-4f44-b93f-49c88a52cf65}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Window">
-      <UniqueIdentifier>{615ac097-d264-4bd9-81ab-ccdba2a650d4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Lua">
       <UniqueIdentifier>{5b6b233f-8337-44bf-bcca-0caad127aa61}</UniqueIdentifier>
@@ -154,9 +148,6 @@
     <ClInclude Include="..\Lua\lzio.h">
       <Filter>Lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\window\TD3DWindow.h">
-      <Filter>Window</Filter>
-    </ClInclude>
     <ClInclude Include="..\Core\MathCore.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -173,13 +164,13 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\window\TMouseObject.h">
-      <Filter>Window</Filter>
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\window\TD3DWindow.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="small.ico">
-      <Filter>resource</Filter>
-    </None>
     <None Include="render.ico">
       <Filter>resource</Filter>
     </None>
@@ -247,9 +238,6 @@
     </ClCompile>
     <ClCompile Include="..\Core\TCamera.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Main\Entry.cpp">
-      <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="..\Lua\lapi.c">
       <Filter>Lua</Filter>
@@ -350,9 +338,6 @@
     <ClCompile Include="..\Lua\lzio.c">
       <Filter>Lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\window\TD3DWindow.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
     <ClCompile Include="..\Core\Definitions.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -365,8 +350,14 @@
     <ClCompile Include="..\Core\TShaderState.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\Main\Entry.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\window\TD3DWindow.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
     <ClCompile Include="..\window\TMouseObject.cpp">
-      <Filter>Window</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

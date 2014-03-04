@@ -5,9 +5,13 @@
 # pragma once
 #endif
 
-
-
-
+typedef struct TMatrixData
+{
+	FLOAT m11, m12, m13, m14;
+	FLOAT m21, m22, m23, m24;
+	FLOAT m31, m32, m33, m34;
+	FLOAT m41, m42, m43, m44;
+}TMatrixData;
 
 class TVector 
 {

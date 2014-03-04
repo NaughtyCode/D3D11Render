@@ -31,7 +31,7 @@ int TResource::CreateResource()
 	Shader->InitConstantBuffer();
 	
 	Texture = new TTexture(Device);
-	result=Texture->CreateTexture(L"..\\Resource\\texture\\metal.dds");
+	result=Texture->CreateTexture(L"..\\Resource\\texture\\distanceclouds.dds");
 	assert(result);
 	
 	UINT size;

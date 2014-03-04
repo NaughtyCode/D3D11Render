@@ -141,7 +141,6 @@
     <None Include="..\Resource\shaders\primitivevsshader.hlsl" />
     <None Include="..\Resource\shaders\TexturePSShader.hlsl" />
     <None Include="render.ico" />
-    <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Core\IShader.cpp" />
