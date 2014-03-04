@@ -3,9 +3,7 @@ SamplerState LinearSample : register( s0 );
 
 cbuffer ConstantBuffer : register( b0 )
 {
-    float4x4 View;
-    float4x4 Projection;
-    float4x4 World;
+    float4x4 GTrans;
 };
 
 struct VS_INPUT
@@ -22,16 +20,14 @@ struct PS_INPUT
 
 PS_INPUT VS( VS_INPUT input )
 {
-    PS_INPUT output;
-    output.Pos = mul( input.Pos, World );
-    output.Pos = mul( output.Pos, View );
-    output.Pos = mul( output.Pos, Projection );
-    output.Tex = input.Tex;
-    
-    return output;
+    PS_INPUT Output;
+    Output.Pos = mul( input.Pos,GTrans);
+    Output.Tex = input.Tex;
+    return Output;
 }
 
 float4 PS( PS_INPUT input) : SV_Target
 {
     return Diffuse.Sample( LinearSample, input.Tex );
 }
+

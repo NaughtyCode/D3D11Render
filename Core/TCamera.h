@@ -15,6 +15,7 @@ public:
     XMMATRIX GetTransposeView();
     XMMATRIX GetTransposeWorld();
     XMMATRIX GetTransposeProjection();
+	XMMATRIX GetMatrix();
     XMMATRIX RotationY(FLOAT Angle);
     
 private:
@@ -30,6 +31,8 @@ private:
     FLOAT    AspectRatio;
     FLOAT    NearZ;
     FLOAT    FarZ;
+	FLOAT    Speed;
+
 };
 
 

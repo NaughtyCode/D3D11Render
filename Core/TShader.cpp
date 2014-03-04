@@ -145,14 +145,11 @@ void TShader::PostEffect()
 	TCamera* camera;
 	TCommonShaderResource Data;
 	ID3D11DeviceContext* DeviceContext;
-	
 	DeviceContext = Device->GetDeviceContext();
+
 	camera = g_Render->GetCamera();
-	
-	Data.View = camera->GetTransposeView();
-	Data.World = camera->RotationY(0.38f);
-	Data.Projection = camera->GetTransposeProjection();
-	
+	Data.matrix = camera->GetMatrix();
+
 	ShaderResource->UpdateBufferData(&Data,0,sizeof(Data));
 	ShaderResource->UpdateConstantBufferResource(TRUE);
 	ShaderResource->PostConstantBuffer(0,1);

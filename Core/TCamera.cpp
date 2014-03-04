@@ -10,9 +10,9 @@ TCamera::TCamera(UINT w,UINT h):
 			NearZ(0.01f),
 			FarZ(100.0f)
 {
-	EyeVector = XMVectorSet( 0.0f, 3.0f, -6.0f, 0.0f );
-	AtVector = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
-	UpVector = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
+	EyeVector = XMVectorSet( 0.0f, 3.0f, -12.0f, 0.0f );
+	AtVector  = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
+	UpVector  = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
 	SetProjection();
 	SetView();
 }
@@ -55,6 +55,12 @@ XMMATRIX TCamera::RotationY(FLOAT Angle)
 	return world;
 }
 
-
-
+XMMATRIX TCamera::GetMatrix()
+{
+	XMMATRIX m1,m2,m3;
+	m1=XMMatrixTranspose(World);
+	m2=XMMatrixTranspose(View);
+	m3=XMMatrixTranspose(Projection);
+	return (m3*m2)*m1;
+}
 
