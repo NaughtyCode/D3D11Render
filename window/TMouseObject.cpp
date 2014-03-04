@@ -4,11 +4,11 @@
 
 static DIOBJECTDATAFORMAT GObjectFormats[] =
 {
-    { &GUID_XAxis, FIELD_OFFSET( MouseStateObject, lAxisX ),           DIDFT_AXIS   | DIDFT_ANYINSTANCE,                  0 },
-    { &GUID_YAxis, FIELD_OFFSET( MouseStateObject, lAxisY ),           DIDFT_AXIS   | DIDFT_ANYINSTANCE,                  0 },
-    { 0,           FIELD_OFFSET( MouseStateObject, abButtons[0] ),     DIDFT_BUTTON | DIDFT_ANYINSTANCE,                  0 },
-    { 0,           FIELD_OFFSET( MouseStateObject, abButtons[1] ),     DIDFT_BUTTON | DIDFT_ANYINSTANCE | DIDFT_OPTIONAL, 0 },
-    { 0,           FIELD_OFFSET( MouseStateObject, abButtons[2] ),     DIDFT_BUTTON | DIDFT_ANYINSTANCE | DIDFT_OPTIONAL, 0 }
+    { &GUID_XAxis, FIELD_OFFSET( MouseStateObject, X ),     DIDFT_AXIS   | DIDFT_ANYINSTANCE,                  0 },
+    { &GUID_YAxis, FIELD_OFFSET( MouseStateObject, Y ),     DIDFT_AXIS   | DIDFT_ANYINSTANCE,                  0 },
+    { 0,           FIELD_OFFSET( MouseStateObject, Buttons[0] ), DIDFT_BUTTON | DIDFT_ANYINSTANCE,                  0 },
+    { 0,           FIELD_OFFSET( MouseStateObject, Buttons[1] ), DIDFT_BUTTON | DIDFT_ANYINSTANCE | DIDFT_OPTIONAL, 0 },
+    { 0,           FIELD_OFFSET( MouseStateObject, Buttons[2] ), DIDFT_BUTTON | DIDFT_ANYINSTANCE | DIDFT_OPTIONAL, 0 }
 };
 
 
@@ -112,18 +112,18 @@ int TMouseObject::UpdateInputState()
     if( !bInitialized )
     {
         bInitialized = TRUE;
-        point.x = StateObject.lAxisX;
-        point.y = StateObject.lAxisY;
+        point.x = StateObject.X;
+        point.y = StateObject.Y;
     }
     
-    X = StateObject.lAxisX - point.x;
-    Y = StateObject.lAxisY - point.y;
+    X = StateObject.X - point.x;
+    Y = StateObject.Y - point.y;
     
     printf("(%d,%d)\n",X,Y);
     
     for( int i = 0; i < 3; i++ )
     {
-        if( StateObject.abButtons[i] & 0x80 )
+        if( StateObject.Buttons[i] & 0x80 )
         {
             
         }

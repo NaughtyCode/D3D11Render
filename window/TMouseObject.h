@@ -7,10 +7,10 @@
 
 typedef struct MouseStateObject
 {
-	LONG lAxisX;
-	LONG lAxisY;
-	BYTE abButtons[3];
-	BYTE bPadding;
+	LONG X;
+	LONG Y;
+	BYTE Buttons[3];
+	BYTE Padding;
 }MouseStateObject;
 
 
