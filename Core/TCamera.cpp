@@ -3,6 +3,7 @@
 #include "TMatrix.h"
 
 
+
 TBaseCamera::TBaseCamera( ) :
 			LookPosition(XMFLOAT3( 0.0f, 0.0f, 0.0f ) ),
 			LookTarget( XMFLOAT3( 0.0f, 0.0f, 0.0f ) ),
@@ -36,9 +37,8 @@ XMMATRIX TBaseCamera::GetViewMatrix( )
 	return view;
 }
 
-TCamera::TCamera(UINT w,UINT h):
-			Width(w),
-			Height(h)
+TCamera::TCamera(HWND hWnd):
+				WindowHandle(hWnd)
 {
 	this->InitializeCamera();
 }
@@ -50,6 +50,11 @@ TCamera::~TCamera()
 
 void TCamera::InitializeCamera()
 {
+	RECT rc;
+	GetClientRect(WindowHandle,&rc);
+	Width = rc.right - rc.left;
+	Height = rc.bottom - rc.top;
+
 	World = XMMatrixIdentity();
 	Eye = XMVectorSet( 0.0f, 3.0f, -12.0f, 0.0f );
 	LookAt  = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
@@ -82,3 +87,7 @@ XMMATRIX TCamera::GetMatrix()
 	return result*rotate;
 }
 
+void TCamera::Release()
+{
+
+}

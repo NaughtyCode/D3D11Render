@@ -1,8 +1,12 @@
 #include "stdafx.h"
 #include "TShader.h"
 #include "TRender.h"
+#include "Core.h"
 
-extern TRender* g_Render; 
+extern TRender* GRender;
+extern TCamera* GCamera;
+
+
 
 TShader::TShader(TD3DDevice* device):Device(device),
 				InputLayout(0),
@@ -142,14 +146,12 @@ int TShader::CreateConstantBuffer()
 
 void TShader::PostEffect()
 {
-	TCamera* camera;
 	TCommonShaderResource Data;
 	ID3D11DeviceContext* DeviceContext;
 	DeviceContext = Device->GetDeviceContext();
-
-	camera = g_Render->GetCamera();
-	Data.matrix = camera->GetMatrix();
-
+	
+	Data.matrix = GCamera->GetMatrix();
+	
 	ShaderResource->UpdateBufferData(&Data,0,sizeof(Data));
 	ShaderResource->UpdateConstantBufferResource(TRUE);
 	ShaderResource->PostConstantBuffer(0,1);

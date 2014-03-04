@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Core\Core.h" />
     <ClInclude Include="..\Core\MathCore.h" />
     <ClInclude Include="..\Core\RenderUtils.h" />
     <ClInclude Include="..\Core\TColor.h" />
@@ -145,6 +146,7 @@
     <None Include="render.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Core\Core.cpp" />
     <ClCompile Include="..\Core\IShader.cpp" />
     <ClCompile Include="..\Core\Definitions.cpp" />
     <ClCompile Include="..\Core\RenderUtils.cpp" />

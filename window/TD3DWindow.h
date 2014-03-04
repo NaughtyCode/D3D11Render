@@ -29,7 +29,6 @@ private:
     HWND          WindowHandle;
     UINT          Width;
     UINT          Height;
-    TRender*      D3D11Render;
 	TMouseObject* MouseObject;
 };
 

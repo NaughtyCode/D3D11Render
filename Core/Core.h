@@ -5,14 +5,15 @@
 # pragma once
 #endif
 
+#include "TRender.h"
+#include "TCamera.h"
 
+extern TRender* GRender;
+extern TCamera* GCamera;
 
+void CreateRender(HWND hWnd);
 
-
-
-
-
-
+void DestroyRender();
 
 
 

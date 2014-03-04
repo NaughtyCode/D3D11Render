@@ -19,29 +19,27 @@ class TViewPort;
 class TShader;
 class TResource;
 class TRenderConfig;
-class TCamera;
 
 
 
 class TRender
 {
 public:
-	TRender();
-	~TRender();
-	int CreateRender(HWND hWnd);
-	TCamera* GetCamera();
-	void RenderFrame();
-
-	void Release();
+    TRender();
+    ~TRender();
+    int CreateRender(HWND hWnd);
+    void RenderFrame();
+    void Release();
+    
 private:
-	TD3DDevice*     Device;
-	TRenderTarget*  RenderTarget;
-	TViewPort*      ViewPort;
-	TResource*      Resource;
-	TCamera*        Camera;
+    TD3DDevice*     Device;
+    TRenderTarget*  RenderTarget;
+    TViewPort*      ViewPort;
+    TResource*      Resource;
 };
 
-extern TRender* g_Render;
+
+
 
 
 

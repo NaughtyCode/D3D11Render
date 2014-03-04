@@ -12,7 +12,8 @@ public:
     TBaseCamera(XMFLOAT3 pos, XMFLOAT3 target);
     void SetPositions( XMFLOAT3 pos, XMFLOAT3 target);
     XMMATRIX GetViewMatrix();
-    
+    void Release();
+
 private:
     XMFLOAT3 LookPosition;
     XMFLOAT3 LookTarget;
@@ -22,13 +23,15 @@ private:
 class TCamera
 {
 public:
-    TCamera(UINT w,UINT h);
+    TCamera(HWND hWnd);
     ~TCamera();
     void InitializeCamera();
     XMMATRIX GetMatrix();
     XMMATRIX RotationY(FLOAT Angle);
-    
+	void Release();
+
 private:
+	HWND     WindowHandle;
     XMMATRIX World,View,Projection;
     XMVECTOR Eye,LookAt,LookUp;
     UINT     Width,Height;

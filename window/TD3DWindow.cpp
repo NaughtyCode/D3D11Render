@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "TD3DWindow.h"
+#include "Core.h"
 
-extern TRender* g_Render;
+extern TRender* GRender;
 
 LRESULT CALLBACK RenderWindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -17,7 +18,7 @@ LRESULT CALLBACK RenderWindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 		break;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
-		g_Render->RenderFrame();
+		GRender->RenderFrame();
 		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:
@@ -33,7 +34,6 @@ TD3DWindow::TD3DWindow():
 			WindowHandle(0),
 			Width(0),
 			Height(0),
-			D3D11Render(0),
 			MouseObject(0)
 {
 	
@@ -71,8 +71,8 @@ int TD3DWindow::CreateD3DWindow(UINT x,UINT y,UINT width,UINT height)
 		return 0;
 	}
 	
-	D3D11Render = new TRender();
-	D3D11Render->CreateRender(WindowHandle);
+	CreateRender(WindowHandle);
+	
 	ShowWindow(WindowHandle,1);
 	UpdateWindow(WindowHandle);
 	
@@ -123,7 +123,7 @@ void TD3DWindow::EnterLoop()
 		}
 		else
 		{
-			D3D11Render->RenderFrame();
+			GRender->RenderFrame();
 		}
 
 		MouseObject->UpdateInputState();
@@ -133,6 +133,5 @@ void TD3DWindow::EnterLoop()
 void TD3DWindow::Release()
 {
 	SAFE_DELETERELEASE(MouseObject);
-	SAFE_DELETERELEASE(D3D11Render);
 }
 
