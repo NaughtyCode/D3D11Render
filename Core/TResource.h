@@ -18,7 +18,10 @@ class TBuffer;
 class TEffectShader;
 class TTexture;
 
-
+typedef std::vector< TShader* >       ShaderArrayType;
+typedef std::vector< TBuffer* >       BufferArrayType;
+typedef std::vector< TEffectShader* > EffectArrayType;
+typedef std::vector< TTexture* >      TextureArrayType;
 
 class TResource
 {
@@ -26,6 +29,8 @@ public:
     TResource(TD3DDevice* device);
     ~TResource();
     int CreateResource(const TCHAR* vsfile,const TCHAR* psfile);
+    void CreateResource(const TCHAR* resourcefile);
+    void CreateResource(const char* resourcefile);
     int CreateResource();
     void PostResource();
     void Release();
@@ -36,10 +41,12 @@ private:
     TBuffer*        Buffer;
     TEffectShader*  EffectShader;
     TTexture*       Texture;
+    
+    ShaderArrayType   Shaders;
+    BufferArrayType   Buffers;
+    EffectArrayType   EffectShaders;
+    TextureArrayType  Textures;
 };
-
-
-
 
 #endif
 

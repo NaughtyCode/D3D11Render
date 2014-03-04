@@ -31,7 +31,7 @@ int TResource::CreateResource()
 	Shader->InitConstantBuffer();
 	
 	Texture = new TTexture(Device);
-	result=Texture->CreateTexture(L"..\\Resource\\texture\\distanceclouds.dds");
+	result=Texture->CreateTexture(L"..\\Resource\\texture\\distant_cloud_higher.dds");
 	assert(result);
 	
 	UINT size;
@@ -44,6 +44,16 @@ int TResource::CreateResource()
 	Buffer->CreateIndexBuffer(GetBoxIndexData(),size,sizeof(WORD),false);
 	
 	return 1;
+}
+
+void TResource::CreateResource(const TCHAR* resourcefile)
+{
+	
+}
+
+void TResource::CreateResource(const char* resourcefile)
+{
+	
 }
 
 void TResource::PostResource()

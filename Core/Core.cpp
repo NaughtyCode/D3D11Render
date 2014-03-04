@@ -15,11 +15,14 @@ TCamera* GCamera=NULL;
 
 void CreateRender(HWND hWnd)
 {
+	assert(!GCamera);
+	GCamera = new TCamera(hWnd);
+	assert(GCamera);
+
 	assert(!GRender);
 	GRender = new TRender();
 	GRender->CreateRender(hWnd);
-	assert(!GCamera);
-	GCamera = new TCamera(hWnd);
+	assert(GRender);
 }
 
 

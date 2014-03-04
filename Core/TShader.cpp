@@ -15,6 +15,7 @@ TShader::TShader(TD3DDevice* device):Device(device),
 				VertexShaderBuffer(0),
 				PixelShaderBuffer(0),
 				ShaderResource(0),
+				DeviceContext(Device->GetDeviceContext()),
 				LayoutType(LAYOUTTYPE_UNKNOWN)
 {
 	
@@ -147,8 +148,6 @@ int TShader::CreateConstantBuffer()
 void TShader::PostEffect()
 {
 	TCommonShaderResource Data;
-	ID3D11DeviceContext* DeviceContext;
-	DeviceContext = Device->GetDeviceContext();
 	
 	Data.matrix = GCamera->GetMatrix();
 	

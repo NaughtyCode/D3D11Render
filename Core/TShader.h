@@ -58,7 +58,9 @@ private:
 	ID3DBlob*               VertexShaderBuffer;
 	ID3DBlob*               PixelShaderBuffer;
 	TConstantBuffer*        ShaderResource;
+	ID3D11DeviceContext*    DeviceContext;
 	INPUTTYPE_TYPE          LayoutType;
+	
 };
 
 #endif
