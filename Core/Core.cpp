@@ -4,10 +4,11 @@ class TRender;
 class TCamera;
 class TD3DDevice;
 
-TRender*    GRender         = NULL;
-TCamera*    GCamera         = NULL;
-TD3DDevice* GDevice         = NULL;
-char*       ResourceRoot    = "..\\Resources\\";
+TRender*     GRender                   = NULL;
+TCamera*     GCamera                   = NULL;
+TD3DDevice*  GDevice                   = NULL;
+char*        ASCIIResourceDirectory    = "..\\Resource\\";
+wchar_t*     WCHARResourceDirectory    = L"..\\Resource\\";
 
 void CreateRender(HWND hWnd)
 {
@@ -30,8 +31,20 @@ void CreateRender(HWND hWnd)
 
 void DestroyRender()
 {
-	SAFE_DELETERELEASE(GCamera);
-	SAFE_DELETERELEASE(GDevice);
-	SAFE_DELETERELEASE(GRender);
+	SAFE_RELEASEDELETE(GCamera);
+	SAFE_RELEASEDELETE(GDevice);
+	SAFE_RELEASEDELETE(GRender);
+}
+
+void GetResourceDirASCII(std::string& FileName)
+{
+	std::string root(ASCIIResourceDirectory);
+	FileName=root+FileName;
+}
+
+void GetResourceDirWCHAR(std::wstring& FileName)
+{
+	std::wstring root(WCHARResourceDirectory);
+	FileName=root+FileName;
 }
 

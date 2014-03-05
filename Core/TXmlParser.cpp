@@ -21,11 +21,15 @@ void TXmlParser::ParseFile(const char* FileName)
 		TiXmlAttribute* Attribute;
 		TiXmlElement*   Element;
 		
-		for( Node = Doc.LastChild();Node!=0;Node = Node->PreviousSibling() )
+		for( Node = Doc.LastChild();
+		    Node!=0;
+		    Node = Node->PreviousSibling() )
 		{
-			for( Element = Node->FirstChildElement();Element!=0;Element = Element->NextSiblingElement() )
+			for( Element = Node->FirstChildElement();
+			    Element!=0;
+			    Element = Element->NextSiblingElement() )
 			{
-				printf("-------------%s---------------\n",Element->Value());
+				printf("-------%s-------\n",Element->Value());
 				Attribute = Element->FirstAttribute();
 				while(Attribute)
 				{
@@ -51,9 +55,13 @@ void TXmlParser::ParseText(const char* Text)
 		TiXmlAttribute* Attribute;
 		TiXmlElement*   Element;
 		
-		for( Node = Doc.LastChild();Node!=0;Node = Node->PreviousSibling() )
+		for( Node = Doc.LastChild();
+		    Node!=0;
+		    Node = Node->PreviousSibling() )
 		{
-			for( Element = Node->FirstChildElement();Element!=0;Element = Element->NextSiblingElement() )
+			for( Element = Node->FirstChildElement();
+			    Element!=0;
+			    Element = Element->NextSiblingElement() )
 			{
 				printf("-------------%s---------------\n",Element->Value());
 				Attribute = Element->FirstAttribute();

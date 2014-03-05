@@ -18,15 +18,18 @@ int TResource::CreateResource()
 {
 	int result;
 	Shader=new TShader();
-	
-	TCHAR* filename=L"..\\Resource\\shaders\\MainShader.hlsl";
+	std::string FileName;
+	FileName="shaders\\MainShader.hlsl";
+	GetResourceDirASCII(FileName);
 	Shader->SetLayoutType(LAYOUTTYPE_POSITIONTEX0);
-	Shader->CreateVertexShader(filename,"VS","vs_5_0");
-	Shader->CreatePixelShader(filename,"PS","ps_5_0");
+	Shader->CreateVertexShader(FileName.c_str(),"VS","vs_5_0");
+	Shader->CreatePixelShader(FileName.c_str(),"PS","ps_5_0");
 	Shader->InitConstantBuffer();
 	
 	Texture = new TTexture();
-	result=Texture->CreateTexture(L"..\\Resource\\textures\\distant_cloud_higher.dds");
+	FileName="textures\\distant_cloud_higher.dds";
+	GetResourceDirASCII(FileName);
+	result=Texture->CreateTexture(FileName.c_str());
 	assert(result);
 	
 	UINT size;
@@ -60,8 +63,8 @@ void TResource::PostResource()
 
 void TResource::Release()
 {
-	SAFE_DELETERELEASE(Shader);
-	SAFE_DELETERELEASE(Texture);
-	SAFE_DELETERELEASE(Buffer);
-	SAFE_DELETERELEASE(EffectShader);
+	SAFE_RELEASEDELETE(Shader);
+	SAFE_RELEASEDELETE(Texture);
+	SAFE_RELEASEDELETE(Buffer);
+	SAFE_RELEASEDELETE(EffectShader);
 }

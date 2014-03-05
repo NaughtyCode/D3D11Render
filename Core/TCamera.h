@@ -26,7 +26,7 @@ public:
     TCamera(HWND hWnd);
     ~TCamera();
     void InitializeCamera();
-    XMMATRIX GetMatrix();
+    XMMATRIX GetWorldViewProMatrix();
     XMMATRIX RotationY(FLOAT Angle);
 	void Release();
 

@@ -16,6 +16,7 @@ extern char*           ResourceRoot;
 void CreateRender(HWND hWnd);
 void DestroyRender();
 
-
+void GetResourceDirASCII(std::string& FileName);
+void GetResourceDirWCHAR(std::wstring& FileName);
 
 #endif

@@ -10,10 +10,10 @@ TTexture::~TTexture(void)
 {
 }
 
-int TTexture::CreateTexture(const TCHAR* TextureFileName)
+int TTexture::CreateTexture(const char* TextureFileName)
 {
 	HRESULT hr;
-	hr=D3DX11CreateShaderResourceViewFromFile( GDevice->GetDevice(),
+	hr=D3DX11CreateShaderResourceViewFromFileA( GDevice->GetDevice(),
 		TextureFileName,
 		NULL,
 		NULL, 

@@ -41,6 +41,6 @@ void TRender::RenderFrame()
 
 void TRender::Release()
 {
-	SAFE_DELETERELEASE(RenderTarget);
-	SAFE_DELETERELEASE(Resource);
+	SAFE_RELEASEDELETE(RenderTarget);
+	SAFE_RELEASEDELETE(Resource);
 }

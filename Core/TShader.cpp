@@ -4,16 +4,17 @@
 #include "Core.h"
 
 TShader::TShader():
-				InputLayout(0),
-				VertexShader(0),
-				PixelShader(0),
-				VertexShaderBuffer(0),
-				PixelShaderBuffer(0),
-				ShaderResource(0),
-				DeviceContext(GDevice->GetDeviceContext()),
-				LayoutType(LAYOUTTYPE_UNKNOWN)
+		InputLayout(0),
+		VertexShader(0),
+		PixelShader(0),
+		VertexShaderBuffer(0),
+		PixelShaderBuffer(0),
+		ShaderResource(0),
+		LayoutType(LAYOUTTYPE_UNKNOWN)
 {
-	
+
+	DeviceContext=GDevice->GetDeviceContext();
+
 }
 
 TShader::~TShader()
@@ -21,7 +22,7 @@ TShader::~TShader()
 	
 }
 
-int TShader::CompileShaderFromFile(const TCHAR* filename,
+int TShader::CompileShaderFromFile(const char* filename,
 			LPCSTR entry,
 			LPCSTR shadermodel,
 			ID3DBlob** ppBlobOut)
@@ -32,7 +33,7 @@ int TShader::CompileShaderFromFile(const TCHAR* filename,
 	CompileFlags |= D3DCOMPILE_DEBUG;
 #endif
 	ID3DBlob* pError;
-	hr = D3DX11CompileFromFile(filename,
+	hr = D3DX11CompileFromFileA(filename,
 			NULL, NULL,
 			entry,
 			shadermodel,
@@ -56,7 +57,7 @@ int TShader::CompileShaderFromFile(const TCHAR* filename,
 	return 1;
 }
 
-int TShader::CreateVertexShader(const TCHAR* filename,
+int TShader::CreateVertexShader(const char* filename,
 			const char* entry,
 			const char* shadermodel)
 {
@@ -101,7 +102,7 @@ int TShader::CreateInputLayout()
 	return 1;
 }
 
-int TShader::CreatePixelShader(const TCHAR* filename,
+int TShader::CreatePixelShader(const char* filename,
 			       const char* entry,
 			       const char* shadermodel)
 {
@@ -144,7 +145,7 @@ void TShader::PostEffect()
 {
 	TCommonShaderResource Data;
 	
-	Data.matrix = GCamera->GetMatrix();
+	Data.matrix = GCamera->GetWorldViewProMatrix();
 	
 	ShaderResource->UpdateBufferData(&Data,0,sizeof(Data));
 	ShaderResource->UpdateConstantBufferResource(TRUE);
@@ -178,7 +179,7 @@ void TShader::Release()
 	SAFE_RELEASE(PixelShader);
 	SAFE_RELEASE(VertexShaderBuffer);
 	SAFE_RELEASE(PixelShaderBuffer);
-	SAFE_DELETERELEASE(ShaderResource);
+	SAFE_RELEASEDELETE(ShaderResource);
 	SAFE_RELEASE(InputLayout);
 }
 

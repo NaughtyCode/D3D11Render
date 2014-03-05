@@ -6,7 +6,7 @@ class TD3DWindow;
 int main()
 {
 	TD3DWindow Window;
-	if(Window.CreateD3DWindow(0,0,1440,900))
+	if(Window.CreateD3DWindow(0,0,1920,1080))
 	{
 		Window.EnterLoop();
 	}

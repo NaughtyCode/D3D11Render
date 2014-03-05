@@ -12,7 +12,7 @@ class TTexture
 public:
     TTexture();
     virtual ~TTexture(void);
-    int CreateTexture(const TCHAR* TextureFileName);
+    int CreateTexture(const char* TextureFileName);
     int CreateSampler();
     void PostTexture();
     void Release();

@@ -72,7 +72,7 @@ XMMATRIX TCamera::RotationY(FLOAT Angle)
 	return m;
 }
 
-XMMATRIX TCamera::GetMatrix()
+XMMATRIX TCamera::GetWorldViewProMatrix()
 {
 	XMMATRIX world,
 		view,

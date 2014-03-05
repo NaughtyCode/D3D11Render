@@ -25,16 +25,16 @@ class TShader:public IShader
 public:
 	TShader();
 	~TShader();
-	int CompileShaderFromFile(const TCHAR* filename,
+	int CompileShaderFromFile(const char* filename,
 				LPCSTR entry,
 				LPCSTR shadermodel,
 				ID3DBlob** ppBlobOut);
 	
-	int CreateVertexShader(const TCHAR* filename,
+	int CreateVertexShader(const char* filename,
 			       const char* entry,
 			       const char* shadermodel);
 	
-	int CreatePixelShader(const TCHAR* filename,
+	int CreatePixelShader(const char* filename,
 			      const char* entry,
 			      const char* shadermodel);
 	

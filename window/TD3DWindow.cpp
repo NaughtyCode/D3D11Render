@@ -130,6 +130,6 @@ void TD3DWindow::EnterLoop()
 
 void TD3DWindow::Release()
 {
-	SAFE_DELETERELEASE(MouseObject);
+	SAFE_RELEASEDELETE(MouseObject);
 }
 

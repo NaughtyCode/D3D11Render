@@ -52,8 +52,8 @@
 #define SAFE_RELEASE(p)           { if (p) { (p)->Release(); (p)=NULL; } }
 #endif
 
-#ifndef SAFE_DELETERELEASE
-#define SAFE_DELETERELEASE(p)     { if (p) { (p)->Release(); delete p;(p)=NULL; } }
+#ifndef SAFE_RELEASEDELETE
+#define SAFE_RELEASEDELETE(p)     { if (p) { (p)->Release(); delete p;(p)=NULL; } }
 #endif
 
 #ifndef FORCEINLINE
