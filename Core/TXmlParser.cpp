@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TXmlParser.h"
 
-TXmlParser::TXmlParser()
+TXmlParser::TXmlParser():IsOk(FALSE)
 {
 	
 }
@@ -10,7 +10,6 @@ TXmlParser::~TXmlParser()
 {
 	
 }
-
 
 void TXmlParser::ParseFile(const char* FileName)
 {
@@ -38,10 +37,12 @@ void TXmlParser::ParseFile(const char* FileName)
 				}
 			}
 		}
+		IsOk=TRUE;
 	}
 	else
 	{
 		printf("¼ÓÔØÎÄ¼þ%sÊ§°Ü\n",FileName);
+		IsOk=FALSE;
 	}
 }
 
@@ -72,9 +73,19 @@ void TXmlParser::ParseText(const char* Text)
 				}
 			}
 		}
+		IsOk=TRUE;
 	}
 	else
 	{
 		printf("½âÎö×Ö·û´®Ê§°Ü\n%s\n",Text);
+		IsOk=FALSE;
 	}
+}
+
+
+
+BOOL TXmlParser::NoError()
+{
+	
+	return IsOk;
 }

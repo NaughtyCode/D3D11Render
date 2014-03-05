@@ -1,21 +1,23 @@
 <Entity Name="EntityBox">
-    <VertexShader
+    <Shader
         FileName="Shaders/MainShader.hlsl"
         Profile="vs_5_0"
         Entry="VS"
+        Type="vs"
     />
     
-    <PixelShader
+    <Shader
         FileName="Shaders/MainShader.hlsl"
         Profile="ps_5_0"
         Entry="PS"
+        Type="ps"
     />
     
     <Model
         FileName="Models/null.mdl"
     />
     
-    <Textture
+    <Texture
         FileName="Texture/metal.dds"
     />
     

@@ -69,6 +69,8 @@ int TD3DWindow::CreateD3DWindow(UINT x,UINT y,UINT width,UINT height)
 		return 0;
 	}
 	
+	this->SetWindowPos(160,80);
+	
 	CreateRender(WindowHandle);
 	
 	ShowWindow(WindowHandle,1);

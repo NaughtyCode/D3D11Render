@@ -9,10 +9,20 @@
 
 enum TextureAddressModeType
 {
-	TAM_WRAP,
-	TAM_CLAMP,
-	TAM_MIRROR,
-	TAM_BORDER
+	AM_WRAP,
+	AM_CLAMP,
+	AM_MIRROR,
+	AM_BORDER
+};
+
+enum ShaderType
+{
+	ST_VertexShader     = 0,
+	ST_HullShader       = 1,
+	ST_DomainShader     = 2,
+	ST_ComputeShader    = 3,
+	ST_GeometryShader   = 4,
+	ST_PixelShader      = 5
 };
 
 typedef struct VERTEX_POSITION{

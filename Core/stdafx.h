@@ -18,6 +18,9 @@
 #include <tchar.h>
 #include <assert.h>
 #include <stdio.h>
+#include <string.h>
+
+
 
 
 // C++ head fiels
@@ -75,3 +78,24 @@ typedef ID3D11Buffer* LPID3D11Buffer;
 #include "TColor.h"
 #include "MathCore.h"
 #include "Core.h"
+
+
+
+#ifndef MAXFILENAME
+#define MAXFILENAME          1024
+#endif
+
+
+
+
+#ifndef MAXSHADERPROFILE
+#define MAXSHADERPROFILE     128
+#endif
+
+
+
+
+#ifndef MAXSHADERENTRY
+#define MAXSHADERENTRY       256
+#endif
+

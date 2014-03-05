@@ -5,11 +5,11 @@ static D3D11_TEXTURE_ADDRESS_MODE GetTextureAddressMode(TextureAddressModeType M
 {
 	switch(Mode)
 	{
-		case TAM_CLAMP:
+		case AM_CLAMP:
 			return D3D11_TEXTURE_ADDRESS_CLAMP;
-		case TAM_MIRROR:
+		case AM_MIRROR:
 			return D3D11_TEXTURE_ADDRESS_MIRROR;
-		case TAM_BORDER:
+		case AM_BORDER:
 			return D3D11_TEXTURE_ADDRESS_BORDER;
 		default:
 			return D3D11_TEXTURE_ADDRESS_WRAP;
