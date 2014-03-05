@@ -2,7 +2,7 @@
 #include "TResource.h"
 #include "RenderData.h"
 
-TResource::TResource(TD3DDevice* device) :Device(device),
+TResource::TResource():
 	Shader(0), 
 	Buffer(0),
 	EffectShader(0),
@@ -14,15 +14,10 @@ TResource::~TResource()
 {
 }
 
-int TResource::CreateResource(const TCHAR* vsfile,const TCHAR* psfile)
-{
-	return 1;
-}
-
 int TResource::CreateResource()
 {
 	int result;
-	Shader=new TShader(Device);
+	Shader=new TShader();
 	
 	TCHAR* filename=L"..\\Resource\\shaders\\MainShader.hlsl";
 	Shader->SetLayoutType(LAYOUTTYPE_POSITIONTEX0);
@@ -30,12 +25,12 @@ int TResource::CreateResource()
 	Shader->CreatePixelShader(filename,"PS","ps_5_0");
 	Shader->InitConstantBuffer();
 	
-	Texture = new TTexture(Device);
-	result=Texture->CreateTexture(L"..\\Resource\\texture\\distant_cloud_higher.dds");
+	Texture = new TTexture();
+	result=Texture->CreateTexture(L"..\\Resource\\textures\\distant_cloud_higher.dds");
 	assert(result);
 	
 	UINT size;
-	Buffer = new TBuffer(Device);
+	Buffer = new TBuffer();
 	
 	size=GetBoxVertexDataSize();
 	Buffer->CreateVertexBuffer(GetBoxVertexData(),size,sizeof(VERTEX_POSITIONTEX),false,false);

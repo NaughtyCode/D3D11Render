@@ -10,7 +10,7 @@ class TD3DDevice;
 class TTexture
 {
 public:
-    TTexture(TD3DDevice* device);
+    TTexture();
     virtual ~TTexture(void);
     int CreateTexture(const TCHAR* TextureFileName);
     int CreateSampler();
@@ -18,7 +18,6 @@ public:
     void Release();
     
 private:
-    TD3DDevice*               Device;
     ID3D11SamplerState*       Sampler;
     ID3D11ShaderResourceView* TextureView;
 };

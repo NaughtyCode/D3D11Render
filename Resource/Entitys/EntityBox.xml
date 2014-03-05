@@ -1,0 +1,24 @@
+<Entity Name="EntityBox">
+    <VertexShader
+        FileName="Shaders/MainShader.hlsl"
+        Profile="vs_5_0"
+        Entry="VS"
+    />
+    
+    <PixelShader
+        FileName="Shaders/MainShader.hlsl"
+        Profile="ps_5_0"
+        Entry="PS"
+    />
+    
+    <Model
+        FileName="Models/null.mdl"
+    />
+    
+    <Textture
+        FileName="Texture/metal.dds"
+    />
+    
+</Entity>
+
+

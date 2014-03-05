@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "TD3DWindow.h"
-#include "Core.h"
 
-extern TRender* GRender;
 
 LRESULT CALLBACK RenderWindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {

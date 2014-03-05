@@ -32,7 +32,6 @@ public:
     void Release();
     
 private:
-    TD3DDevice*     Device;
     TRenderTarget*  RenderTarget;
     TViewPort*      ViewPort;
     TResource*      Resource;

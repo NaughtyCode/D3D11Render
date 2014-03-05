@@ -1,15 +1,12 @@
 #include "stdafx.h"
 #include "TRender.h"
-#include "Core.h"
 
-extern TRender* GRender;
-
-TRender::TRender() :Device(0), 
+TRender::TRender():
 	RenderTarget(0),
 	ViewPort(0), 
 	Resource(0)
 {
-
+	
 }
 
 TRender::~TRender()
@@ -22,20 +19,14 @@ int TRender::CreateRender(HWND hWnd)
 	GetClientRect(hWnd,&rc);
 	UINT width = rc.right - rc.left;
 	UINT height = rc.bottom - rc.top;
-
-	Device = new TD3DDevice(hWnd);
-	assert(Device);
-	int rt;
-	rt=Device->CreateDevice();
-	assert(rt);
 	
-	RenderTarget = new TRenderTarget(Device);
+	RenderTarget = new TRenderTarget();
 	assert(RenderTarget);
 	RenderTarget->CreateRenderTarget();
-	ViewPort = new TViewPort(Device);
+	ViewPort = new TViewPort();
 	assert(ViewPort);
 	ViewPort->CreateViewPort();
-	Resource = new TResource(Device);
+	Resource = new TResource();
 	assert(Resource);
 	Resource->CreateResource();
 	return 1;
@@ -45,12 +36,11 @@ void TRender::RenderFrame()
 {
 	RenderTarget->Clear();
 	Resource->PostResource();
-	Device->Present();
+	GDevice->Present();
 }
 
 void TRender::Release()
 {
 	SAFE_DELETERELEASE(RenderTarget);
 	SAFE_DELETERELEASE(Resource);
-	SAFE_DELETERELEASE(Device);
 }

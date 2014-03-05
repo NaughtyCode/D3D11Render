@@ -13,6 +13,10 @@ public:
     TXmlParser();
     ~TXmlParser();
     
+    void ParseFile(const char* FileName);
+    
+    void ParseText(const char* Text);
+    
 private:
     
 };

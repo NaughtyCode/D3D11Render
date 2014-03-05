@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TEffectShader.h"
 
-TEffectShader::TEffectShader(TD3DDevice* device):Device(device),
+TEffectShader::TEffectShader():
 							Effect(0),
 							Technique(0),
 							EffectBuffer(0)
@@ -55,7 +55,7 @@ int TEffectShader::CreateEffectShader(const TCHAR* szFileName)
 	HRESULT hr=D3DX11CreateEffectFromMemory(EffectBuffer->GetBufferPointer(),
 					EffectBuffer->GetBufferSize(),
 					0,
-					Device->GetDevice(),
+					GDevice->GetDevice(),
 					&Effect);
 	
 	if (FAILED(hr)){
@@ -88,7 +88,7 @@ void TEffectShader::PostEffect()
 	for(int i=0;i<num;i++)
 	{
 		pass=Technique->GetPassByIndex(i);
-		pass->Apply(0,Device->GetDeviceContext());
+		pass->Apply(0,GDevice->GetDeviceContext());
 	}
 }
 

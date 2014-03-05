@@ -8,27 +8,13 @@
 #include "TRender.h"
 #include "TCamera.h"
 
-extern TRender* GRender;
-extern TCamera* GCamera;
+extern TRender*        GRender;
+extern TCamera*        GCamera;
+extern TD3DDevice*     GDevice;
+extern char*           ResourceRoot;
 
 void CreateRender(HWND hWnd);
-
 void DestroyRender();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

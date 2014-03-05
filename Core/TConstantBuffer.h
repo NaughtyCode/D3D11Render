@@ -14,7 +14,7 @@ class TD3DDevice;
 class TConstantBuffer
 {
 public:
-    TConstantBuffer(TD3DDevice* device,UINT Size = 0,UINT NumBuffers = 1);
+    TConstantBuffer(UINT Size = 0,UINT NumBuffers = 1);
     ~TConstantBuffer();
     void CreateConstantBuffer();
     void UpdateBufferData(LPVOID pData, WORD Offset, WORD Size);
@@ -26,7 +26,6 @@ public:
     void Release();
     
 private:
-    TD3DDevice*     Device;
     LPID3D11Buffer* ConstantBuffers;
     UINT            MaxSize;
     BOOL            HasData;

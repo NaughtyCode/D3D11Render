@@ -2,9 +2,8 @@
 #include "TViewPort.h"
 
 
-TViewPort::TViewPort(TD3DDevice* device) :
-		Device(device),
-		WindowHandle(Device->GetWindowHandle()),
+TViewPort::TViewPort() :
+		WindowHandle(GDevice->GetWindowHandle()),
 		IsFullscreen(FALSE)
 {
 	
@@ -28,7 +27,7 @@ int TViewPort::CreateViewPort()
 	ViewPort.MaxDepth = 1.0f;
 	ViewPort.TopLeftX = 0;
 	ViewPort.TopLeftY = 0;
-	Device->GetDeviceContext()->RSSetViewports(1,&ViewPort);
+	GDevice->GetDeviceContext()->RSSetViewports(1,&ViewPort);
 	return 1;
 }
 
@@ -38,7 +37,7 @@ void TViewPort::ResizeViewPort(UINT width,UINT height,BOOL IsFullscreen)
 	{
 		this->Width  = width;
 		this->Height = height;
-		Device->GetSwapChain()->ResizeBuffers(1,
+		GDevice->GetSwapChain()->ResizeBuffers(1,
 				this->Width,
 				this->Height,
 				DXGI_FORMAT_R8G8B8A8_UNORM,

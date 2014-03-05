@@ -12,7 +12,7 @@ class TD3DDevice;
 class TViewPort
 {
 public:
-    TViewPort(TD3DDevice* device);
+    TViewPort();
     ~TViewPort();
     int CreateViewPort();
     UINT GetWidth() const;
@@ -21,7 +21,6 @@ public:
     void Release();
     
 private:
-    TD3DDevice*     Device;
     HWND            WindowHandle;
     UINT            Width;
     UINT            Height;

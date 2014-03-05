@@ -8,7 +8,7 @@
 #include <windows.h>
 #include <commctrl.h>
 #include <basetsd.h>
-
+#include <crtdbg.h>
 
 
 // C head fiels
@@ -27,6 +27,8 @@
 #include <set>
 #include <iostream>
 #include <algorithm>
+#include <sstream>
+
 
 
 // Direct3D 11 head fiels
@@ -39,30 +41,37 @@
 #include <d3dx11effect.h>
 
 #ifndef SAFE_DELETE
-#define SAFE_DELETE(p)       { if (p) { delete (p);     (p)=NULL; } }
+#define SAFE_DELETE(p)            { if (p) { delete (p);     (p)=NULL; } }
 #endif
 
 #ifndef SAFE_DELETE_ARRAY
-#define SAFE_DELETE_ARRAY(p) { if (p) { delete[] (p);   (p)=NULL; } }
+#define SAFE_DELETE_ARRAY(p)      { if (p) { delete[] (p);   (p)=NULL; } }
 #endif
 
 #ifndef SAFE_RELEASE
-#define SAFE_RELEASE(p)      { if (p) { (p)->Release(); (p)=NULL; } }
+#define SAFE_RELEASE(p)           { if (p) { (p)->Release(); (p)=NULL; } }
 #endif
 
 #ifndef SAFE_DELETERELEASE
-#define SAFE_DELETERELEASE(p)      { if (p) { (p)->Release(); delete p;(p)=NULL; } }
+#define SAFE_DELETERELEASE(p)     { if (p) { (p)->Release(); delete p;(p)=NULL; } }
 #endif
 
 #ifndef FORCEINLINE
 #define FORCEINLINE inline
 #endif
 
-#include "TColor.h"
-#include "MathCore.h"
-
 typedef ID3D11Buffer* LPID3D11Buffer;
 
 
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
+
+
+// tinyxml head files
+#include "tinyxml.h"
+
+
+
+#include "TColor.h"
+#include "MathCore.h"
+#include "Core.h"

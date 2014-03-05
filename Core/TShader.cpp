@@ -3,19 +3,14 @@
 #include "TRender.h"
 #include "Core.h"
 
-extern TRender* GRender;
-extern TCamera* GCamera;
-
-
-
-TShader::TShader(TD3DDevice* device):Device(device),
+TShader::TShader():
 				InputLayout(0),
 				VertexShader(0),
 				PixelShader(0),
 				VertexShaderBuffer(0),
 				PixelShaderBuffer(0),
 				ShaderResource(0),
-				DeviceContext(Device->GetDeviceContext()),
+				DeviceContext(GDevice->GetDeviceContext()),
 				LayoutType(LAYOUTTYPE_UNKNOWN)
 {
 	
@@ -75,7 +70,7 @@ int TShader::CreateVertexShader(const TCHAR* filename,
 		return 0;
 	}
 	
-	hr = Device->GetDevice()->CreateVertexShader(
+	hr = GDevice->GetDevice()->CreateVertexShader(
 		VertexShaderBuffer->GetBufferPointer(),
 		VertexShaderBuffer->GetBufferSize(),
 		NULL,
@@ -95,7 +90,7 @@ int TShader::CreateInputLayout()
 {
 	D3D11_INPUT_ELEMENT_DESC* Desc = GetLayoutArray(LayoutType);
 	UINT Num = GetLayoutArraySize(LayoutType);
-	if (FAILED(Device->GetDevice()->CreateInputLayout(Desc,
+	if (FAILED(GDevice->GetDevice()->CreateInputLayout(Desc,
 		Num,
 		this->GetShaderBufferPointer(),
 		this->GetShaderBufferSize(),
@@ -119,7 +114,7 @@ int TShader::CreatePixelShader(const TCHAR* filename,
 		return 0;
 	}
 	
-	hr = Device->GetDevice()->CreatePixelShader(
+	hr = GDevice->GetDevice()->CreatePixelShader(
 		PixelShaderBuffer->GetBufferPointer(),
 		PixelShaderBuffer->GetBufferSize(),
 		NULL,
@@ -140,7 +135,7 @@ int TShader::InitConstantBuffer()
 
 int TShader::CreateConstantBuffer()
 {
-	ShaderResource = new TConstantBuffer(Device,sizeof(TCommonShaderResource));
+	ShaderResource = new TConstantBuffer(sizeof(TCommonShaderResource));
 	ShaderResource->CreateConstantBuffer();
 	return 1;
 }

@@ -2,8 +2,7 @@
 #include "TBuffer.h"
 #include "RenderData.h"
 
-TBuffer::TBuffer(TD3DDevice* device) :
-			Device(device),
+TBuffer::TBuffer() :
 			VertexBuffer(0),
 			IndexBuffer(0),
 			VertexBufferSize(0),
@@ -36,7 +35,7 @@ int TBuffer::CreateStaticVertexBuffer(void* pData,UINT size,UINT elemsize)
 	ZeroMemory(&Data, sizeof(Data));
 	Data.pSysMem = pData;
 
-	if ( FAILED(Device->GetDevice()->CreateBuffer(&BufferDesc,&Data,&VertexBuffer) ) ){
+	if ( FAILED(GDevice->GetDevice()->CreateBuffer(&BufferDesc,&Data,&VertexBuffer) ) ){
 		return 0;
 	}
 	return 1;
@@ -70,7 +69,7 @@ int TBuffer::CreateVertexBuffer( void* pData,UINT size,UINT vertexsize,bool dyna
 	ZeroMemory(&Data, sizeof(Data));
 	Data.pSysMem = pData;
 
-	if ( FAILED( Device->GetDevice()->CreateBuffer( &BufferDesc,&Data, &VertexBuffer ) ) ) {
+	if ( FAILED( GDevice->GetDevice()->CreateBuffer( &BufferDesc,&Data, &VertexBuffer ) ) ) {
 		return 0;
 	}
 	return 1;
@@ -99,7 +98,7 @@ int TBuffer::CreateIndexBuffer(void* pData,UINT size,UINT indexsize,bool dynamic
 	ZeroMemory(&Data, sizeof(Data));
 	Data.pSysMem = pData;
 
-	if ( FAILED( Device->GetDevice()->CreateBuffer( &BufferDesc,&Data, &IndexBuffer ) ) ){
+	if ( FAILED( GDevice->GetDevice()->CreateBuffer( &BufferDesc,&Data, &IndexBuffer ) ) ){
 		return 0;
 	}
 	return 1;
@@ -108,17 +107,17 @@ int TBuffer::CreateIndexBuffer(void* pData,UINT size,UINT indexsize,bool dynamic
 void TBuffer::PostResource()
 {
 	UINT offset = 0;
-	Device->GetDeviceContext()->IASetVertexBuffers(0, 1, &VertexBuffer, &VertexSize, &offset);
-	Device->GetDeviceContext()->IASetIndexBuffer( IndexBuffer, DXGI_FORMAT_R16_UINT, 0 );
-	Device->GetDeviceContext()->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+	GDevice->GetDeviceContext()->IASetVertexBuffers(0, 1, &VertexBuffer, &VertexSize, &offset);
+	GDevice->GetDeviceContext()->IASetIndexBuffer( IndexBuffer, DXGI_FORMAT_R16_UINT, 0 );
+	GDevice->GetDeviceContext()->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 	
 	if (IsIndexDraw){
 		INT StartIndexLocation = 0;
 		INT BaseVertexLocation = 0;
-		Device->GetDeviceContext()->DrawIndexed(IndexBufferSize, StartIndexLocation, BaseVertexLocation );
+		GDevice->GetDeviceContext()->DrawIndexed(IndexBufferSize, StartIndexLocation, BaseVertexLocation );
 	}else{
 		INT StartVertexLocation = 0;
-		Device->GetDeviceContext()->Draw(VertexBufferSize,StartVertexLocation);
+		GDevice->GetDeviceContext()->Draw(VertexBufferSize,StartVertexLocation);
 	}
 }
 

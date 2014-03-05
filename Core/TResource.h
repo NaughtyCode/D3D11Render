@@ -26,17 +26,15 @@ typedef std::vector< TTexture* >      TextureArrayType;
 class TResource
 {
 public:
-    TResource(TD3DDevice* device);
+    TResource();
     ~TResource();
-    int CreateResource(const TCHAR* vsfile,const TCHAR* psfile);
     void CreateResource(const TCHAR* resourcefile);
     void CreateResource(const char* resourcefile);
-    int CreateResource();
+    int  CreateResource();
     void PostResource();
     void Release();
     
 private:
-    TD3DDevice*     Device;
     TShader*        Shader;
     TBuffer*        Buffer;
     TEffectShader*  EffectShader;

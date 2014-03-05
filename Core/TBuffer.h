@@ -15,11 +15,10 @@ class TD3DDevice;
 class TShader;
 class TEffectShader;
 
-
 class TBuffer
 {
 public:
-    TBuffer(TD3DDevice* device);
+    TBuffer();
     ~TBuffer();
     int CreateStaticVertexBuffer(void* pData,UINT size,UINT elemsize);
     int CreateVertexBuffer(void* pData,UINT size,UINT vertexsize,bool dynamic,bool streamout);
@@ -28,7 +27,6 @@ public:
     void Release();
     
 private:
-    TD3DDevice*        Device;
     ID3D11Buffer*      VertexBuffer;
     ID3D11Buffer*      IndexBuffer;
     UINT               VertexBufferSize;

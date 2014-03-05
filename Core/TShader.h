@@ -23,7 +23,7 @@ typedef struct TCommonShaderResource
 class TShader:public IShader
 {
 public:
-	TShader(TD3DDevice* device);
+	TShader();
 	~TShader();
 	int CompileShaderFromFile(const TCHAR* filename,
 				LPCSTR entry,
@@ -51,7 +51,6 @@ public:
 	void SetLayoutType(INPUTTYPE_TYPE type);
 	
 private:
-	TD3DDevice*             Device;
 	ID3D11InputLayout*      InputLayout;
 	ID3D11VertexShader*     VertexShader;
 	ID3D11PixelShader*      PixelShader;

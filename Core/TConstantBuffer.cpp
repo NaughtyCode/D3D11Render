@@ -2,8 +2,7 @@
 #include "TConstantBuffer.h"
 #include "RenderUtils.h"
 
-TConstantBuffer::TConstantBuffer(TD3DDevice* device,UINT Size,UINT NumBuffers) : 
-	Device(device),
+TConstantBuffer::TConstantBuffer(UINT Size,UINT NumBuffers):
 	MaxSize(Size),
 	HasData(FALSE),
 	Data(NULL),
@@ -41,7 +40,7 @@ void TConstantBuffer::CreateConstantBuffer()
 	UINT NewSize;
 	for(UINT i = 0;i < NumSubBuffers;i++)
 	{
-		Device->GetDevice()->CreateBuffer(&BufferDesc, NULL, &ConstantBuffers[i]);
+		GDevice->GetDevice()->CreateBuffer(&BufferDesc, NULL, &ConstantBuffers[i]);
 		Size = BufferDesc.ByteWidth/2;
 		NewSize = AlignToBlock(Size,16);
 		BufferDesc.ByteWidth = NewSize;
@@ -74,7 +73,7 @@ BOOL TConstantBuffer::UpdateConstantBufferResource( BOOL isDiscard )
 		CurrentSubBuffer--;
 		BufferSize *= 2;
 		ID3D11Buffer* Buffer = ConstantBuffers[CurrentSubBuffer];
-		Device->GetDeviceContext()->UpdateSubresource(Buffer,0,NULL,(void*)Data,BufferSize,BufferSize);
+		GDevice->GetDeviceContext()->UpdateSubresource(Buffer,0,NULL,(void*)Data,BufferSize,BufferSize);
 		HasData = FALSE;
 		CurrentUpdateSize = 0;
 		return TRUE;
@@ -95,7 +94,7 @@ void TConstantBuffer::UpdateBufferData(LPVOID pData, WORD Offset, WORD Size)
 
 void TConstantBuffer::PostConstantBuffer(UINT StartSlot,UINT NumBuffers)
 {
-	ID3D11DeviceContext* DeviceContext=Device->GetDeviceContext();
+	ID3D11DeviceContext* DeviceContext=GDevice->GetDeviceContext();
 	DeviceContext->VSSetConstantBuffers(StartSlot,NumBuffers,&ConstantBuffers[CurrentSubBuffer]);
 }
 
