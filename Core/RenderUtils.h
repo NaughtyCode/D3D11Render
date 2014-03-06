@@ -9,7 +9,11 @@ BOOL CheckConstantBufferSize(UINT Size);
 
 UINT AlignToBlock(UINT Size,UINT Align);
 
-void DumpReturnErrorText(HRESULT hr);
+std::string GetErrorString(HRESULT error);
+
+void VerifyResult(HRESULT error,const char* Code,const char* Filename,UINT Line);
+
+#define VERIFYRESULT(error) VerifyResult(error,#error,__FILE__,__LINE__);
 
 #endif
 

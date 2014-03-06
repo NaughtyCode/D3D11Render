@@ -11,6 +11,7 @@
 extern TRender*        GRender;
 extern TCamera*        GCamera;
 extern TD3DDevice*     GDevice;
+extern DWORD           GGPUFrameTime;
 extern char*           ResourceRoot;
 
 void CreateRender(HWND hWnd);

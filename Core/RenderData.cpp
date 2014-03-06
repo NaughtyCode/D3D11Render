@@ -23,7 +23,7 @@ UINT GetRectDataSize()
 	return RectDataSize;
 }
 
-VERTEX_POSITIONTEX BoxData[] =
+VERTEX_POSITIONTEX BoxData0[] =
 {
 	{  -1.0f, 1.0f, -1.0f , 0.0f, 0.0f  },
 	{  1.0f, 1.0f, -1.0f ,  1.0f, 0.0f },
@@ -56,9 +56,7 @@ VERTEX_POSITIONTEX BoxData[] =
 	{  -1.0f, 1.0f, 1.0f , 0.0f, 1.0f  },
 };
 
-static UINT BoxVertexDataSize=ARRAYSIZE(BoxData);
-
-WORD BoxIndices[] =
+WORD BoxIndices0[] =
 {
 	3,1,0,
 	2,1,3,
@@ -79,25 +77,41 @@ WORD BoxIndices[] =
 	23,20,22
 };
 
-static UINT BoxIndexDataSize=ARRAYSIZE(BoxIndices);
+VERTEX_POSITIONTEX BoxData1[] =
+{
+	{  -6.0f, 0.0f, 0.0f , 0.0f, 0.0f  },
+	{  6.0f, 0.0f, 0.0f ,  1.0f, 0.0f },
+	{  6.0f, 6.0f, 0.0f ,  1.0f, 1.0f  },
+	{  -6.0f, 6.0f, 6.0f,  0.0f, 1.0f  }
+};
+
+WORD BoxIndices1[] =
+{
+	3,1,0,
+	2,1,3
+};
+
+static UINT BoxVertexDataSize1=ARRAYSIZE(BoxData1);
+
+static UINT BoxIndexDataSize1=ARRAYSIZE(BoxIndices1);
 
 VERTEX_POSITIONTEX* GetBoxVertexData()
 {
-	return BoxData;
-}
-
-UINT GetBoxVertexDataSize()
-{
-	return BoxVertexDataSize;
+	return BoxData1;
 }
 
 WORD* GetBoxIndexData()
 {
-	return BoxIndices;
+	return BoxIndices1;
+}
+
+UINT GetBoxVertexDataSize()
+{
+	return BoxVertexDataSize1;
 }
 
 UINT GetBoxIndexDataSize()
 {
-	return BoxIndexDataSize;
+	return BoxIndexDataSize1;
 }
 

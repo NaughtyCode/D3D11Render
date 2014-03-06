@@ -27,7 +27,7 @@ int TResource::CreateResource()
 	Shader->InitConstantBuffer();
 	
 	Texture = new TTexture();
-	FileName="textures\\distant_cloud_higher.dds";
+	FileName="textures\\displace.png";
 	GetResourceDirASCII(FileName);
 	result=Texture->CreateTexture(FileName.c_str());
 	assert(result);

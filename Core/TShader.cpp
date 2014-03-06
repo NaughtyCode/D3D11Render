@@ -4,6 +4,9 @@
 #include "Core.h"
 
 TShader::TShader():
+		HullShader(0),
+		DomainShader(0),
+		GeometryShader(0),
 		InputLayout(0),
 		VertexShader(0),
 		PixelShader(0),
@@ -175,6 +178,9 @@ void TShader::SetLayoutType(INPUTTYPE_TYPE type)
 
 void TShader::Release()
 {
+	SAFE_RELEASE(HullShader);
+	SAFE_RELEASE(DomainShader);
+	SAFE_RELEASE(GeometryShader);
 	SAFE_RELEASE(VertexShader);
 	SAFE_RELEASE(PixelShader);
 	SAFE_RELEASE(VertexShaderBuffer);

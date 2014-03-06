@@ -28,6 +28,7 @@ PS_INPUT VS( VS_INPUT input )
 
 float4 PS( PS_INPUT input) : SV_Target
 {
-    return Diffuse.Sample( LinearSample, input.Tex );
+    float4 color=Diffuse.Sample( LinearSample, input.Tex );
+    return color;
 }
 

@@ -84,7 +84,7 @@ XMMATRIX TCamera::GetWorldViewProMatrix()
 	projection=XMMatrixTranspose(Projection);
 	XMMATRIX result;
 	result = (projection*view)*world;
-	return result*rotate;
+	return result;
 }
 
 void TCamera::Release()

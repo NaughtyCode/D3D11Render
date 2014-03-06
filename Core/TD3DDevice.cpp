@@ -37,18 +37,20 @@ int TD3DDevice::CreateDevice()
 	SwapChainDesc.BufferDesc.Width = width;
 	SwapChainDesc.BufferDesc.Height = height;
 	SwapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	SwapChainDesc.BufferDesc.RefreshRate.Numerator = 60;
-	SwapChainDesc.BufferDesc.RefreshRate.Denominator = 1;
+	SwapChainDesc.BufferDesc.RefreshRate.Numerator = 0;
+	SwapChainDesc.BufferDesc.RefreshRate.Denominator = 0;
 	SwapChainDesc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	SwapChainDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
 	
 	SwapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	SwapChainDesc.OutputWindow = WindowHandle;
+	
 	SwapChainDesc.SampleDesc.Count = 1;
 	SwapChainDesc.SampleDesc.Quality = 0;
+	
 	SwapChainDesc.Windowed = !IsFullScreen;
 	SwapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
-	SwapChainDesc.Flags = 0;
+	SwapChainDesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 	
 	D3D_FEATURE_LEVEL  FeatureArray[] = {
 		D3D_FEATURE_LEVEL_11_0,

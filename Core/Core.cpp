@@ -7,6 +7,7 @@ class TD3DDevice;
 TRender*     GRender                   = NULL;
 TCamera*     GCamera                   = NULL;
 TD3DDevice*  GDevice                   = NULL;
+DWORD        GGPUFrameTime             = 0;
 char*        ASCIIResourceDirectory    = "..\\Resource\\";
 wchar_t*     WCHARResourceDirectory    = L"..\\Resource\\";
 

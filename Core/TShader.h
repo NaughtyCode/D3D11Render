@@ -51,6 +51,9 @@ public:
 	void SetLayoutType(INPUTTYPE_TYPE type);
 	
 private:
+	ID3D11HullShader*       HullShader;
+	ID3D11DomainShader*     DomainShader;
+	ID3D11GeometryShader*   GeometryShader;
 	ID3D11InputLayout*      InputLayout;
 	ID3D11VertexShader*     VertexShader;
 	ID3D11PixelShader*      PixelShader;
