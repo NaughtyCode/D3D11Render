@@ -1,7 +1,8 @@
 #include "stdafx.h"
+#include "Core.h"
 #include "TShader.h"
 #include "TRender.h"
-#include "Core.h"
+#include "TConstantBuffer.h"
 
 TShader::TShader():
 		HullShader(0),
@@ -139,16 +140,16 @@ int TShader::InitConstantBuffer()
 
 int TShader::CreateConstantBuffer()
 {
-	ShaderResource = new TConstantBuffer(sizeof(TCommonShaderResource));
+	ShaderResource = new TConstantBuffer(sizeof(TConstantBufferContents));
 	ShaderResource->CreateConstantBuffer();
 	return 1;
 }
 
 void TShader::PostEffect()
 {
-	TCommonShaderResource Data;
+	struct TConstantBufferContents Data;
 	
-	Data.matrix = GCamera->GetWorldViewProMatrix();
+	Data.WorldViewProjectMatrix = GCamera->GetWorldViewProMatrix();
 	
 	ShaderResource->UpdateBufferData(&Data,0,sizeof(Data));
 	ShaderResource->UpdateConstantBufferResource(TRUE);

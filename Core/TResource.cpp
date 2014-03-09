@@ -27,7 +27,7 @@ int TResource::CreateResource()
 	Shader->InitConstantBuffer();
 	
 	Texture = new TTexture();
-	FileName="textures\\displace.png";
+	FileName="textures\\sky.jpg";
 	GetResourceDirASCII(FileName);
 	result=Texture->CreateTexture(FileName.c_str());
 	assert(result);

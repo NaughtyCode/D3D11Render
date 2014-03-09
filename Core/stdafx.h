@@ -19,7 +19,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
-
+#include <ctype.h>
 
 
 
@@ -74,11 +74,9 @@ typedef ID3D11Buffer* LPID3D11Buffer;
 #include "tinyxml.h"
 
 
-
 #include "TColor.h"
 #include "MathCore.h"
 #include "Core.h"
-
 
 
 #ifndef MAXFILENAME
@@ -86,16 +84,37 @@ typedef ID3D11Buffer* LPID3D11Buffer;
 #endif
 
 
-
-
 #ifndef MAXSHADERPROFILE
 #define MAXSHADERPROFILE     128
 #endif
 
 
-
-
 #ifndef MAXSHADERENTRY
 #define MAXSHADERENTRY       256
 #endif
+
+
+#ifndef CONFIG_MAX_LINE
+#define CONFIG_MAX_LINE      2048
+#endif
+
+#ifndef CONFIG_MAX_SECTION
+#define CONFIG_MAX_SECTION   1024
+#endif
+
+#ifndef CONFIG_MAX_NAME
+#define CONFIG_MAX_NAME      1024
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
 

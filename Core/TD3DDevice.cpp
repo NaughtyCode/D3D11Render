@@ -1,5 +1,9 @@
 #include "stdafx.h"
 #include "TD3DDevice.h"
+#include "RenderUtils.h"
+
+
+
 
 TD3DDevice::TD3DDevice(HWND hWnd):
 			WindowHandle(hWnd),
@@ -162,6 +166,76 @@ BOOL TD3DDevice::CheckD3D11Supported(BOOL& SupportD3D11Features)
 		AdapterIndex++;
 	};
 	return bHasD3D11Adapter;
+}
+
+void TD3DDevice::GetBestResolution(UINT& Width,UINT& Height)
+{
+	UINT InitializedMode = FALSE;
+	DXGI_MODE_DESC BestMode;
+	BestMode.Width = 0;
+	BestMode.Height = 0;
+	
+	for(UINT i = 0;i < 1;i++)
+	{
+		HRESULT hr = S_OK;
+		IDXGIAdapter* Adapter;
+		hr = DXGIFactory->EnumAdapters(i,&Adapter);
+		if( DXGI_ERROR_NOT_FOUND == hr )
+		{
+		    hr = S_OK;
+		    break;
+		}
+		if( FAILED(hr) )
+		{
+		    return;
+		}
+		
+		DXGI_ADAPTER_DESC AdapterDesc;
+		VERIFYRESULT(Adapter->GetDesc(&AdapterDesc));
+		
+		for(UINT j = 0;j < 1; j++)
+		{
+			IDXGIOutput* Output;
+			hr = Adapter->EnumOutputs(j,&Output);
+			if(DXGI_ERROR_NOT_FOUND == hr)
+				break;
+			if(FAILED(hr))
+			{
+				return;
+			}
+			
+			DXGI_FORMAT Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+			UINT NumModes = 0;
+			hr = Output->GetDisplayModeList(Format,0,&NumModes,NULL);
+			
+			if(hr == DXGI_ERROR_NOT_FOUND)
+			{
+				return;
+			}
+			else if(hr == DXGI_ERROR_NOT_CURRENTLY_AVAILABLE)
+			{
+				return;
+			}
+			
+			DXGI_MODE_DESC* ModeList = new DXGI_MODE_DESC[ NumModes ];
+			VERIFYRESULT(Output->GetDisplayModeList(Format,0,&NumModes,ModeList));
+			for(UINT m = 0;m < NumModes;m++)
+			{
+				BOOL IsEqualOrBetterWidth = abs((INT)ModeList[m].Width - (INT)Width) <= abs((INT)BestMode.Width - (INT)Width);
+				BOOL IsEqualOrBetterHeight = abs((INT)ModeList[m].Height - (INT)Height) <= abs((INT)BestMode.Height - (INT)Height);
+				if(!InitializedMode || (IsEqualOrBetterWidth && IsEqualOrBetterHeight))
+				{
+					BestMode = ModeList[m];
+					InitializedMode = TRUE;
+				}
+			}
+			delete[] ModeList;
+		}
+	}
+	
+	assert(InitializedMode);
+	Width = BestMode.Width;
+	Height = BestMode.Height;
 }
 
 ID3D11Device* TD3DDevice::GetDevice() const

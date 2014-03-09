@@ -3,10 +3,15 @@
 
 class TD3DWindow;
 
+extern void LoadRenderConfig();
+
+
+
 int main()
 {
 	
 	
+	LoadRenderConfig();
 	
 	TD3DWindow Window;
 	

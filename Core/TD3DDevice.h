@@ -24,7 +24,7 @@ public:
     ID3D11Device* GetDevice() const;
     IDXGISwapChain* GetSwapChain() const;
     ID3D11DeviceContext* GetDeviceContext() const;
-    
+    void GetBestResolution(UINT& Width,UINT& Height);
     HWND GetWindowHandle();
     void Present(); 
     void Release();

@@ -11,6 +11,25 @@
 class TD3DDevice;
 
 
+
+
+struct TConstantBufferContents
+{
+    XMMATRIX WorldViewProjectMatrix;
+    
+    
+    
+    
+    
+};
+
+
+
+
+
+
+
+
 class TConstantBuffer
 {
 public:

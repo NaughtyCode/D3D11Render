@@ -15,11 +15,6 @@ class IShader;
 class TD3DDevice;
 class TConstantBuffer;
 
-typedef struct TCommonShaderResource
-{
-	XMMATRIX matrix;
-}TCommonShaderResource;
-
 class TShader:public IShader
 {
 public:
