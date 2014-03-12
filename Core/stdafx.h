@@ -12,14 +12,18 @@
 
 
 // C head fiels
-#include <stdlib.h>
+#include <cassert>
+#include <cstdio>
+#include <cstring>
+#include <cctype>
+#include <cfloat>
+#include <cmath>
+#include <cstdlib>
+
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
-#include <assert.h>
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
+
 
 
 
@@ -75,7 +79,6 @@ typedef ID3D11Buffer* LPID3D11Buffer;
 
 
 #include "TColor.h"
-#include "MathCore.h"
 #include "Core.h"
 
 

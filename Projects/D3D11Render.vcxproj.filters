@@ -70,9 +70,6 @@
     <ClInclude Include="..\Core\TColor.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\TMatrix.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\Lua\lapi.h">
       <Filter>Lua</Filter>
     </ClInclude>
@@ -148,9 +145,6 @@
     <ClInclude Include="..\Lua\lzio.h">
       <Filter>Lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\MathCore.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\Core\Definitions.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -179,6 +173,12 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\TXmlParser.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\INIConfig.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\GlobalMath.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
@@ -246,9 +246,6 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\IShader.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\TCamera.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Lua\lapi.c">
@@ -387,6 +384,12 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TXmlParser.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\INIConfig.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\EngineConfig.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>

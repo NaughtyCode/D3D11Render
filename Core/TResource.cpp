@@ -27,7 +27,7 @@ int TResource::CreateResource()
 	Shader->InitConstantBuffer();
 	
 	Texture = new TTexture();
-	FileName="textures\\sky.jpg";
+	FileName="textures\\distanceclouds.dds";
 	GetResourceDirASCII(FileName);
 	result=Texture->CreateTexture(FileName.c_str());
 	assert(result);

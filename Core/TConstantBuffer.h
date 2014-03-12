@@ -6,6 +6,9 @@
 #endif
 
 #include "TD3DDevice.h"
+#include "GlobalMath.h"
+
+
 
 
 class TD3DDevice;
@@ -15,12 +18,7 @@ class TD3DDevice;
 
 struct TConstantBufferContents
 {
-    XMMATRIX WorldViewProjectMatrix;
-    
-    
-    
-    
-    
+    TMatrix WorldViewProjectMatrix;
 };
 
 

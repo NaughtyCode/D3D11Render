@@ -52,7 +52,6 @@ std::string GetErrorString(HRESULT error)
 		D3D11ERR( D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD )
 	}
 #undef D3D11ERR
-	std::cout<< ErrorString << std::endl;
 	return ErrorString;
 }
 

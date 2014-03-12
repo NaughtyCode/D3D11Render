@@ -8,6 +8,32 @@
 #include "TRender.h"
 #include "TCamera.h"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 extern TRender*        GRender;
 extern TCamera*        GCamera;
 extern TD3DDevice*     GDevice;
@@ -19,5 +45,16 @@ void DestroyRender();
 
 void GetResourceDirASCII(std::string& FileName);
 void GetResourceDirWCHAR(std::wstring& FileName);
+
+
+
+
+
+
+
+
+
+
+
 
 #endif

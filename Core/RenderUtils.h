@@ -5,6 +5,8 @@
 # pragma once
 #endif
 
+
+
 BOOL CheckConstantBufferSize(UINT Size);
 
 UINT AlignToBlock(UINT Size,UINT Align);
@@ -14,6 +16,13 @@ std::string GetErrorString(HRESULT error);
 void VerifyResult(HRESULT error,const char* Code,const char* Filename,UINT Line);
 
 #define VERIFYRESULT(error) VerifyResult(error,#error,__FILE__,__LINE__);
+
+
+#define CompileTimeCheck(expr,msg)  typedef char CompileCheckError_##msg[1][(expr)]
+
+
+
+
 
 #endif
 

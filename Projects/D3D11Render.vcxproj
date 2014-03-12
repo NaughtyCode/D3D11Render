@@ -35,7 +35,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\Bin\</OutDir>
+    <OutDir>..\Binary\</OutDir>
     <TargetName>Render</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,7 +79,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Core\Core.h" />
-    <ClInclude Include="..\Core\MathCore.h" />
+    <ClInclude Include="..\Core\INIConfig.h" />
     <ClInclude Include="..\Core\RenderUtils.h" />
     <ClInclude Include="..\Core\TColor.h" />
     <ClInclude Include="..\Core\IShader.h" />
@@ -94,7 +94,7 @@
     <ClInclude Include="..\Core\TEffectShader.h" />
     <ClInclude Include="..\Core\tinystr.h" />
     <ClInclude Include="..\Core\tinyxml.h" />
-    <ClInclude Include="..\Core\TMatrix.h" />
+    <ClInclude Include="..\Core\GlobalMath.h" />
     <ClInclude Include="..\Core\TRender.h" />
     <ClInclude Include="..\Core\TRenderConfig.h" />
     <ClInclude Include="..\Core\TRenderTarget.h" />
@@ -148,10 +148,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Core\Core.cpp" />
+    <ClCompile Include="..\Core\EngineConfig.cpp" />
+    <ClCompile Include="..\Core\INIConfig.cpp" />
     <ClCompile Include="..\Core\IShader.cpp" />
     <ClCompile Include="..\Core\Definitions.cpp" />
     <ClCompile Include="..\Core\RenderUtils.cpp" />
-    <ClCompile Include="..\Core\TCamera.cpp" />
     <ClCompile Include="..\Core\TConstantBuffer.cpp" />
     <ClCompile Include="..\Core\TD3DDevice.cpp" />
     <ClCompile Include="..\Core\RenderData.cpp" />
