@@ -12,6 +12,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <Keyword>Win32Proj</Keyword>
+    <ProjectName>GDK</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -36,7 +37,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\Binary\</OutDir>
-    <TargetName>Render</TargetName>
+    <TargetName>GDK</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -89,13 +90,11 @@
     <ClInclude Include="..\Core\TDevice.h" />
     <ClInclude Include="..\Core\stdafx.h" />
     <ClInclude Include="..\Core\targetver.h" />
-    <ClInclude Include="..\Core\TBuffer.h" />
     <ClInclude Include="..\Core\tinystr.h" />
     <ClInclude Include="..\Core\tinyxml.h" />
     <ClInclude Include="..\Core\GlobalMath.h" />
     <ClInclude Include="..\Core\TMouseObject.h" />
     <ClInclude Include="..\Core\TRender.h" />
-    <ClInclude Include="..\Core\TRenderConfig.h" />
     <ClInclude Include="..\Core\TRenderTarget.h" />
     <ClInclude Include="..\Core\TResource.h" />
     <ClInclude Include="..\Core\TShader.h" />
@@ -162,12 +161,11 @@
     <ClCompile Include="..\Core\tinyxmlparser.cpp" />
     <ClCompile Include="..\Core\TMouseObject.cpp" />
     <ClCompile Include="..\Core\TRender.cpp" />
-    <ClCompile Include="..\Core\TRenderConfig.cpp" />
     <ClCompile Include="..\Core\TRenderTarget.cpp" />
     <ClCompile Include="..\Core\TResource.cpp" />
     <ClCompile Include="..\Core\TShader.cpp" />
-    <ClCompile Include="..\Core\TShaderState.cpp" />
     <ClCompile Include="..\Core\TTexture.cpp" />
+    <ClCompile Include="..\Core\TVertexDeclaration.cpp" />
     <ClCompile Include="..\Core\TViewPort.cpp" />
     <ClCompile Include="..\Core\TWindow.cpp" />
     <ClCompile Include="..\Core\TXmlParser.cpp" />

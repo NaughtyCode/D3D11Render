@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "Core.h"
-#include "TShader.h"
 #include "TRender.h"
-#include "TConstantBuffer.h"
 
 TShader::TShader():
 		HullShader(0),
@@ -97,8 +95,8 @@ int TShader::CreateInputLayout()
 	UINT Num = GetLayoutArraySize(LayoutType);
 	if (FAILED(GDevice->GetDevice()->CreateInputLayout(Desc,
 		Num,
-		this->GetShaderBufferPointer(),
-		this->GetShaderBufferSize(),
+		VertexShaderBuffer->GetBufferPointer(),
+		VertexShaderBuffer->GetBufferSize(),
 		&InputLayout)))
 	{
 		return 0;
@@ -107,14 +105,14 @@ int TShader::CreateInputLayout()
 }
 
 int TShader::CreatePixelShader(const char* filename,
-			       const char* entry,
-			       const char* shadermodel)
+			const char* entry,
+			const char* shadermodel)
 {
 	HRESULT hr;
 	if (!CompileShaderFromFile(filename,
-				entry,
-				shadermodel,
-				&PixelShaderBuffer))
+			entry,
+			shadermodel,
+			&PixelShaderBuffer))
 	{
 		return 0;
 	}
@@ -158,18 +156,6 @@ void TShader::PostEffect()
 	DeviceContext->IASetInputLayout(InputLayout);
 	DeviceContext->VSSetShader(VertexShader, NULL, 0);
 	DeviceContext->PSSetShader(PixelShader, NULL, 0);
-}
-
-LPVOID TShader::GetShaderBufferPointer()
-{
-	assert(VertexShaderBuffer);
-	return VertexShaderBuffer->GetBufferPointer();
-}
-
-SIZE_T TShader::GetShaderBufferSize()
-{
-	assert(VertexShaderBuffer);
-	return VertexShaderBuffer->GetBufferSize();
 }
 
 void TShader::SetLayoutType(INPUTTYPE_TYPE type)

@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Core">
-      <UniqueIdentifier>{e67d61ca-fe6b-412d-bc15-bb471e9047e5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="resource">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
@@ -14,49 +11,16 @@
     <Filter Include="Lua">
       <UniqueIdentifier>{5b6b233f-8337-44bf-bcca-0caad127aa61}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{45e0ab5e-5e20-496f-9ce3-85f7f1341f68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{e67d61ca-fe6b-412d-bc15-bb471e9047e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Core\stdafx.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\targetver.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TBuffer.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TRender.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TRenderTarget.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TResource.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TShader.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TTexture.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TViewPort.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TRenderConfig.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\RenderData.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TCamera.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TColor.h">
-      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\Lua\lapi.h">
       <Filter>Lua</Filter>
@@ -133,41 +97,74 @@
     <ClInclude Include="..\Lua\lzio.h">
       <Filter>Lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\Definitions.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TConstantBuffer.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\RenderUtils.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TShaderState.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\Core\Core.h">
-      <Filter>Core</Filter>
+      <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\TXmlParser.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\INIConfig.h">
-      <Filter>Core</Filter>
+    <ClInclude Include="..\Core\Definitions.h">
+      <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\GlobalMath.h">
-      <Filter>Core</Filter>
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\INIConfig.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\RenderData.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\RenderUtils.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\stdafx.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\targetver.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TColor.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TCamera.h">
+      <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\TDevice.h">
-      <Filter>Core</Filter>
+      <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\TMouseObject.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\tinystr.h">
-      <Filter>Core</Filter>
+    <ClInclude Include="..\Core\TConstantBuffer.h">
+      <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\tinyxml.h">
-      <Filter>Core</Filter>
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\tinystr.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TMouseObject.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TRender.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TRenderTarget.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TResource.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TShader.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TTexture.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TShaderState.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TViewPort.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TXmlParser.h">
+      <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -198,34 +195,31 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Core\stdafx.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TBuffer.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TRender.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TRenderTarget.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TResource.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TShader.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TTexture.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TViewPort.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\TRenderConfig.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\RenderData.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Lua\lapi.c">
       <Filter>Lua</Filter>
@@ -327,55 +321,55 @@
       <Filter>Lua</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\Definitions.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TConstantBuffer.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\RenderUtils.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\TShaderState.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\Core.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TXmlParser.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\INIConfig.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\EngineConfig.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TDevice.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\Entry.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TMouseObject.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TWindow.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\tinystr.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\tinyxmlparser.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\tinyxml.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\tinyxmlerror.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TCamera.cpp">
-      <Filter>Core</Filter>
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TVertexDeclaration.cpp">
+      <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

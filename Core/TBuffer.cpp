@@ -1,13 +1,12 @@
 #include "stdafx.h"
-#include "TBuffer.h"
 #include "RenderData.h"
 
 TBuffer::TBuffer() :
-			VertexBuffer(0),
-			IndexBuffer(0),
-			VertexBufferSize(0),
-			VertexSize(0),
-			IsIndexDraw(FALSE)
+	VertexBuffer(0),
+	IndexBuffer(0),
+	VertexBufferSize(0),
+	VertexSize(0),
+	IsIndexDraw(FALSE)
 {
 	
 }

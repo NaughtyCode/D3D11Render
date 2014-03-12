@@ -5,10 +5,7 @@
 # pragma once
 #endif
 
-
-
 #include"stdafx.h"
-
 
 class TDevice
 {
@@ -42,10 +39,5 @@ private:
     
     
 };
-
-
-
-
-
 
 #endif

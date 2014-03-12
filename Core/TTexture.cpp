@@ -1,13 +1,15 @@
 #include "stdafx.h"
-#include "TTexture.h"
 #include "TDevice.h"
 
 TTexture::TTexture():TextureView(0)
 {
+	Device=GDevice->GetDevice();
+	DeviceContext=GDevice->GetDeviceContext();
 }
 
 TTexture::~TTexture(void)
 {
+	
 }
 
 int TTexture::CreateTexture(const char* TextureFileName)
@@ -38,7 +40,7 @@ int TTexture::CreateSampler()
 	SampleDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
 	SampleDesc.MinLOD = 0;
 	SampleDesc.MaxLOD = D3D11_FLOAT32_MAX;
-	if( FAILED( GDevice->GetDevice()->CreateSamplerState(&SampleDesc,&Sampler) ) )
+	if( FAILED( Device->CreateSamplerState(&SampleDesc,&Sampler) ) )
 	{
 		return 0;
 	}
@@ -47,7 +49,6 @@ int TTexture::CreateSampler()
 
 void TTexture::PostTexture()
 {
-	ID3D11DeviceContext* DeviceContext = GDevice->GetDeviceContext();
 	DeviceContext->PSSetSamplers(0,1,&Sampler);
 	DeviceContext->PSSetShaderResources(0,1,&TextureView);
 }

@@ -9,7 +9,6 @@
 #include "TRenderTarget.h"
 #include "TViewPort.h"
 #include "TResource.h"
-#include "TRenderConfig.h"
 #include "TCamera.h"
 
 
