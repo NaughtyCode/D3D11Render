@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "TRender.h"
 #include "TCamera.h"
-#include "GlobalMath.h"
 
 TCamera::TCamera(HWND hWnd):WindowHandle(hWnd)
 {

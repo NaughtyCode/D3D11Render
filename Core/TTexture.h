@@ -5,7 +5,7 @@
 # pragma once
 #endif
 
-class TD3DDevice;
+class TDevice;
 
 class TTexture
 {

@@ -5,13 +5,11 @@
 # pragma once
 #endif
 
-#include "TD3DDevice.h"
+#include "TDevice.h"
 #include "TShader.h"
-#include "TEffectShader.h"
-#include "IShader.h"
 
 class IShader;
-class TD3DDevice;
+class TDevice;
 class TShader;
 class TEffectShader;
 

@@ -5,9 +5,9 @@
 # pragma once
 #endif
 
-#include "TD3DDevice.h"
+#include "TDevice.h"
 
-class TD3DDevice;
+class TDevice;
 
 class TViewPort
 {

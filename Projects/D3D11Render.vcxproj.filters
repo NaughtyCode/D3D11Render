@@ -14,9 +14,6 @@
     <Filter Include="Lua">
       <UniqueIdentifier>{5b6b233f-8337-44bf-bcca-0caad127aa61}</UniqueIdentifier>
     </Filter>
-    <Filter Include="tinyxml">
-      <UniqueIdentifier>{cd2ddc5b-6791-4f44-b93f-49c88a52cf65}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Core\stdafx.h">
@@ -52,16 +49,7 @@
     <ClInclude Include="..\Core\TRenderConfig.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\TD3DDevice.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TEffectShader.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\Core\RenderData.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\IShader.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\TCamera.h">
@@ -157,18 +145,6 @@
     <ClInclude Include="..\Core\TShaderState.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\window\TMouseObject.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\window\TD3DWindow.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\tinystr.h">
-      <Filter>tinyxml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\tinyxml.h">
-      <Filter>tinyxml</Filter>
-    </ClInclude>
     <ClInclude Include="..\Core\Core.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -179,6 +155,18 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\GlobalMath.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TDevice.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TMouseObject.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\tinystr.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\tinyxml.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
@@ -236,16 +224,7 @@
     <ClCompile Include="..\Core\TRenderConfig.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\Core\TD3DDevice.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\TEffectShader.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\Core\RenderData.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\IShader.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Lua\lapi.c">
@@ -359,27 +338,6 @@
     <ClCompile Include="..\Core\TShaderState.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\Main\Entry.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\window\TD3DWindow.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\window\TMouseObject.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\tinystr.cpp">
-      <Filter>tinyxml</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\tinyxml.cpp">
-      <Filter>tinyxml</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\tinyxmlerror.cpp">
-      <Filter>tinyxml</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\tinyxmlparser.cpp">
-      <Filter>tinyxml</Filter>
-    </ClCompile>
     <ClCompile Include="..\Core\Core.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -390,6 +348,30 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\EngineConfig.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TDevice.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\Entry.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TMouseObject.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TWindow.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\tinystr.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\tinyxmlparser.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\tinyxml.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\tinyxmlerror.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>

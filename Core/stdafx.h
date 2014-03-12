@@ -44,9 +44,6 @@
 #include <D3DX11async.h>
 #include <xnamath.h>
 
-//effect11 head fiels
-#include <d3dx11effect.h>
-
 #ifndef SAFE_DELETE
 #define SAFE_DELETE(p)            { if (p) { delete (p);     (p)=NULL; } }
 #endif
@@ -78,10 +75,6 @@ typedef ID3D11Buffer* LPID3D11Buffer;
 #include "tinyxml.h"
 
 
-#include "TColor.h"
-#include "Core.h"
-
-
 #ifndef MAXFILENAME
 #define MAXFILENAME          1024
 #endif
@@ -110,7 +103,7 @@ typedef ID3D11Buffer* LPID3D11Buffer;
 #endif
 
 
-
+#include "Core.h"
 
 
 

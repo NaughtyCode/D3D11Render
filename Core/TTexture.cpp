@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TTexture.h"
-#include "TD3DDevice.h"
+#include "TDevice.h"
 
 TTexture::TTexture():TextureView(0)
 {

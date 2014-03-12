@@ -5,7 +5,7 @@
 # pragma once
 #endif
 
-#include "TD3DDevice.h"
+#include "TDevice.h"
 #include "TRenderTarget.h"
 #include "TViewPort.h"
 #include "TResource.h"
@@ -13,7 +13,7 @@
 #include "TCamera.h"
 
 
-class TD3DDevice;
+class TDevice;
 class TRenderTarget;
 class TViewPort;
 class TShader;

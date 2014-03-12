@@ -5,38 +5,13 @@
 # pragma once
 #endif
 
+#include "TDevice.h"
 #include "TRender.h"
 #include "TCamera.h"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 extern TRender*        GRender;
 extern TCamera*        GCamera;
-extern TD3DDevice*     GDevice;
+extern TDevice*        GDevice;
 extern DWORD           GGPUFrameTime;
 extern char*           ResourceRoot;
 
@@ -45,11 +20,6 @@ void DestroyRender();
 
 void GetResourceDirASCII(std::string& FileName);
 void GetResourceDirWCHAR(std::wstring& FileName);
-
-
-
-
-
 
 
 

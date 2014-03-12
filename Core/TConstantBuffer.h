@@ -5,13 +5,13 @@
 # pragma once
 #endif
 
-#include "TD3DDevice.h"
+#include "TDevice.h"
 #include "GlobalMath.h"
 
 
 
 
-class TD3DDevice;
+class TDevice;
 
 
 

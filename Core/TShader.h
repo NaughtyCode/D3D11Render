@@ -5,15 +5,27 @@
 # pragma once
 #endif
 
-#include "IShader.h"
-#include "TD3DDevice.h"
+#include "Core.h"
+#include "TDevice.h"
 #include "Definitions.h"
 #include "TConstantBuffer.h"
 
 
 class IShader;
-class TD3DDevice;
+class TDevice;
 class TConstantBuffer;
+
+class IShader
+{
+public:
+	IShader(){}
+	virtual ~IShader(){}
+	virtual void PostEffect()=0;
+	virtual LPVOID GetShaderBufferPointer()=0;
+	virtual SIZE_T GetShaderBufferSize()=0;
+	virtual void Release()=0;
+};
+
 
 class TShader:public IShader
 {

@@ -7,12 +7,11 @@
 
 #include "TShader.h"
 #include "TBuffer.h"
-#include "TD3DDevice.h"
-#include "TEffectShader.h"
+#include "TDevice.h"
 #include "TTexture.h"
 
 
-class TD3DDevice;
+class TDevice;
 class TShader;
 class TBuffer;
 class TEffectShader;

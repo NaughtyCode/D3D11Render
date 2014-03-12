@@ -5,9 +5,10 @@
 # pragma once
 #endif
 
-#include "TD3DDevice.h"
+#include "TColor.h"
+#include "TDevice.h"
 
-class TD3DDevice;
+class TDevice;
 
 class TRenderTarget
 {

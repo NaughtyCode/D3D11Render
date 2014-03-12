@@ -2,11 +2,11 @@
 
 class TRender;
 class TCamera;
-class TD3DDevice;
+class TDevice;
 
 TRender*     GRender                   = NULL;
 TCamera*     GCamera                   = NULL;
-TD3DDevice*  GDevice                   = NULL;
+TDevice*     GDevice                   = NULL;
 DWORD        GGPUFrameTime             = 0;
 char*        ASCIIResourceDirectory    = "..\\Resource\\";
 wchar_t*     WCHARResourceDirectory    = L"..\\Resource\\";
@@ -19,7 +19,7 @@ void CreateRender(HWND hWnd)
 	assert(GCamera);
 	
 	assert(!GDevice);
-	GDevice = new TD3DDevice(hWnd);
+	GDevice = new TDevice(hWnd);
 	assert(GDevice);
 	rt=GDevice->CreateDevice();
 	assert(rt);

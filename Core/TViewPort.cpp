@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "Core.h"
 #include "TViewPort.h"
 
 

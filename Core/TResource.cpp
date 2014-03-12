@@ -66,5 +66,4 @@ void TResource::Release()
 	SAFE_RELEASEDELETE(Shader);
 	SAFE_RELEASEDELETE(Texture);
 	SAFE_RELEASEDELETE(Buffer);
-	SAFE_RELEASEDELETE(EffectShader);
 }
