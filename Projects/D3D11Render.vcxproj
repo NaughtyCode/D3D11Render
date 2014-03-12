@@ -150,6 +150,7 @@
     <ClCompile Include="..\Core\INIConfig.cpp" />
     <ClCompile Include="..\Core\Definitions.cpp" />
     <ClCompile Include="..\Core\RenderUtils.cpp" />
+    <ClCompile Include="..\Core\TCamera.cpp" />
     <ClCompile Include="..\Core\TConstantBuffer.cpp" />
     <ClCompile Include="..\Core\TDevice.cpp" />
     <ClCompile Include="..\Core\RenderData.cpp" />

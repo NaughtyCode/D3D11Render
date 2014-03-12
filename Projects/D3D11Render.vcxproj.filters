@@ -374,6 +374,9 @@
     <ClCompile Include="..\Core\tinyxmlerror.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\Core\TCamera.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="render.rc">

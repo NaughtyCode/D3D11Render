@@ -47,24 +47,25 @@ int TWindow::CreateD3DWindow(UINT x,UINT y,UINT width,UINT height)
 {
 	WNDCLASSEX WndClass;
 
-	WndClass.cbSize = sizeof(WNDCLASSEX);
-	WndClass.style			= CS_HREDRAW | CS_VREDRAW;
+	WndClass.cbSize         = sizeof(WNDCLASSEX);
+	WndClass.style		= CS_HREDRAW | CS_VREDRAW;
 	WndClass.lpfnWndProc	= RenderWindowProc;
-	WndClass.cbClsExtra		= 0;
-	WndClass.cbWndExtra		= 0;
-	WndClass.hInstance		= NULL;
-	WndClass.hIcon			= LoadIcon( NULL, ( LPCTSTR )IDI_D3DSHADERDEMO );
-	WndClass.hCursor		= LoadCursor(NULL, IDC_ARROW);
+	WndClass.cbClsExtra	= 0;
+	WndClass.cbWndExtra	= 0;
+	WndClass.hInstance	= NULL;
+	WndClass.hIcon		= LoadIcon( NULL, ( LPCTSTR )IDI_D3DSHADERDEMO );
+	WndClass.hCursor	= LoadCursor(NULL, IDC_ARROW);
 	WndClass.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
-	WndClass.lpszMenuName	= MAKEINTRESOURCE(IDC_D3DSHADERDEMO);
+	WndClass.lpszMenuName	= NULL;
 	WndClass.lpszClassName	= L"GDKRender";
-	WndClass.hIconSm		= LoadIcon( NULL, ( LPCTSTR )IDI_D3DSHADERDEMO );
-
+	WndClass.hIconSm	= LoadIcon( NULL, ( LPCTSTR )IDI_D3DSHADERDEMO );
+	
 	if (!RegisterClassEx(&WndClass))
 	{
 		return 0;
 	}
-	WindowHandle = CreateWindow(L"GDKRender", L"GDK Render", WS_OVERLAPPEDWINDOW,x,y,width,height,0,0,0,0);
+	
+	WindowHandle = CreateWindow(L"GDKRender", L"GDK", WS_OVERLAPPEDWINDOW,x,y,width,height,0,0,0,0);
 	if (!WindowHandle)
 	{
 		return 0;
