@@ -6,10 +6,10 @@
 #endif
 
 #include "resource.h"
-#include "TRender.h"
+#include "TD3D11Render.h"
 #include "TMouseObject.h"
 
-class TRender;
+class TD3D11Render;
 class TMouseObject;
 
 

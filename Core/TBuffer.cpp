@@ -1,5 +1,7 @@
 #include "stdafx.h"
+#include "TResource.h"
 #include "RenderData.h"
+#include "RenderUtils.h"
 
 TBuffer::TBuffer() :
 	VertexBuffer(0),
@@ -125,5 +127,67 @@ void TBuffer::Release()
 	SAFE_RELEASE(VertexBuffer);
 	SAFE_RELEASE(IndexBuffer);
 }
+
+void TIndexBuffer::CreateIndexBuffer(void* pData,UINT Size,UINT Pitch,bool IsDynamic)
+{
+	D3D11_BUFFER_DESC BufferDesc;
+	ZeroMemory( &BufferDesc,sizeof(BufferDesc));
+	BufferDesc.ByteWidth = Pitch*Size;
+	BufferDesc.MiscFlags = 0;
+	BufferDesc.StructureByteStride = 0;
+	BufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+	if ( IsDynamic ){
+		BufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+		BufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	}
+	else{
+		BufferDesc.Usage = D3D11_USAGE_DEFAULT;
+		BufferDesc.CPUAccessFlags = 0;
+	}
+	
+	D3D11_SUBRESOURCE_DATA Data;
+	ZeroMemory(&Data, sizeof(Data));
+	Data.pSysMem = pData;
+	
+	HRESULT error;
+	error=GDevice->GetDevice()->CreateBuffer( &BufferDesc,&Data, &Buffer );
+	if ( FAILED(error) ) {
+		VERIFYRESULT(error);
+	}
+}
+
+void TVertexBuffer::CreateVertexBuffer( void* pData,UINT Size,UINT Pitch,bool IsDynamic,bool IsStreamOut)
+{
+	D3D11_BUFFER_DESC BufferDesc;
+	ZeroMemory( &BufferDesc, sizeof(BufferDesc) );
+	BufferDesc.ByteWidth = Size*Pitch;
+	BufferDesc.MiscFlags = 0;
+	BufferDesc.StructureByteStride = 0;
+	if (IsStreamOut){
+		BufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER | D3D11_BIND_STREAM_OUTPUT;
+	}
+	else{
+		BufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	}
+	if (IsDynamic){
+		BufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+		BufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	}
+	else{
+		BufferDesc.Usage = D3D11_USAGE_IMMUTABLE;
+		BufferDesc.CPUAccessFlags = 0;
+	}
+	
+	D3D11_SUBRESOURCE_DATA Data;
+	ZeroMemory(&Data, sizeof(Data));
+	Data.pSysMem = pData;
+	
+	HRESULT error;
+	error=GDevice->GetDevice()->CreateBuffer( &BufferDesc,&Data, &Buffer);
+	if ( FAILED(error) ) {
+		VERIFYRESULT(error);
+	}
+}
+
 
 

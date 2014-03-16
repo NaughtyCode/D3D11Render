@@ -142,9 +142,6 @@
     <ClInclude Include="..\Core\TMouseObject.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\TRender.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Core\TRenderTarget.h">
       <Filter>Include</Filter>
     </ClInclude>
@@ -164,6 +161,15 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\TXmlParser.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TMalloc.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TMallocTBB.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TD3D11Render.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -198,9 +204,6 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TBuffer.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\TRender.cpp">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TRenderTarget.cpp">
@@ -369,6 +372,15 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TVertexDeclaration.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TMalloc.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TMallocTBB.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TD3D11Render.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

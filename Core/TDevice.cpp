@@ -238,6 +238,15 @@ void TDevice::GetBestResolution(UINT& Width,UINT& Height)
 	Height = BestMode.Height;
 }
 
+void TDevice::SetViewport(UINT MinX,UINT MinY,FLOAT MinZ,UINT MaxX,UINT MaxY,FLOAT MaxZ)
+{
+	D3D11_VIEWPORT Viewport = { MinX, MinY, MaxX - MinX, MaxY - MinY, MinZ, MaxZ };
+	if (Viewport.Width > 0 && Viewport.Height > 0)
+	{
+		DeviceContext->RSSetViewports(1,&Viewport);
+	}
+}
+
 ID3D11Device* TDevice::GetDevice() const
 {
 	return Device;

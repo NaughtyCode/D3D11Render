@@ -1,15 +1,16 @@
 #include "stdafx.h"
 
-class TRender;
+class TD3D11Render;
 class TCamera;
 class TDevice;
 
-TRender*     GRender                   = NULL;
-TCamera*     GCamera                   = NULL;
-TDevice*     GDevice                   = NULL;
-DWORD        GGPUFrameTime             = 0;
-char*        ASCIIResourceDirectory    = "..\\Resource\\";
-wchar_t*     WCHARResourceDirectory    = L"..\\Resource\\";
+TResource*    GResource                 = 0;
+TD3D11Render* GRender                   = 0;
+TCamera*      GCamera                   = 0;
+TDevice*      GDevice                   = 0;
+DWORD         GGPUFrameTime             = 0;
+char*         ASCIIResourceDirectory    = "..\\Resource\\";
+wchar_t*      WCHARResourceDirectory    = L"..\\Resource\\";
 
 void CreateRender(HWND hWnd)
 {
@@ -25,7 +26,7 @@ void CreateRender(HWND hWnd)
 	assert(rt);
 	
 	assert(!GRender);
-	GRender = new TRender();
+	GRender = new TD3D11Render();
 	GRender->CreateRender(hWnd);
 	assert(GRender);
 }
@@ -49,3 +50,25 @@ void GetResourceDirWCHAR(std::wstring& FileName)
 	FileName=root+FileName;
 }
 
+void GDrawFrame()
+{
+	GStartFrame();
+	if(!GResource)
+	{
+		GResource = new TResource();
+		GResource->CreateResource();
+	}
+	GResource->PostResource();
+	
+	GEndFrame();
+}
+
+void GStartFrame()
+{
+	GRender->StartFrame();
+}
+
+void GEndFrame()
+{
+	GRender->EndFrame();
+}

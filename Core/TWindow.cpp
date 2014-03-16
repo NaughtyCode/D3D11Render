@@ -17,7 +17,7 @@ LRESULT CALLBACK RenderWindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 		break;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
-		GRender->RenderFrame();
+		GDrawFrame();
 		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:
@@ -29,11 +29,13 @@ LRESULT CALLBACK RenderWindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 	return 0;
 }
 
+
+
 TWindow::TWindow():
-			WindowHandle(0),
-			Width(0),
-			Height(0),
-			MouseObject(0)
+	WindowHandle(0),
+	Width(0),
+	Height(0),
+	MouseObject(0)
 {
 	
 }
@@ -123,11 +125,7 @@ void TWindow::EnterLoop()
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		else
-		{
-			GRender->RenderFrame();
-		}
-
+		GDrawFrame();
 		MouseObject->UpdateInputState();
 	}
 }

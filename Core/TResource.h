@@ -10,51 +10,62 @@
 #include "GlobalMath.h"
 #include "Definitions.h"
 
-class IShader;
+class TViewPort;
+class TD3D11RenderResource;
 class TDevice;
 class TShader;
 class TBuffer;
 class TEffectShader;
 class TTexture;
+class TConstantBuffer;
+class TD3D11RenderParameterTransmitter;
 
-typedef std::vector< TShader* >       ShaderArrayType;
-typedef std::vector< TBuffer* >       BufferArrayType;
-typedef std::vector< TEffectShader* > EffectArrayType;
-typedef std::vector< TTexture* >      TextureArrayType;
 
-class IShader
+typedef std::vector< TConstantBuffer* > TConstantBufferArray;
+typedef std::vector< TShader* > TShaderArray;
+typedef std::vector< TBuffer* > TBufferArray;
+typedef std::vector< TEffectShader* > TEffectArray;
+typedef std::vector< TTexture* > TTextureArray;
+typedef std::vector< TViewPort* > TViewPortArray;
+
+
+class TD3D11RenderParameterTransmitter
 {
 public:
-    IShader(){}
-    virtual ~IShader(){}
-    virtual void PostEffect()=0;
-    virtual void Release()=0;
+    TD3D11RenderParameterTransmitter()
+    {}
+    
+    virtual ~TD3D11RenderParameterTransmitter()
+    {}
 };
 
-class TResource
+class TD3D11RenderResource
 {
 public:
-    TResource();
-    ~TResource();
-    void CreateResource(const TCHAR* resourcefile);
-    void CreateResource(const char* resourcefile);
-    int  CreateResource();
-    void PostResource();
-    void Release();
+    TD3D11RenderResource()
+    {
+        
+    }
     
-private:
-    TShader*        Shader;
-    TBuffer*        Buffer;
-    TEffectShader*  EffectShader;
-    TTexture*       Texture;
+    virtual ~TD3D11RenderResource()
+    {
+        
+    }
     
-    ShaderArrayType   Shaders;
-    BufferArrayType   Buffers;
-    EffectArrayType   EffectShaders;
-    TextureArrayType  Textures;
+    virtual void InitRenderResource()
+    {
+        
+    }
+    
+    virtual void DestroyRenderResource()
+    {
+        
+    }
+    
 };
 
-class TTexture
+
+class TTexture:public TD3D11RenderResource
 {
 public:
     TTexture();
@@ -71,7 +82,7 @@ private:
     ID3D11DeviceContext*      DeviceContext;
 };
 
-class TBuffer
+class TBuffer:public TD3D11RenderResource
 {
 public:
     TBuffer();
@@ -96,7 +107,7 @@ struct TConstantBufferContents
     TMatrix WorldViewProjectMatrix;
 };
 
-class TConstantBuffer
+class TConstantBuffer:public TD3D11RenderResource
 {
 public:
     TConstantBuffer(UINT Size = 0,UINT NumBuffers = 1);
@@ -121,8 +132,7 @@ private:
     UINT            TotalUpdateSize;
 };
 
-
-class TShader:public IShader
+class TShader:public TD3D11RenderResource
 {
 public:
     TShader();
@@ -144,9 +154,9 @@ public:
     
     int CreateConstantBuffer();
     
-    virtual void   PostEffect();
+    virtual void PostEffect();
     
-    virtual void   Release();
+    virtual void Release();
     
     int CreateInputLayout();
     void SetLayoutType(INPUTTYPE_TYPE type);
@@ -163,7 +173,126 @@ private:
     TConstantBuffer*        ShaderResource;
     ID3D11DeviceContext*    DeviceContext;
     INPUTTYPE_TYPE          LayoutType;
+};
 
+class TIndexBuffer:public TD3D11RenderResource
+{
+public:
+    ID3D11Buffer* Buffer;
+    UINT Stride;
+    UINT Usage;
+    
+    TIndexBuffer():Buffer(0),Stride(0),Usage(0)
+    {
+        
+    }
+    
+    TIndexBuffer(ID3D11Buffer* buffer,
+                UINT stride,
+                UINT usage):
+                Buffer(buffer),
+                Stride(stride),
+                Usage(usage)
+    {
+        
+    }
+    
+    void InitRenderResource()
+    {
+        
+    }
+    
+    void DestroyRenderResource()
+    {
+        SAFE_RELEASE(Buffer);
+    }
+    
+    void CreateIndexBuffer(void* pData,UINT Size,UINT Pitch,bool IsDynamic);
+    
+};
+
+class TVertexBuffer:public TD3D11RenderResource
+{
+public:
+    ID3D11Buffer* Buffer;
+    UINT Usage;
+    
+    TVertexBuffer():Buffer(0),Usage(0)
+    {
+        
+    }
+    
+    TVertexBuffer(ID3D11Buffer* buffer,
+                UINT usage):
+                Buffer(buffer),
+                Usage(usage)
+    {
+        
+    }
+    
+    void InitRenderResource()
+    {
+        
+    }
+    
+    void DestroyRenderResource()
+    {
+        SAFE_RELEASE(Buffer);
+    }
+    
+    void CreateVertexBuffer( void* pData,UINT Size,UINT Pitch,bool IsDynamic,bool IsStreamOut);
+};
+
+class TBlendState : public TD3D11RenderResource
+{
+public:
+    D3D11_BLEND_DESC BlendDesc;
+    TBlendState(){}
+    ~TBlendState(){}
+};
+
+class TSamplerState : public TD3D11RenderResource
+{
+public:
+    D3D11_SAMPLER_DESC SamplerDesc;
+};
+
+class TRasterizerState : public TD3D11RenderResource
+{
+public:
+    D3D11_RASTERIZER_DESC RasterizerDesc;
+};
+
+class TDepthState : public TD3D11RenderResource
+{
+public:
+    D3D11_DEPTH_STENCIL_DESC DepthStencilDesc;
+};
+
+class TStencilState : public TD3D11RenderResource
+{
+public:
+    D3D11_DEPTH_STENCIL_DESC DepthStencilDesc;
+    UINT StencilRef;
+};
+
+class TResource : public TD3D11RenderResource
+{
+public:
+    TResource();
+    ~TResource();
+    void CreateResource(const TCHAR* resourcefile);
+    void CreateResource(const char* resourcefile);
+    int  CreateResource();
+    void PostResource();
+    void Release();
+    
+private:
+    TShader*        Shader;
+    TBuffer*        Buffer;
+    TEffectShader*  EffectShader;
+    TTexture*       Texture;
+    
 };
 
 #endif

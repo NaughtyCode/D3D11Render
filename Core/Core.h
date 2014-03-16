@@ -6,13 +6,13 @@
 #endif
 
 #include "TDevice.h"
-#include "TRender.h"
+#include "TD3D11Render.h"
 #include "TCamera.h"
 
 
 
 
-extern TRender*        GRender;
+extern TD3D11Render*        GRender;
 extern TCamera*        GCamera;
 extern TDevice*        GDevice;
 extern DWORD           GGPUFrameTime;
@@ -130,5 +130,8 @@ public:
     D3D11_INPUT_ELEMENT_DESC ElemetArray[MaxVertexElementCount];
 };
 
+void GDrawFrame();
+void GStartFrame();
+void GEndFrame();
 
 #endif

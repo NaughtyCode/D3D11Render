@@ -24,7 +24,8 @@ public:
     void GetBestResolution(UINT& Width,UINT& Height);
     HWND GetWindowHandle();
     void Present(); 
-    void Release();
+    void Release();    
+    void SetViewport(UINT MinX,UINT MinY,FLOAT MinZ,UINT MaxX,UINT MaxY,FLOAT MaxZ);
     
 private:
     HWND                 WindowHandle;

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Core.h"
-#include "TRender.h"
+#include "TD3D11Render.h"
 
 TShader::TShader():
 		HullShader(0),
