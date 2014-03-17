@@ -3,20 +3,20 @@
 
 
 TRenderTarget::TRenderTarget():
-			Resource(0),
-			RenderTargetView(0),
-			DepthStencilView(0),
-			ReadDepthStencilView(0),
-			ShaderResourceView(0),
-			UnorderedAccessView(0),
-			ClearColor(0.0f,0.0f,0.0f,1.0f)
-
+	Resource(0),
+	RenderTargetView(0),
+	DepthStencilView(0),
+	ReadDepthStencilView(0),
+	ShaderResourceView(0),
+	UnorderedAccessView(0),
+	ClearColor(0.0f,0.0f,0.0f,1.0f)
 {
 	
 }
 
 TRenderTarget::~TRenderTarget()
 {
+	
 }
 
 int TRenderTarget::CreateRenderTarget()
@@ -87,11 +87,6 @@ void TRenderTarget::Clear()
 {
 	GDevice->GetDeviceContext()->ClearRenderTargetView(RenderTargetView,(FLOAT*)&ClearColor);
 	GDevice->GetDeviceContext()->ClearDepthStencilView(DepthStencilView,D3D11_CLEAR_DEPTH,1.0f,0);
-}
-
-ID3D11RenderTargetView* TRenderTarget::GetRenderTargetView()
-{
-	return RenderTargetView;
 }
 
 void TRenderTarget::Release()

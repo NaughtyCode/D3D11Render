@@ -1,30 +1,41 @@
 #include "stdafx.h"
 #include "INIConfig.h"
+#include "TResource.h"
 
-
-
-typedef struct
+static int ConfigHandler(void* object, const char* section, const char* name,const char* value)
 {
-    int version;
-    const char* name;
-    const char* email;
-} configuration;
-
-static int ConfigHandler(void* user, const char* section, const char* name,const char* value)
-{
-    configuration* pconfig = (configuration*)user;
+    configuration* pconfig = (configuration*)object;
     
     #define MATCH(s, n) strcmp(section, s) == 0 && strcmp(name, n) == 0
-    if (MATCH("protocol", "version"))
+    if (MATCH("Textures", "Texture1"))
     {
-        pconfig->version = atoi(value);
-    } else if (MATCH("user", "name"))
+        pconfig->version = _strdup(value);
+    }
+    else if (MATCH("VertexShader", "File"))
     {
         pconfig->name = _strdup(value);
-    } else if (MATCH("user", "email"))
+    }
+    else if (MATCH("VertexShader", "Entry"))
     {
         pconfig->email = _strdup(value);
-    } else
+    }
+    else if (MATCH("VertexShader", "ShaderModel"))
+    {
+        pconfig->email = _strdup(value);
+    }
+    else if (MATCH("PixelShader", "File"))
+    {
+        pconfig->email = _strdup(value);
+    }
+    else if (MATCH("PixelShader", "Entry"))
+    {
+        pconfig->email = _strdup(value);
+    }
+    else if (MATCH("PixelShader", "ShaderModel"))
+    {
+        pconfig->email = _strdup(value);
+    }
+    else
     {
         return 0;
     }
@@ -35,11 +46,7 @@ void LoadRenderConfig()
 {
     configuration config;
     
-    if (ParseConfigFile("Render.ini", ConfigHandler, &config) < 0)
-    {
-        printf("Can't load Render.ini \n");
-        return;
-    }
+    
     
     printf("load Config: version=%d, name=%s, email=%s\n",config.version, config.name, config.email);
 }

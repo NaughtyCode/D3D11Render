@@ -80,7 +80,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Core\Core.h" />
-    <ClInclude Include="..\Core\INIConfig.h" />
+    <ClInclude Include="..\Core\LoadResource.h" />
     <ClInclude Include="..\Core\RenderUtils.h" />
     <ClInclude Include="..\Core\TColor.h" />
     <ClInclude Include="..\Core\Definitions.h" />
@@ -146,9 +146,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Core\Core.cpp" />
-    <ClCompile Include="..\Core\EngineConfig.cpp" />
     <ClCompile Include="..\Core\Entry.cpp" />
-    <ClCompile Include="..\Core\INIConfig.cpp" />
+    <ClCompile Include="..\Core\LoadResource.cpp" />
     <ClCompile Include="..\Core\Definitions.cpp" />
     <ClCompile Include="..\Core\RenderUtils.cpp" />
     <ClCompile Include="..\Core\TCamera.cpp" />

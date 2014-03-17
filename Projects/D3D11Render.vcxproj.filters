@@ -106,9 +106,6 @@
     <ClInclude Include="..\Core\GlobalMath.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\INIConfig.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Core\RenderData.h">
       <Filter>Include</Filter>
     </ClInclude>
@@ -170,6 +167,9 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\TD3D11Render.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\LoadResource.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -338,12 +338,6 @@
     <ClCompile Include="..\Core\TXmlParser.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Core\INIConfig.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\EngineConfig.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
     <ClCompile Include="..\Core\TDevice.cpp">
       <Filter>source</Filter>
     </ClCompile>
@@ -381,6 +375,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TD3D11Render.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\LoadResource.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

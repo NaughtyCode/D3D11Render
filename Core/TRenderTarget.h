@@ -17,20 +17,18 @@ public:
     virtual ~TRenderTarget();
     int CreateRenderTarget();
     int CreateDepthStencil();
-    ID3D11RenderTargetView* GetRenderTargetView();
     void Clear();
     void Release();
     
 private:
-    ID3D11Texture2D*           Resource;
-    ID3D11RenderTargetView*    RenderTargetView;
-    ID3D11DepthStencilView*    DepthStencilView;
-    ID3D11DepthStencilView*    ReadDepthStencilView;
-    ID3D11ShaderResourceView*  ShaderResourceView;
+    ID3D11Texture2D* Resource;
+    ID3D11RenderTargetView* RenderTargetView;
+    ID3D11DepthStencilView* DepthStencilView;
+    ID3D11DepthStencilView* ReadDepthStencilView;
+    ID3D11ShaderResourceView* ShaderResourceView;
     ID3D11UnorderedAccessView* UnorderedAccessView;
-    TColorF                    ClearColor;
+    TColorF ClearColor;
 };
-
 
 #endif
 

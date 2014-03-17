@@ -10,6 +10,7 @@
 #include "GlobalMath.h"
 #include "Definitions.h"
 
+class TRenderContents;
 class TViewPort;
 class TD3D11RenderResource;
 class TDevice;
@@ -63,6 +64,39 @@ public:
     }
     
 };
+
+
+class TRenderContents
+{
+public:
+    TRenderContents(){}
+    virtual ~TRenderContents(){}
+    
+    char TextureFile[256];
+    char VertexShaderFile[256];
+    char VertexShaderEntry[64];
+    char VertexShaderShaderModel[32];
+    char PixelShaderFile[256];
+    char PixelShaderEntry[64];
+    char PixelShaderShaderModel[32];
+    
+    BOOL LoadResource(const char* Resource);
+    
+    BOOL ReadData(const char* SectionName,
+            const char* ItemName,
+            char* Data);
+    
+    BOOL ItemCheck(const char* SectionName,
+            const char* CheckSectionName,
+            const char* ItemName,
+            const char* CheckItemName);
+    
+    void CopyItem(void* Dst,void* Src,int Size);
+    
+    void DumpContentsInfo();
+};
+
+
 
 
 class TTexture:public TD3D11RenderResource
@@ -292,7 +326,7 @@ private:
     TBuffer*        Buffer;
     TEffectShader*  EffectShader;
     TTexture*       Texture;
-    
+    TRenderContents RenderContent;
 };
 
 #endif
