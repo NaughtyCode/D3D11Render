@@ -34,7 +34,7 @@ public:
     void Release();
     
 private:
-    TRenderTarget*       RenderTarget;
+    TRenderTarget*       TargetSurface;
     TViewPort*           CurrentViewPort;
     TViewPortArray       ViewPortArray;
     

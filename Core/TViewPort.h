@@ -28,8 +28,6 @@ private:
     D3D11_VIEWPORT  ViewPort;
 };
 
-
-
 #endif
 
 

@@ -160,13 +160,13 @@
     <ClInclude Include="..\Core\TMalloc.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\TMallocTBB.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Core\TD3D11Render.h">
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\LoadResource.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TTBBMalloc.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -360,12 +360,6 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TVertexDeclaration.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\TMalloc.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\TMallocTBB.cpp">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TD3D11Render.cpp">

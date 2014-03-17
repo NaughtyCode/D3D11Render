@@ -1,9 +1,12 @@
 #include "stdafx.h"
 
-class TD3D11Render;
 class TCamera;
 class TDevice;
+class TTBBMalloc;
+class TD3D11Render;
 
+
+TTBBMalloc*   GTBBMalloc                = 0;
 TResource*    GResource                 = 0;
 TD3D11Render* GRender                   = 0;
 TCamera*      GCamera                   = 0;
@@ -14,6 +17,7 @@ wchar_t*      WCHARResourceDirectory    = L"..\\Resource\\";
 
 void CreateRender(HWND hWnd)
 {
+	GTBBMalloc = new TTBBMalloc();
 	int rt;
 	assert(!GCamera);
 	GCamera = new TCamera(hWnd);

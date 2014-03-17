@@ -5,6 +5,8 @@
 # pragma once
 #endif
 
+#include "TMalloc.h"
+#include "TTBBMalloc.h"
 #include "TDevice.h"
 #include "TD3D11Render.h"
 #include "TCamera.h"

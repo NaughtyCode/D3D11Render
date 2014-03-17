@@ -11,7 +11,7 @@ TRenderTarget::TRenderTarget():
 	UnorderedAccessView(0),
 	ClearColor(0.0f,0.0f,0.0f,1.0f)
 {
-	
+	this->CreateRenderTarget();
 }
 
 TRenderTarget::~TRenderTarget()

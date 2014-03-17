@@ -3,11 +3,10 @@
 #include "TViewPort.h"
 
 
-TViewPort::TViewPort() :
-		WindowHandle(GDevice->GetWindowHandle()),
-		IsFullscreen(FALSE)
+TViewPort::TViewPort():IsFullscreen(FALSE)
 {
-	
+	WindowHandle = GDevice->GetWindowHandle();
+	this->CreateViewPort();
 }
 
 TViewPort::~TViewPort()
