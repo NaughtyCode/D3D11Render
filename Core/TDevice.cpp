@@ -1,8 +1,5 @@
 #include "stdafx.h"
 #include "TDevice.h"
-#include "RenderUtils.h"
-
-
 
 
 TDevice::TDevice(HWND hWnd):

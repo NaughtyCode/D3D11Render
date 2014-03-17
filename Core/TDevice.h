@@ -15,7 +15,9 @@ public:
     int CreateDevice();
     int CreateFactory(IDXGIFactory** ppDXGIFactory);
     BOOL CheckD3D11Supported(BOOL& SupportD3D11Features);
-    BOOL TestD3D11Device(UINT AdapterIndex,IDXGIAdapter* Adapter,D3D_FEATURE_LEVEL& OutFeatureLevel);
+    BOOL TestD3D11Device(UINT AdapterIndex,
+        IDXGIAdapter* Adapter,
+        D3D_FEATURE_LEVEL& OutFeatureLevel);
     
     IDXGIFactory* GetFactory() const;
     ID3D11Device* GetDevice() const;
@@ -25,7 +27,12 @@ public:
     HWND GetWindowHandle();
     void Present(); 
     void Release();    
-    void SetViewport(UINT MinX,UINT MinY,FLOAT MinZ,UINT MaxX,UINT MaxY,FLOAT MaxZ);
+    void SetViewport(UINT MinX,
+        UINT MinY,
+        FLOAT MinZ,
+        UINT MaxX,
+        UINT MaxY,
+        FLOAT MaxZ);
     
 private:
     HWND                 WindowHandle;

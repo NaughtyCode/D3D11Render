@@ -81,7 +81,6 @@
   <ItemGroup>
     <ClInclude Include="..\Core\Core.h" />
     <ClInclude Include="..\Core\LoadResource.h" />
-    <ClInclude Include="..\Core\RenderUtils.h" />
     <ClInclude Include="..\Core\TColor.h" />
     <ClInclude Include="..\Core\Definitions.h" />
     <ClInclude Include="..\Core\RenderData.h" />
@@ -149,7 +148,6 @@
     <ClCompile Include="..\Core\Entry.cpp" />
     <ClCompile Include="..\Core\LoadResource.cpp" />
     <ClCompile Include="..\Core\Definitions.cpp" />
-    <ClCompile Include="..\Core\RenderUtils.cpp" />
     <ClCompile Include="..\Core\TCamera.cpp" />
     <ClCompile Include="..\Core\TConstantBuffer.cpp" />
     <ClCompile Include="..\Core\TDevice.cpp" />

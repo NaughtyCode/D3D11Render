@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "TResource.h"
 #include "RenderData.h"
-#include "RenderUtils.h"
 
 TBuffer::TBuffer() :
 	VertexBuffer(0),

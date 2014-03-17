@@ -1,6 +1,5 @@
 #include "stdafx.h"
-#include "RenderUtils.h"
-
+#include "Core.h"
 
 TConstantBuffer::TConstantBuffer(UINT Size,UINT NumBuffers):
 	MaxSize(Size),

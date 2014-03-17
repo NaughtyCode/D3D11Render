@@ -109,9 +109,6 @@
     <ClInclude Include="..\Core\RenderData.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\RenderUtils.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Core\stdafx.h">
       <Filter>Include</Filter>
     </ClInclude>
@@ -327,9 +324,6 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TConstantBuffer.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\RenderUtils.cpp">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\Core.cpp">
