@@ -5,7 +5,7 @@
 # pragma once
 #endif
 
-#define DEFAULT_ALIGNMENT 8
+#define MALLOCALIGNMENT 8
 
 class TMalloc
 {

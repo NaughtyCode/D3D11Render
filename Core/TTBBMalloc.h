@@ -7,19 +7,12 @@
 
 #include "stdafx.h"
 #include "TMalloc.h"
-#include <tbb/scalable_allocator.h>
 
 #pragma pack(push,8) 
 #include <Psapi.h>
 #pragma pack(pop)
 
-#pragma comment(lib, "tbb.lib")
-#pragma comment(lib, "tbbproxy.lib")
-#pragma comment(lib, "tbbmalloc.lib")
-#pragma comment(lib, "tbb_preview.lib")
-#pragma comment(lib, "tbbmalloc_proxy.lib")
 
-#pragma comment(lib, "psapi.lib")
 
 
 class TTBBMalloc : public TMalloc
@@ -41,7 +34,7 @@ public:
 	
 	virtual void* Malloc (DWORD Size, DWORD Alignment)
 	{
-		assert(Alignment == DEFAULT_ALIGNMENT);
+		assert(Alignment==MALLOCALIGNMENT);
 		void* NewPtr = scalable_malloc(Size);
 		if (NewPtr == NULL)
 		{
@@ -56,7 +49,7 @@ public:
 	
 	virtual void* Realloc (void* Ptr, DWORD NewSize, DWORD Alignment)
 	{
-		assert(Alignment == DEFAULT_ALIGNMENT);
+		assert(Alignment==MALLOCALIGNMENT);
 		void* NewPtr = NULL;
 		
 		if (NewSize == 0)

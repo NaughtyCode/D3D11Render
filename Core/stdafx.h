@@ -4,6 +4,26 @@
 
 #define WIN32_LEAN_AND_MEAN
 
+#include <tbb/scalable_allocator.h>
+
+#pragma comment(lib, "psapi.lib")
+
+#if defined(_DEBUG) || defined(DEBUG)
+    #pragma comment(lib, "tbb_debug.lib")
+    #pragma comment(lib, "tbbproxy_debug.lib")
+    #pragma comment(lib, "tbbmalloc_debug.lib")
+    #pragma comment(lib, "tbb_preview_debug.lib")
+    #pragma comment(lib, "tbbmalloc_proxy_debug.lib")
+    
+#else
+    #pragma comment(lib, "tbb.lib")
+    #pragma comment(lib, "tbbproxy.lib")
+    #pragma comment(lib, "tbbmalloc.lib")
+    #pragma comment(lib, "tbb_preview.lib")
+    #pragma comment(lib, "tbbmalloc_proxy.lib")
+#endif
+
+
 // Windows head fiels
 #include <windows.h>
 #include <commctrl.h>
@@ -105,8 +125,6 @@ typedef ID3D11Buffer* LPID3D11Buffer;
 
 
 #include "Core.h"
-
-
 
 
 
