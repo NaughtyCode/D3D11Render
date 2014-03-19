@@ -72,13 +72,14 @@ public:
     TRenderContents(){}
     virtual ~TRenderContents(){}
     
-    char TextureFile[256];
-    char VertexShaderFile[256];
-    char VertexShaderEntry[64];
-    char VertexShaderShaderModel[32];
-    char PixelShaderFile[256];
-    char PixelShaderEntry[64];
-    char PixelShaderShaderModel[32];
+    char TextureFile[SHADER_FILENAME_MAX];
+    
+    char VertexShaderFile[SHADER_FILENAME_MAX];
+    char VertexShaderEntry[SHADER_ENTRY_MAX];
+    char VertexShaderShaderModel[SHADER_PROFILE_MAX];
+    char PixelShaderFile[SHADER_FILENAME_MAX];
+    char PixelShaderEntry[SHADER_ENTRY_MAX];
+    char PixelShaderShaderModel[SHADER_PROFILE_MAX];
     
     BOOL LoadResource(const char* Resource);
     
@@ -121,7 +122,6 @@ class TBuffer:public TD3D11RenderResource
 public:
     TBuffer();
     ~TBuffer();
-    int CreateStaticVertexBuffer(void* pData,UINT size,UINT elemsize);
     int CreateVertexBuffer(void* pData,UINT size,UINT vertexsize,bool dynamic,bool streamout);
     int CreateIndexBuffer(void* pData,UINT size,UINT indexsize,bool dynamic);
     void PostResource();
@@ -138,7 +138,7 @@ private:
 
 struct TConstantBufferContents
 {
-    TMatrix WorldViewProjectMatrix;
+    XMMATRIX WorldViewProjectionMatrix;
 };
 
 class TConstantBuffer:public TD3D11RenderResource

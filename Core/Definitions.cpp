@@ -27,14 +27,30 @@ D3D11_INPUT_ELEMENT_DESC PositionTexLayout[] =
 	{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT,    0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 };
 
-static D3D11_INPUT_ELEMENT_DESC* LayoutArray[]={
-	PositionLayout,
-	PositionTexLayout,
+D3D11_INPUT_ELEMENT_DESC PositionNormalLayout[] =
+{
+	{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+	{"NORMAL",   0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0},
 };
 
-static UINT LayoutArraySize[]={
+static D3D11_INPUT_ELEMENT_DESC* LayoutArray[] = 
+{
+	PositionLayout,
+	PositionTexLayout,
+	NULL,
+	PositionNormalLayout,
+	NULL,
+	NULL,
+};
+
+static UINT LayoutArraySize[] = 
+{
 	ARRAYSIZE(PositionLayout),
 	ARRAYSIZE(PositionTexLayout),
+	NULL,
+	ARRAYSIZE(PositionNormalLayout),
+	NULL,
+	NULL,
 };
 
 D3D11_INPUT_ELEMENT_DESC* GetLayoutArray(INPUTTYPE_TYPE type)

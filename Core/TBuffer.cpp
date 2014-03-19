@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "TResource.h"
-#include "RenderData.h"
 
 TBuffer::TBuffer() :
 	VertexBuffer(0),
@@ -15,30 +14,6 @@ TBuffer::TBuffer() :
 TBuffer::~TBuffer()
 {
 	
-}
-
-int TBuffer::CreateStaticVertexBuffer(void* pData,UINT size,UINT elemsize)
-{
-	VertexSize = elemsize;
-	VertexBufferSize = size;
-
-	D3D11_BUFFER_DESC BufferDesc;
-	ZeroMemory(&BufferDesc, sizeof(BufferDesc));
-	
-	BufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	BufferDesc.ByteWidth = VertexSize*VertexBufferSize;
-	BufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	BufferDesc.CPUAccessFlags = 0;
-	BufferDesc.MiscFlags = 0;
-
-	D3D11_SUBRESOURCE_DATA Data;
-	ZeroMemory(&Data, sizeof(Data));
-	Data.pSysMem = pData;
-
-	if ( FAILED(GDevice->GetDevice()->CreateBuffer(&BufferDesc,&Data,&VertexBuffer) ) ){
-		return 0;
-	}
-	return 1;
 }
 
 int TBuffer::CreateVertexBuffer( void* pData,UINT size,UINT vertexsize,bool dynamic,bool streamout)

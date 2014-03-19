@@ -9,7 +9,7 @@ TRenderTarget::TRenderTarget():
 	ReadDepthStencilView(0),
 	ShaderResourceView(0),
 	UnorderedAccessView(0),
-	ClearColor(0.0f,0.0f,0.0f,1.0f)
+	ClearColor(0.0f,0.0f,0.0f,0.0f)
 {
 	this->CreateRenderTarget();
 }

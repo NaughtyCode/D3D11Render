@@ -11,12 +11,5 @@ int main()
 	{
 		Window.EnterLoop();
 	}
-	
-	
-	
-	
-	
-	
-	
 	return 0;
 }

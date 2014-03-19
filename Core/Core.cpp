@@ -18,21 +18,23 @@ wchar_t*      WCHARResourceDirectory    = L"..\\Resource\\";
 void CreateRender(HWND hWnd)
 {
 	GTBBMalloc = new TTBBMalloc();
-	int rt;
-	assert(!GCamera);
-	GCamera = new TCamera(hWnd);
-	assert(GCamera);
 	
-	assert(!GDevice);
+	RECT rect;
+	UINT width,height;
+	GetWindowRect(hWnd,&rect);
+	width = rect.right - rect.left;
+	height = rect.bottom - rect.top;
+	FLOAT Aspectratio = (static_cast<FLOAT>(width))/height;
+	GCamera = new TCamera();
+	
+	GCamera->SetLens(XM_PIDIV4, Aspectratio, 0.1f, 100.0f);
+	GCamera->SetPosition(0.0f, 2.0f, -15.0f);
+	
 	GDevice = new TDevice(hWnd);
-	assert(GDevice);
-	rt=GDevice->CreateDevice();
-	assert(rt);
+	GDevice->CreateDevice();
 	
-	assert(!GRender);
 	GRender = new TD3D11Render();
 	GRender->CreateRender(hWnd);
-	assert(GRender);
 }
 
 void DestroyRender()

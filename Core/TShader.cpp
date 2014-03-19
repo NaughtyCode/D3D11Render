@@ -147,7 +147,7 @@ void TShader::PostEffect()
 {
 	struct TConstantBufferContents Data;
 	
-	Data.WorldViewProjectMatrix = GCamera->GetWorldViewProMatrix();
+	Data.WorldViewProjectionMatrix = GCamera->GetWorldViewProMatrix();
 	
 	ShaderResource->UpdateBufferData(&Data,0,sizeof(Data));
 	ShaderResource->UpdateConstantBufferResource(TRUE);

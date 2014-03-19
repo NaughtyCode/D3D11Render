@@ -124,6 +124,23 @@ typedef ID3D11Buffer* LPID3D11Buffer;
 
 
 
+//shader definitions
+
+#ifndef SHADER_ENTRY_MAX
+#define SHADER_ENTRY_MAX 64
+#endif
+
+
+#ifndef SHADER_PROFILE_MAX
+#define SHADER_PROFILE_MAX 32
+#endif
+
+
+#ifndef SHADER_FILENAME_MAX
+#define SHADER_FILENAME_MAX 512
+#endif
+
+
 #include "Core.h"
 
 

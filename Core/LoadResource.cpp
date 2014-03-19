@@ -126,7 +126,7 @@ INT ParseResourceFile(const char* FileName,
     return error;
 }
 
-INT LoadHandler(TRenderContents* Object,
+INT LoadRenderContentHandler(TRenderContents* Object,
         const char* SectionName,
         const char* ItemName,
         char* Data)

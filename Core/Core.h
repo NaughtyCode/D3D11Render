@@ -147,7 +147,6 @@ void VerifyResult(HRESULT error,const char* Code,const char* Filename,UINT Line)
 
 #define VERIFYRESULT(error) VerifyResult(error,#error,__FILE__,__LINE__);
 
-
 #define CompileTimeCheck(expr,msg)  typedef char CompileCheckError_##msg[1][(expr)]
 
 

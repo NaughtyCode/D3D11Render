@@ -81,10 +81,10 @@
   <ItemGroup>
     <ClInclude Include="..\Core\Core.h" />
     <ClInclude Include="..\Core\LoadResource.h" />
-    <ClInclude Include="..\Core\TColor.h" />
-    <ClInclude Include="..\Core\Definitions.h" />
     <ClInclude Include="..\Core\RenderData.h" />
     <ClInclude Include="..\Core\TCamera.h" />
+    <ClInclude Include="..\Core\TColor.h" />
+    <ClInclude Include="..\Core\Definitions.h" />
     <ClInclude Include="..\Core\TConstantBuffer.h" />
     <ClInclude Include="..\Core\TDevice.h" />
     <ClInclude Include="..\Core\stdafx.h" />
@@ -144,14 +144,15 @@
     <None Include="render.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Core\CarModel.cpp" />
     <ClCompile Include="..\Core\Core.cpp" />
     <ClCompile Include="..\Core\Entry.cpp" />
     <ClCompile Include="..\Core\LoadResource.cpp" />
     <ClCompile Include="..\Core\Definitions.cpp" />
+    <ClCompile Include="..\Core\RenderData.cpp" />
     <ClCompile Include="..\Core\TCamera.cpp" />
     <ClCompile Include="..\Core\TConstantBuffer.cpp" />
     <ClCompile Include="..\Core\TDevice.cpp" />
-    <ClCompile Include="..\Core\RenderData.cpp" />
     <ClCompile Include="..\Core\stdafx.cpp" />
     <ClCompile Include="..\Core\TBuffer.cpp" />
     <ClCompile Include="..\Core\tinystr.cpp" />

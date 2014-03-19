@@ -106,9 +106,6 @@
     <ClInclude Include="..\Core\GlobalMath.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\RenderData.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Core\stdafx.h">
       <Filter>Include</Filter>
     </ClInclude>
@@ -116,9 +113,6 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\TColor.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Core\TCamera.h">
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\TDevice.h">
@@ -169,6 +163,12 @@
     <ClInclude Include="..\Core\TTBBMalloc.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="..\Core\TCamera.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\RenderData.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="render.ico">
@@ -216,9 +216,6 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\TViewPort.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Core\RenderData.cpp">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Lua\lapi.c">
@@ -356,9 +353,6 @@
     <ClCompile Include="..\Core\tinyxmlerror.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Core\TCamera.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
     <ClCompile Include="..\Core\TVertexDeclaration.cpp">
       <Filter>source</Filter>
     </ClCompile>
@@ -366,6 +360,15 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\LoadResource.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\CarModel.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TCamera.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\RenderData.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
